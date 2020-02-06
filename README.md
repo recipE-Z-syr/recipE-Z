@@ -1,2 +1,2 @@
 # recipE-Z
-Main repo of recipE-Z project
+we put the E-Z in recipE-Z
