@@ -4,24 +4,71 @@ import { Button, StyleSheet, Text, View } from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 
-function HomeScreen({ navigation }) {
+function LogInScreen({ navigation }) {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Home Screen</Text>
       <Button
-      title="Go to Details"
-      onPress={() => navigation.navigate('Details')}
+      title="Log-In"
+      onPress={() => navigation.navigate('Home')}
+      />
+      <Button
+      title="Sign-Up"
+      onPress={() => navigation.navigate('Sign-Up')}
       />
     </View>
   );
 }
 
-function DetailsScreen({ navigation }) {
+function SignUpScreen({ navigation }) {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Details Screen</Text>
-      <Button title="Go to Home" onPress={() => navigation.navigate('Home')} />
-      <Button title="Go back" onPress={() => navigation.goBack()} />
+    </View>
+  );
+}
+function HomeScreen({ navigation }) {
+  return (
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Button title="Go to Profile" onPress={() => navigation.navigate('Profile')} />
+      <Button title="Upload Recipe" onPress={() => navigation.navigate('Upload')} />
+      <Button title="Recipe Book" onPress={() => navigation.navigate('Recipe Book')} />
+      <Button title="Search for Recipe" onPress={() => navigation.navigate('Search')} />
+    </View>
+  );
+}
+
+function ProfileScreen({ navigation }) {
+  return (
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+    </View>
+  );
+}
+
+function UploadRecipeScreen({ navigation }) {
+  return (
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+    </View>
+  );
+}
+
+function RecipeBookScreen({ navigation }) {
+  return (
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Button title="Recipe" onPress={() => navigation.navigate('Recipe')} />
+    </View>
+  );
+}
+
+function SearchResultsScreen({ navigation }) {
+  return (
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Button title="Recipe" onPress={() => navigation.navigate('Recipe')} />
+    </View>
+  );
+}
+
+function RecipeScreen({ navigation }) {
+  return (
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
     </View>
   );
 }
@@ -31,9 +78,15 @@ const Stack = createStackNavigator();
 function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
+      <Stack.Navigator initialRouteName="Log-In">
         <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Details" component={DetailsScreen} />
+        <Stack.Screen name="Profile" component={ProfileScreen} />
+        <Stack.Screen name="Sign-Up" component={SignUpScreen} />
+        <Stack.Screen name="Log-In" component={LogInScreen} />
+        <Stack.Screen name="Upload" component={UploadRecipeScreen} />
+        <Stack.Screen name="Recipe Book" component={RecipeBookScreen} />
+        <Stack.Screen name="Search" component={SearchResultsScreen} />
+        <Stack.Screen name="Recipe" component={RecipeScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
