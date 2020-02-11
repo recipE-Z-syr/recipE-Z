@@ -1,6 +1,6 @@
 import 'react-native-gesture-handler';
 import * as React from 'react';
-import { Button, StyleSheet, Text, View } from 'react-native';
+import { Button, StyleSheet, Text, TextInput, View, SafeAreaView, ScrollView, Keyboard} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 
@@ -58,13 +58,65 @@ function RecipeBookScreen({ navigation }) {
   );
 }
 
+/////////////////////////////////////////////
+/// primary recipe search function and API integration
+/// if your name is not will DON'T TOUCH THIS CODE >:(
+/// if you do I will find you and... smile and be nice to u because you're all great people
+///
+
 function SearchResultsScreen({ navigation }) {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Button title="Recipe" onPress={() => navigation.navigate('Recipe')} />
-    </View>
-  );
-}
+    return ( //TODO: find how to store results of input boxes in local variables
+      //TODO: create a header that states everything is optional (besides one field lol)
+      <ScrollView>
+       <View style = {{ flex: 1, alignItems: 'left', justifyContent: 'left'}}>
+        <TextInput
+          placeholder = " Ingredient one"
+          placeholderTextColor = "grey"
+          style={{ height: 50, borderColor: 'black', borderWidth: 1 }}
+        />
+        <TextInput
+          placeholder = " Ingredient two"
+          placeholderTextColor = "grey"
+          style={{ height: 50, borderColor: 'black', borderWidth: 1 }}
+        />
+        <TextInput
+          placeholder = " Ingredient three"
+          placeholderTextColor = "grey"
+          style={{ height: 50, borderColor: 'black', borderWidth: 1 }}
+        />
+        <TextInput
+          placeholder = " Ingredient four"
+          placeholderTextColor = "grey"
+          style={{ height: 50, borderColor: 'black', borderWidth: 1 }}
+        />
+        <TextInput
+          placeholder = " Ingredient five"
+          placeholderTextColor = "grey"
+          style={{ height: 50, borderColor: 'black', borderWidth: 1 }}
+        />
+        <TextInput
+          placeholder = " Cuisine"
+          placeholderTextColor = "grey"
+          style={{ height: 50, borderColor: 'black', borderWidth: 1 }}
+        />
+        <TextInput
+          placeholder = " Calorie range"  ////maybe delete? complex. read docs
+          placeholderTextColor = "grey"
+          style={{ height: 50, borderColor: 'black', borderWidth: 1 }}
+        />
+        <TextInput
+          placeholder = " Exclude these ingredients"
+          placeholderTextColor = "grey"
+          style={{ height: 50, borderColor: 'black', borderWidth: 1 }}
+        />
+        </View>
+        </ScrollView>
+  ); //end initial return
+
+}//end func bracket
+
+/////////////// END SEARCH
+///////////////////////////////
 
 function RecipeScreen({ navigation }) {
   return (
