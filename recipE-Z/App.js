@@ -62,7 +62,7 @@ function RecipeBookScreen({ navigation }) {
 /// primary recipe search function and API integration
 /// if your name is not will DON'T TOUCH THIS CODE >:(
 /// if you do I will find you and... smile and be nice to u because you're all great people
-///
+/// >:)
 
 function SearchResultsScreen({ navigation }) {
     return ( //TODO: find how to store results of input boxes in local variables
