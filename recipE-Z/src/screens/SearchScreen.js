@@ -2,20 +2,63 @@ import React, { Component } from 'react';
 import { Button, StyleSheet, Text, TextInput, View, SafeAreaView, ScrollView, Keyboard, TouchableOpacity } from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-//have app.js call this screen when navigated to
-//have this import app.js as to link them
+//TODO:
+// have handleSendSearch transmit user inputs to the API and send request (maybe diff file?)
 
 class SearchScreen extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { text: '' }
+    this.state = { ing0: '' }
+    this.state = { ing1: '' }
+    this.state = { ing2: '' }
+    this.state = { ing3: '' }
+    this.state = { ing4: '' }
+    this.state = { cuisine: '' }
+    this.state = { allergies: '' }
+    this.state = { exclusions: '' }
 
-    this.handleTextChange = this.handleTextChange.bind(this);
+    this.handleIng0 = this.handleIng0.bind(this);
+    this.handleIng1 = this.handleIng0.bind(this);
+    this.handleIng2 = this.handleIng0.bind(this);
+    this.handleIng3 = this.handleIng0.bind(this);
+    this.handleIng4 = this.handleIng0.bind(this);
+    this.handleCuisine = this.handleCuisine.bind(this);
+    this.handleAllergies = this.handleAllergies.bind(this);
+    this.handleExclusions = this.handleExclusions.bind(this);
+
     //this.handleSendSearch = this.handleSendSearch.bind(this);
   }
 
-  handleTextChange(text) { //handle state change of text
+  handleIng0(text) { //handling state change of text in inputs
+    this.setState({ text });
+  }
+
+  handleIng1(text) {
+    this.setState({ text });
+  }
+
+  handleIng2(text) {
+    this.setState({ text });
+  }
+
+  handleIng3(text) {
+    this.setState({ text });
+  }
+
+  handleIng4(text) {
+    this.setState({ text });
+  }
+
+  handleCuisine(text) {
+    this.setState({ text });
+  }
+
+  handleAllergies(text) {
+    this.setState({ text });
+  }
+
+  handleExclusions(text) {
     this.setState({ text });
   }
 
@@ -32,50 +75,64 @@ class SearchScreen extends React.Component {
           placeholderTextColor = "grey"
           style={styles.textInput}
           onBlur = {Keyboard.dismiss}
-          value = {this.state.text}
-          onChangeText = {this.handleTextChange}
+          value = {this.state.ing0}
+          onChangeText = {this.handleIng0}
         />
         <TextInput
-          placeholder = "Ingredient 2"
+          placeholder = "Ingredient 2 (optional)"
           placeholderTextColor = "grey"
           style={styles.textInput}
           onBlur = {Keyboard.dismiss}
+          value = {this.state.ing1}
+          onChangeText = {this.handleIng1}
         />
         <TextInput
-          placeholder = "Ingredient 3"
+          placeholder = "Ingredient 3 (optional)"
           placeholderTextColor = "grey"
           style={styles.textInput}
           onBlur = {Keyboard.dismiss}
+          value = {this.state.ing2}
+          onChangeText = {this.handleIng2}
         />
         <TextInput
-          placeholder = "Ingredient 4"
+          placeholder = "Ingredient 4 (optional)"
           placeholderTextColor = "grey"
           style={styles.textInput}
           onBlur = {Keyboard.dismiss}
+          value = {this.state.ing3}
+          onChangeText = {this.handleIng3}
         />
         <TextInput
-          placeholder = "Ingredient 5"
+          placeholder = "Ingredient 5 (optional)"
           placeholderTextColor = "grey"
           style={styles.textInput}
           onBlur = {Keyboard.dismiss}
+          value = {this.state.ing4}
+          onChangeText = {this.handleIng4}
         />
         <TextInput
-          placeholder = "Cuisine"
+          placeholder = "Cuisine (optional)"
           placeholderTextColor = "grey"
           style={styles.textInput}
           onBlur = {Keyboard.dismiss}
+          value = {this.state.cuisine}
+          onChangeText = {this.handleCuisine}
         />
         <TextInput
-          placeholder = "Allergies / Intolerences (consult your doctor!)"  ////maybe delete? complex. read docs
+          placeholder = "Allergies / Intolerences (consult your doctor!) (optional)"  ////maybe delete? complex. read docs
           placeholderTextColor = "grey"
           style={styles.textInput}
           onBlur = {Keyboard.dismiss}
+          value = {this.state.allergies}
+          onChangeText = {this.handleAllergies}
         />
         <TextInput
-          placeholder = "Exclude Ingredients"
+          placeholder = "Exclude Ingredients (optional)"
           placeholderTextColor = "grey"
           style={styles.textInput}
           onBlur = {Keyboard.dismiss}
+          value = {this.state.exclusions}
+          onChangeText = {this.handleExclusions}
         />
         <View style = {styles.inputContainer}>
           <TouchableOpacity
