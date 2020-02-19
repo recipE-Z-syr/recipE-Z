@@ -1,10 +1,6 @@
 import 'react-native-gesture-handler';
 import * as React from 'react';
-<<<<<<< HEAD
-import { Platform, SafeAreaView, Button, StyleSheet, Text, View, AppRegistry, Image, TextInput, Alert, TouchableOpacity } from 'react-native';
-=======
-import { Button, StyleSheet, Text, TextInput, View, SafeAreaView, ScrollView, Keyboard, TouchableOpacity, Component } from 'react-native';
->>>>>>> master
+import { Platform, SafeAreaView, Button, StyleSheet, Text, View, AppRegistry, Image, TextInput, Alert, ScrollView, Keyboard, TouchableOpacity, Component } from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import Constants from 'expo-constants';
@@ -168,15 +164,11 @@ function RecipeBookScreen({ navigation }) {
 
 function SearchResultsScreen({ navigation, props }) {
   return (
-<<<<<<< HEAD
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor:'coral' }}>
-      <Button title="Recipe" onPress={() => navigation.navigate('Recipe')} />
-=======
     <View style = {styles.container}>
+      <Button title="Recipe" onPress={() => navigation.navigate('Recipe')} />
       <View>
         <Text style = {styles.header}>Search</Text>
       </View>
->>>>>>> master
     </View>
   );
 
@@ -216,7 +208,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-<<<<<<< HEAD
   startButton: {
     backgroundColor: '#ed4848',
     marginRight: 40,
@@ -244,8 +235,7 @@ const styles = StyleSheet.create({
     height: 50,
     bottom: 0,
     position: 'absolute'
-  }
-=======
+  },
   textInput: {
     borderColor: 'red',
     borderTopWidth: 1,
@@ -282,6 +272,5 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontWeight: 'bold',
   },
->>>>>>> master
 });
 export default App;
