@@ -1,6 +1,10 @@
 import 'react-native-gesture-handler';
 import * as React from 'react';
+<<<<<<< HEAD
 import { Platform, SafeAreaView, Button, StyleSheet, Text, View, AppRegistry, Image, TextInput, Alert, TouchableOpacity } from 'react-native';
+=======
+import { Button, StyleSheet, Text, TextInput, View, SafeAreaView, ScrollView, Keyboard, TouchableOpacity, Component } from 'react-native';
+>>>>>>> master
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import Constants from 'expo-constants';
@@ -54,6 +58,12 @@ function StartScreen({ navigation }) {
   );
 }
 
+
+//imports of screens
+
+import SearchScreen from './src/screens/SearchScreen';
+
+/////////////////////
 
 function LogInScreen({ navigation }) {
   const [value, onChangeText] = React.useState('   Email');
@@ -156,12 +166,20 @@ function RecipeBookScreen({ navigation }) {
   );
 }
 
-function SearchResultsScreen({ navigation }) {
+function SearchResultsScreen({ navigation, props }) {
   return (
+<<<<<<< HEAD
     <View style={{flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor:'coral' }}>
       <Button title="Recipe" onPress={() => navigation.navigate('Recipe')} />
+=======
+    <View style = {styles.container}>
+      <View>
+        <Text style = {styles.header}>Search</Text>
+      </View>
+>>>>>>> master
     </View>
   );
+
 }
 
 function RecipeScreen({ navigation }) {
@@ -185,7 +203,7 @@ function App() {
         <Stack.Screen name="Log-In" component={LogInScreen} />
         <Stack.Screen name="Upload" component={UploadRecipeScreen} />
         <Stack.Screen name="Recipe Book" component={RecipeBookScreen} />
-        <Stack.Screen name="Search" component={SearchResultsScreen} />
+        <Stack.Screen name="Search" component={SearchScreen} />
         <Stack.Screen name="Recipe" component={RecipeScreen} />
       </Stack.Navigator>
     </NavigationContainer>
@@ -198,6 +216,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+<<<<<<< HEAD
   startButton: {
     backgroundColor: '#ed4848',
     marginRight: 40,
@@ -226,5 +245,43 @@ const styles = StyleSheet.create({
     bottom: 0,
     position: 'absolute'
   }
+=======
+  textInput: {
+    borderColor: 'red',
+    borderTopWidth: 1,
+    borderBottomWidth: 1,
+    height: 50,
+    fontSize: 25,
+    paddingLeft: 20,
+    paddingRight: 20,
+  },
+  scrollView: {
+    borderColor: 'red',
+    marginHorizontal: 20,
+    paddingTop: 10,
+    paddingBottom: 20,
+  },
+  inputContainer: {
+    paddingTop: 15,
+  },
+  sendButton: {
+    borderWidth: 1,
+    borderColor: 'red',
+    backgroundColor: 'red',
+    padding: 15,
+    margin: 5,
+  },
+  sendButtonText: {
+    color: 'white',
+    fontSize: 20,
+    textAlign: 'center'
+  },
+  header: {
+    color: 'white',
+    fontSize: 20,
+    textAlign: 'center',
+    fontWeight: 'bold',
+  },
+>>>>>>> master
 });
 export default App;
