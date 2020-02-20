@@ -6,7 +6,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 // call API with inputted user info! rather than placeholders
 // handle results and display, maybe in another file? navigate to results and call API?
 
-//USEFUL API STUFF:
+//USEFUL API STUFF: :)
 // it comes with a sort parameter!
 
 class SearchScreen extends React.Component {
