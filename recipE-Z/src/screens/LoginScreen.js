@@ -6,37 +6,61 @@ import {createStackNavigator} from '@react-navigation/stack';
 import SignupScreen from './SignupScreen';
 
 class LoginScreen extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = { email: ''}
+    this.state = { password: ''}
+
+    this.handleEmail = this.handleEmail.bind(this);
+    this.handlePassword = this.handlePassword.bind(this);
+  }
+
+  handleEmail(text) {
+    this.setState({ text });
+  }
+
+  handlePassword(text) {
+    this.setState({ text });
+  }
+
   render(){
     const { navigation } = this.props;
   return (
     <View style={{flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor:'#ffcece' }}>
     <View style={{width: 334, height: 561, backgroundColor: 'white', position: 'absolute'}}/>
-      <Text style={{color: '#ed4848', fontSize: 20, fontWeight: 'bold', top: 25}}>
+      <Text style={{color: '#ed4848', fontSize: 20, fontWeight: 'bold', top: 45}}>
       Welcome Back
       </Text>
-      <Text style={{color: '#ed4848', fontSize: 10, top: 25}}>
-      Don't have an account? Click here to sign up
-      </Text>
+      <TouchableOpacity
+        onPress={() => navigation.navigate('Sign-Up')}>
+        <Text style={styles.accountSignup}>Don't have an account? Click here to sign up</Text>
+      </TouchableOpacity>
       <Image
-      style={{width: 80, height: 80, top:-100}}
+      style={{width: 90, height: 87, top:-80}}
       source={require('./logo1.png')}
       />
       <TextInput
-      placeholder = "    Email"
-      style={{ width: 280, height: 50, borderColor: 'lightgrey', borderWidth: 1, backgroundColor: 'white', top: -50, opacity: .7, marginTop: 10 }}
-      //onChangeText={text => onChangeText(text)}
-      //value={value}
+      placeholder = "Email"
+      style={{ width: 280, height: 50, borderColor: 'lightgrey', borderWidth: 1, paddingLeft: 15, backgroundColor: 'white', top: -35, opacity: .7, marginTop: 10 }}
+      onBlur = {Keyboard.dismiss}
+      value = {this.state.email}
+      onChangeText = {this.handleEmail}
       />
       <TextInput
-      placeholder = "    Password"
-      style={{ width: 280, height: 50, borderColor: 'lightgrey', borderWidth: 1, backgroundColor: 'white', top: -50, opacity: .7, marginTop: 15 }}
+      placeholder = "Password"
+      style={{ width: 280, height: 50, borderColor: 'lightgrey', borderWidth: 1, paddingLeft: 15, backgroundColor: 'white', top: -35, opacity: .7, marginTop: 15 }}
+      onBlur = {Keyboard.dismiss}
+      value = {this.state.password}
+      onChangeText = {this.handlePassword}
       />
-      <Text style={{color: '#ed4848', fontSize: 10, top: -20}}>
-      Forgot Password?
-      </Text>
+      <TouchableOpacity
+        onPress={() => navigation.navigate('Sign-Up')}>
+        <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
+      </TouchableOpacity>
       <TouchableOpacity
         style={styles.signinButton}
-        onPress={() => navigation.navigate('Sign-Up')}
+        onPress={() => navigation.navigate('Home')}
         underlayColor='#ed4848'>
         <Text style={styles.startText}>LOGIN</Text>
       </TouchableOpacity>
@@ -71,5 +95,17 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     paddingRight: 10,
     fontWeight: 'bold'
+  },
+  forgotPasswordText: {
+    color: '#ed4848',
+    textAlign: 'center',
+    fontSize: 11,
+    paddingBottom: 20
+  },
+  accountSignup: {
+    color: '#ed4848',
+    textAlign: 'center',
+    fontSize: 11,
+    top: 50
   }
 })
