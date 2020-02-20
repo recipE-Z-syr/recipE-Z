@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
-import { Button, StyleSheet, Text, TextInput, View, SafeAreaView, ScrollView, Keyboard, TouchableOpacity } from 'react-native';
+import { Button, StyleSheet, Text, TextInput, View, SafeAreaView, ScrollView, Keyboard, TouchableOpacity, Alert } from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 //TODO:
-// have handleSendSearch transmit user inputs to the API and send request (maybe diff file?)
+// call API with inputted user info! rather than placeholders
+// handle results and display, maybe in another file? navigate to results and call API?
+
+//USEFUL API STUFF:
+// it comes with a sort parameter!
 
 class SearchScreen extends React.Component {
+
   constructor(props) {
     super(props);
 
@@ -17,6 +22,7 @@ class SearchScreen extends React.Component {
     this.state = { cuisine: '' }
     this.state = { allergies: '' }
     this.state = { exclusions: '' }
+    this.state = { test: ' '} //doesn't do anything but the code doesn't work without it
 
     this.handleIng0 = this.handleIng0.bind(this);
     this.handleIng1 = this.handleIng0.bind(this);
@@ -26,9 +32,64 @@ class SearchScreen extends React.Component {
     this.handleCuisine = this.handleCuisine.bind(this);
     this.handleAllergies = this.handleAllergies.bind(this);
     this.handleExclusions = this.handleExclusions.bind(this);
+    this.handleTest = this.handleTest.bind(this); // ditto
 
-    //this.handleSendSearch = this.handleSendSearch.bind(this);
+  } //close constructor
+
+  // GET method for data retreival
+  getDataUsingGet() {
+    fetch('https://api.spoonacular.com/recipes/complexSearch?apiKey=8a9b90f8b89e43efa982e629b09590b8?query=cuisine&number=5', {
+      method: 'GET',
+    })
+      .then(response => response.json()) //success
+      .then(responseJson => {
+        alert(JSON.stringify(responseJson));
+        console.log(responseJson);
+      })
+      //on fail
+      .catch(error => {
+        alert(JSON.stringify(error));
+        console.error(error);
+      });
+  } //end getDataUsingGet
+
+  // POST method for data retrieval (remove if unused, also API calls are placeholders)
+  getDataUsingPost() {
+    //POST json
+    var dataToSend = { title: 'foo', body: 'bar', userId: 1 };
+
+    //making data to send on server
+    var formBody = [];
+    for (var key in dataToSend) {
+      var encodedKey = encodeURIComponent(key);
+      var encodedValue = encodeURIComponent(dataToSend[key]);
+      formBody.push(encodedKey + '=' + encodedValue);
+    }
+    formBody = formBody.join('&');
+
+    //POST request
+    fetch('https://jsonplaceholder.typicode.com/posts', {
+      method: 'POST', //Request Type
+      body: formBody, //post body
+      headers: {
+        //Header Defination
+        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+      },
+    })
+      .then(response => response.json())
+      //If response is in json then in success
+      .then(responseJson => {
+        alert(JSON.stringify(responseJson));
+        console.log(responseJson);
+      })
+      //If response is not in json then in error
+      .catch(error => {
+        alert(JSON.stringify(error));
+        console.error(error);
+      });
   }
+
+  // Handler methods for text inputs
 
   handleIng0(text) { //handling state change of text in inputs
     this.setState({ text });
@@ -62,13 +123,15 @@ class SearchScreen extends React.Component {
     this.setState({ text });
   }
 
-  /* handleSendSearch() {
-    recipeSearch(this.state); //calls search! integrate API before using
-  } */
+  handleTest(text) {
+    this.setState({ text });
+  }
+
+// begin render block. all rules OUT THE WINDOW
 
   render() {
     return (
-      <ScrollView>
+      <ScrollView keyboardShouldPersistTaps = 'always'>
        <ScrollView style = {styles.scrollView}>
         <TextInput
           placeholder = "Ingredient 1"
@@ -137,10 +200,10 @@ class SearchScreen extends React.Component {
         <View style = {styles.inputContainer}>
           <TouchableOpacity
             style = {styles.sendButton}
-            //onPress = {this.handleSendSearch}
+            onPress = {this.getDataUsingGet}
             >
-            <Text style = {styles.sendButtonText}>Search</Text>
-            </TouchableOpacity>
+           <Text style = {styles.sendButtonText}>Search</Text>
+          </TouchableOpacity>
         </View>
        </ScrollView>
      </ScrollView>
