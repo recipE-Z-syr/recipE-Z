@@ -58,69 +58,11 @@ function StartScreen({ navigation }) {
 //imports of screens
 
 import SearchScreen from './src/screens/SearchScreen';
-
+import LoginScreen from './src/screens/LoginScreen';
+import SignupScreen from './src/screens/SignupScreen';
 /////////////////////
 
-function LogInScreen({ navigation }) {
-  const [value, onChangeText] = React.useState('   Email');
-  return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor:'#ffcece' }}>
-    <View style={{width: 334, height: 561, backgroundColor: 'white', position: 'absolute'}}/>
-      <Text style={{color: '#ed4848', fontSize: 20, fontWeight: 'bold', top: -15}}>
-      Welcome Back
-      </Text>
-      <Text style={{color: '#ed4848', fontSize: 10, top: -15}}>
-      Don't have an account? Click here to sign up
-      </Text>
-      <Image
-      style={{width: 80, height: 80, top:-150}}
-      source={require('./logo1.png')}
-      />
-      <TextInput
-      style={{ width: 280, height: 50, borderColor: 'lightgrey', borderWidth: 1, backgroundColor: 'white', top: -85, opacity: .5 }}
-      onChangeText={text => onChangeText(text)}
-      value={value}
-      />
-      <Button Style={styles.loginButton} title="Log-In" color="#ed4848" onPress={() => navigation.navigate('Home')} />
-      <Button Style={styles.loginButton} title="sign up" color="#ed4848" onPress={() => navigation.navigate('Sign-Up')}/>
-    </View>
 
-
-  );
-}
-
-function SignUpScreen({ navigation }) {
-  const [value, onChangeText] = React.useState('Full Name');
-  return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor:'#ffcece' }}>
-    <View style={{width: 334, height: 561, backgroundColor: 'white', position: 'absolute'}}/>
-    <Text style={{color: '#ed4848', fontSize: 20, fontWeight: 'bold', top: -50}}>
-    Create an Account
-    </Text>
-    <Text style={{color: '#ed4848', fontSize: 10, top: -50}}>
-    Already have an account? Click here to login
-    </Text>
-    <Button
-    title="Log-In"
-    onPress={() => navigation.navigate('Home')}
-    />
-    <Button
-    title="Sign-Up"
-    onPress={() => navigation.navigate('Sign-Up')}
-    />
-    <Image
-      style={{width: 80, height: 80, top:-240}}
-      source={require('./logo1.png')}
-      />
-
-      <TextInput
-  style={{ width: 280, height: 50, borderColor: 'lightgrey', borderWidth: 1, backgroundColor: 'white', top: -175, opacity: .5 }}
-  onChangeText={text => onChangeText(text)}
-  value={value}
-/>
-    </View>
-  );
-}
 function HomeScreen({ navigation }) {
   return (
     <View style={{flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor:'coral' }}>
@@ -191,8 +133,8 @@ function App() {
         <Stack.Screen name="Start" component={StartScreen} />
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Profile" component={ProfileScreen} />
-        <Stack.Screen name="Sign-Up" component={SignUpScreen} />
-        <Stack.Screen name="Log-In" component={LogInScreen} />
+        <Stack.Screen name="Sign-Up" component={SignupScreen} />
+        <Stack.Screen name="Log-In" component={LoginScreen} />
         <Stack.Screen name="Upload" component={UploadRecipeScreen} />
         <Stack.Screen name="Recipe Book" component={RecipeBookScreen} />
         <Stack.Screen name="Search" component={SearchScreen} />
