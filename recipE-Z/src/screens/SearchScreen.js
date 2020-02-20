@@ -67,6 +67,7 @@ class SearchScreen extends React.Component {
   } */
 
   render() {
+    const {navigation} = this.props;
     return (
       <ScrollView>
        <ScrollView style = {styles.scrollView}>
