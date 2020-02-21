@@ -38,7 +38,7 @@ class SearchScreen extends React.Component {
 
   // GET method for data retreival
   getDataUsingGet() {
-    fetch('https://api.spoonacular.com/recipes/complexSearch?apiKey=8a9b90f8b89e43efa982e629b09590b8?query=cuisine&number=5', {
+    fetch('https://api.spoonacular.com/recipes/complexSearch?query=cuisine&number=5&apiKey=8a9b90f8b89e43efa982e629b09590b8', {
       method: 'GET',
     })
       .then(response => response.json()) //success
