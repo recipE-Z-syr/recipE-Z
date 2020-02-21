@@ -15,32 +15,31 @@ function Separator() {
 import StartScreen from './src/screens/StartScreen';
 import HomeScreen from './src/screens/HomeScreen';
 import ProfileScreen from './src/screens/ProfileScreen';
-import SignUpScreen from './src/screens/SignUpScreen';
-import LogInScreen from './src/screens/LogInScreen';
+import SignupScreen from './src/screens/SignupScreen';
+import LoginScreen from './src/screens/LoginScreen';
 import UploadRecipeScreen from './src/screens/UploadRecipeScreen';
 import RecipeBookScreen from './src/screens/RecipeBookScreen';
 import SearchScreen from './src/screens/SearchScreen';
 import RecipeScreen from './src/screens/RecipeScreen';
 
-/////////////////////
 
 const Stack = createStackNavigator();
 
 function App() {
   return (
-      <NavigationContainer>
-        <Stack.Navigator initialRouteName="Start">
-          <Stack.Screen name="Start" component={StartScreen} />
-          <Stack.Screen name="Home" component={HomeScreen} />
-          <Stack.Screen name="Profile" component={ProfileScreen} />
-          <Stack.Screen name="Sign-Up" component={SignUpScreen} />
-          <Stack.Screen name="Log-In" component={LogInScreen} />
-          <Stack.Screen name="Upload" component={UploadRecipeScreen} />
-          <Stack.Screen name="Recipe Book" component={RecipeBookScreen} />
-          <Stack.Screen name="Search" component={SearchScreen} />
-          <Stack.Screen name="Recipe" component={RecipeScreen} />
-        </Stack.Navigator>
-      </NavigationContainer>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Start">
+        <Stack.Screen name="Start" component={StartScreen} />
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Profile" component={ProfileScreen} />
+        <Stack.Screen name="Sign-Up" component={SignupScreen} />
+        <Stack.Screen name="Log-In" component={LoginScreen} />
+        <Stack.Screen name="Upload" component={UploadRecipeScreen} />
+        <Stack.Screen name="Recipe Book" component={RecipeBookScreen} />
+        <Stack.Screen name="Search" component={SearchScreen} />
+        <Stack.Screen name="Recipe" component={RecipeScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
