@@ -7,7 +7,7 @@ class HomeScreen extends React.Component {
   render() {
     const {navigation} = this.props;
     return (
-      <View style={{flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor:'coral' }}>
+      <View style={[defaultStyles.container, {backgroundColor:'#ffcece'}]}>
         <Button title="Go to Profile" onPress={() => navigation.navigate('Profile')} />
         <Button title="Upload Recipe" onPress={() => navigation.navigate('Upload')} />
         <Button title="Recipe Book" onPress={() => navigation.navigate('Recipe Book')} />

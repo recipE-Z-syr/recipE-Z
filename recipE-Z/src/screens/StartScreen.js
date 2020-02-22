@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Button, StyleSheet, Text, TextInput, View, SafeAreaView, ScrollView, Keyboard, TouchableOpacity, Image } from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
+import defaultStyles from './stylesheet';
 
 class StartScreen extends React.Component {
   constructor(props) {
@@ -11,43 +12,40 @@ class StartScreen extends React.Component {
   render() {
     const {navigation} = this.props;
     return (
-        <SafeAreaView style={styles.container}>
-          <View style={{alignItems: 'center', justifyContent: 'center', backgroundColor:'#ffcece' }}>
-          <View style={{width: 334, height: 561, backgroundColor: 'white', position: 'absolute'}}/>
+        <SafeAreaView style={[defaultStyles.container, {backgroundColor:'#ffcece'}]}>
+          <View style={{alignItems: 'center', justifyContent: 'center'}}>
+          <View style={defaultStyles.whiteContainer}>
               <Image
-                style={{width: 155, height: 150, top:-25}}
-                source={require('../img/logo1.png')}
+                style={{width: 155, height: 150, marginBottom: 10}}
+                source={require('../img/logo.png')}
               />
-              <Text style={{color: '#ed4848', fontSize: 24, fontWeight: 'bold'}}>
+              <Text style={defaultStyles.h1}>
               Welcome to recipE-Z
               </Text>
-              <Text>{"     "}</Text>
-              <Text>{"     "}</Text>
-              <Text>
-              Don’t know what to cook?
-              </Text>
-              <Text>
-              Have stuff you don’t want to go to waste?
-              </Text>
-              <Text>
-              Just enter the ingredients you have
-              </Text>
-              <Text>
-               and we’ll help you find a recipe.
-              </Text>
-              <Text>{"     "}</Text>
-              <Text>{"     "}</Text>
-              <Text style={{color: '#ed4848', fontSize: 16, fontWeight: 'bold'}}>
-              We put the E-Z in recipE-Z
-              </Text>
-              <Text>{"     "}</Text>
-              <Text>{"     "}</Text>
+              <View style={{paddingTop: 10, paddingBottom: 10, alignItems: 'center', justifyContent: 'center'}}>
+                <Text style={{fontFamily: 'nunito-regular'}}>
+                Don’t know what to cook?
+                </Text>
+                <Text style={{fontFamily: 'nunito-regular'}}>
+                Have stuff you don’t want to go to waste?
+                </Text>
+                <Text style={{fontFamily: 'nunito-regular'}}>
+                Just enter the ingredients you have
+                </Text>
+                <Text style={{fontFamily: 'nunito-regular'}}>
+                 and we’ll help you find a recipe.
+                </Text>
+                </View>
+                <Text style={{color: '#ed4848', fontSize: 16, fontFamily: 'nunito-bold'}}>
+                We put the E-Z in recipE-Z
+                </Text>
               <TouchableOpacity
-                style={styles.startButton}
-                onPress={() => navigation.navigate('Log-In')}
+                style={[defaultStyles.redButton, {marginTop:15}]}
+                onPress={() => navigation.navigate('Sign-Up')}
                 underlayColor='#ed4848'>
-                <Text style={styles.startText}>LET'S GET STARTED</Text>
+                <Text style={defaultStyles.redButtonText}>LET'S GET STARTED</Text>
               </TouchableOpacity>
+            </View>
         </View>
         </SafeAreaView>
    ); //end return
@@ -56,5 +54,5 @@ class StartScreen extends React.Component {
 
 export default StartScreen;
 
-const styles = StyleSheet.create({
-});
+// const styles = StyleSheet.create({
+// });

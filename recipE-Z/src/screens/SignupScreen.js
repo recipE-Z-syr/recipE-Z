@@ -3,6 +3,7 @@ import * as React from 'react';
 import { Platform, SafeAreaView, Button, StyleSheet, Text, View, AppRegistry, Image, TextInput, Alert, ScrollView, Keyboard, TouchableOpacity, Component } from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
+import defaultStyles from './stylesheet';
 
 
 class SignupScreen extends React.Component {
@@ -41,58 +42,64 @@ class SignupScreen extends React.Component {
   render(){
     const { navigation } = this.props;
     return (
-      <View style={{flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor:'#ffcece' }}>
-      <View style={{width: 334, height: 561, backgroundColor: 'white', position: 'absolute'}}/>
-      <Text style={{color: '#ed4848', fontSize: 20, fontWeight: 'bold', top: 55}}>
-      Create an Account
-      </Text>
-      <TouchableOpacity
-        onPress={() => navigation.navigate('Log-In')}>
-        <Text style={styles.accountLogin}>Already have an account? Click here to login</Text>
-      </TouchableOpacity>
-      <Image
-        style={{width: 90, height: 87, top:-70}}
-        source={require('./logo1.png')}
+      <View style={[defaultStyles.container, {backgroundColor:'#ffcece'}]}>
+      <View style={[defaultStyles.whiteContainer, {paddingTop: 0, paddingBottom: 0}]}/>
+        <Image
+        style={{width: 90, height: 87, marginBottom: 10}}
+        source={require('../img/logo.png')}
         />
-        <TextInput
-        placeholder = "Full Name"
-        style={{ width: 280, height: 50, borderColor: 'lightgrey', borderWidth: 1, backgroundColor: 'white', top: -20, opacity: .7, paddingLeft: 15 }}
-        onBlur = {Keyboard.dismiss}
-        value = {this.state.fullName}
-        onChangeText = {this.handleName}
-        />
-        <TextInput
-        placeholder = "Email"
-        style={{ width: 280, height: 50, borderColor: 'lightgrey', borderWidth: 1, backgroundColor: 'white', top: -20, opacity: .7, marginTop: 10, paddingLeft: 15 }}
-        onBlur = {Keyboard.dismiss}
-        value = {this.state.email}
-        onChangeText = {this.handleEmail}
-        />
-        <TextInput
-        placeholder = "Password"
-        style={{ width: 280, height: 50, borderColor: 'lightgrey', borderWidth: 1, backgroundColor: 'white', top: -20, opacity: .7, marginTop: 10, paddingLeft: 15 }}
-        onBlur = {Keyboard.dismiss}
-        value = {this.state.password}
-        onChangeText = {this.handlePassword}
-        />
-        <TextInput
-        placeholder = "Confirm Password"
-        style={{ width: 280, height: 50, borderColor: 'lightgrey', borderWidth: 1, backgroundColor: 'white', top: -20, opacity: .7, marginTop: 10, paddingLeft: 15 }}
-        onBlur = {Keyboard.dismiss}
-        value = {this.state.confirmPassword}
-        onChangeText = {this.handleConfirmPassword}
-        />
-        <Text style={{color: '#ed4848', fontSize: 10}}>
-        By creating an account you agree to our
-        </Text>
-        <Text style={{color: '#ed4848', fontSize: 10}}>
-        Terms of Service and Privacy Policy
+        <View style={{alignItems: 'center'}}>
+        <Text style={defaultStyles.h1}>
+        Create an Account
         </Text>
         <TouchableOpacity
-          style={styles.loginButton}
+          onPress={() => navigation.navigate('Log-In')}>
+          <Text style={defaultStyles.textLink}>Already have an account? Click here to login</Text>
+        </TouchableOpacity>
+        </View>
+        <View style={{marginTop: 15, marginBottom: 10}}>
+          <TextInput
+          placeholder = "Full Name"
+          style={defaultStyles.textInput}
+          onBlur = {Keyboard.dismiss}
+          value = {this.state.fullName}
+          onChangeText = {this.handleName}
+          />
+          <TextInput
+          placeholder = "Email"
+          style={defaultStyles.textInput}
+          onBlur = {Keyboard.dismiss}
+          value = {this.state.email}
+          onChangeText = {this.handleEmail}
+          />
+          <TextInput
+          placeholder = "Password"
+          style={defaultStyles.textInput}
+          onBlur = {Keyboard.dismiss}
+          value = {this.state.password}
+          onChangeText = {this.handlePassword}
+          />
+          <TextInput
+          placeholder = "Confirm Password"
+          style={defaultStyles.textInput}
+          onBlur = {Keyboard.dismiss}
+          value = {this.state.confirmPassword}
+          onChangeText = {this.handleConfirmPassword}
+          />
+        </View>
+        <TouchableOpacity style={{alignItems: 'center', marginTop: 5, marginBottom: 20}}>
+          <Text style={{color: '#ed4848', fontSize: 10}}>
+          By creating an account you agree to our
+          </Text>
+          <Text style={{color: '#ed4848', fontSize: 10}}>
+          Terms of Service and Privacy Policy
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={[defaultStyles.redButton]}
           onPress={() => navigation.navigate('Home')}
           underlayColor='#ed4848'>
-          <Text style={styles.startText}>SIGN UP</Text>
+          <Text style={defaultStyles.startText}>SIGN UP</Text>
         </TouchableOpacity>
 
       </View>
@@ -104,32 +111,32 @@ class SignupScreen extends React.Component {
 
 export default SignupScreen;
 
-const styles = StyleSheet.create({
-  loginButton: {
-    backgroundColor: '#ed4848',
-    marginRight: 40,
-    marginLeft: 40,
-    marginTop: 30,
-    paddingTop: 10,
-    paddingBottom: 20,
-    paddingLeft: 100,
-    paddingRight: 100,
-    borderRadius: 5,
-    borderWidth: 1,
-    borderColor: '#ed4848'
-  },
-  startText:{
-    color: 'white',
-    textAlign: 'center',
-    paddingLeft: 10,
-    paddingRight: 10,
-    paddingTop: 10,
-    fontWeight: 'bold'
-  },
-  accountLogin: {
-    color: '#ed4848',
-    textAlign: 'center',
-    fontSize: 11,
-    top: 60
-  }
-})
+// const styles = StyleSheet.create({
+//   loginButton: {
+//     backgroundColor: '#ed4848',
+//     marginRight: 40,
+//     marginLeft: 40,
+//     marginTop: 30,
+//     paddingTop: 10,
+//     paddingBottom: 20,
+//     paddingLeft: 100,
+//     paddingRight: 100,
+//     borderRadius: 5,
+//     borderWidth: 1,
+//     borderColor: '#ed4848'
+//   },
+//   startText:{
+//     color: 'white',
+//     textAlign: 'center',
+//     paddingLeft: 10,
+//     paddingRight: 10,
+//     paddingTop: 10,
+//     fontWeight: 'bold'
+//   },
+//   accountLogin: {
+//     color: '#ed4848',
+//     textAlign: 'center',
+//     fontSize: 11,
+//     top: 60
+//   }
+// })
