@@ -3,7 +3,6 @@ import * as React from 'react';
 import { Platform, SafeAreaView, Button, StyleSheet, Text, View, AppRegistry, Image, TextInput, Alert, ScrollView, Keyboard, TouchableOpacity, Component } from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-import SignupScreen from './SignupScreen';
 import defaultStyles from './stylesheet';
 
 
