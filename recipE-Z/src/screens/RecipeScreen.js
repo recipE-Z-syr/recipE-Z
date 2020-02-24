@@ -9,6 +9,7 @@ class RecipeScreen extends React.Component {
     const {navigation} = this.props;
     return (
       <View style={[defaultStyles.container, {backgroundColor:'#ffcece'}]}>
+      <NavigationBar/>
       </View>
    ); //end return
 

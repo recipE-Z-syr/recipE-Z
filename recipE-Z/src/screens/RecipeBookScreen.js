@@ -9,7 +9,8 @@ class RecipeBookScreen extends React.Component {
     const {navigation} = this.props;
     return (
       <View style={[defaultStyles.container, {backgroundColor:'#ffcece'}]}>
-        <Button title="Recipe" onPress={() => navigation.navigate('Recipe')} />
+      <NavigationBar/>
+      <Button title="Recipe" onPress={() => navigation.navigate('Recipe')} />
       </View>
    ); //end return
 

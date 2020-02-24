@@ -97,7 +97,7 @@ class SignupScreen extends React.Component {
         </TouchableOpacity>
         <TouchableOpacity
           style={[defaultStyles.redButton]}
-          onPress={() => navigation.navigate('Home')}
+          onPress={() => navigation.navigate('Search')}
           underlayColor='#ed4848'>
           <Text style={defaultStyles.redButtonText}>SIGN UP</Text>
         </TouchableOpacity>

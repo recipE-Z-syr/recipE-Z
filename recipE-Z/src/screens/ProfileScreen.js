@@ -8,7 +8,9 @@ class ProfileScreen extends React.Component {
   render() {
     const {navigation} = this.props;
     return (
-      <View style={[defaultStyles.container, {backgroundColor:'#ffcece'}]}></View>
+      <View style={[defaultStyles.container, {backgroundColor:'#ffcece'}]}>
+      <NavigationBar/>
+      </View>
     ); //end return
 
  }//end render

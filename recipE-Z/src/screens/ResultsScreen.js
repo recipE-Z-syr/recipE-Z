@@ -8,7 +8,8 @@ class ResultsScreen extends React.Component {
   render() {
     const {navigation} = this.props;
     return (
-      <View style={[defaultStyles.container, {backgroundColor:'#ffcece'}]}>
+      <View style={[defaultStyles.container, {backgroundColor:'#FFFFFF'}]}>
+      <NavigationBar/>
       </View>
    ); //end return
 

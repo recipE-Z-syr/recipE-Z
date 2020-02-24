@@ -9,6 +9,7 @@ class UploadRecipeScreen extends React.Component {
     const {navigation} = this.props;
     return (
       <View style={{flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor:'coral' }}>
+      <NavigationBar/>
       </View>
    ); //end return
  }//end render

@@ -3,6 +3,7 @@ import { Button, StyleSheet, Text, TextInput, View, SafeAreaView, ScrollView, Ke
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import defaultStyles from './stylesheet';
+import NavigationBar from './NavigationBar';
 
 //TODO:
 // have handleSendSearch transmit user inputs to the API and send request (maybe diff file?)
@@ -73,6 +74,7 @@ class SearchScreen extends React.Component {
     return (
       <ScrollView>
        <ScrollView style = {defaultStyles.scrollView}>
+       <NavigationBar/>
         <TextInput
           placeholder = "Ingredient 1"
           placeholderTextColor = "grey"
@@ -137,14 +139,12 @@ class SearchScreen extends React.Component {
           value = {this.state.exclusions}
           onChangeText = {this.handleExclusions}
         />
-        <View style = {defaultStyles.inputContainer}>
-          <TouchableOpacity
-            style = {defaultStyles.sendButton}
-            //onPress = {this.handleSendSearch}
-            >
-            <Text style = {defaultStyles.sendButtonText}>Search</Text>
-            </TouchableOpacity>
-        </View>
+        <TouchableOpacity
+          style={[defaultStyles.redButton, {marginTop:15}]}
+          onPress={() => navigation.navigate('Results')}
+          underlayColor='#ed4848'>
+          <Text style={defaultStyles.redButtonText}>Search</Text>
+        </TouchableOpacity>
        </ScrollView>
      </ScrollView>
    ); //end return
