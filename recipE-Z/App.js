@@ -1,133 +1,70 @@
 import 'react-native-gesture-handler';
-import * as React from 'react';
+import React, {useState} from 'react';
 import { Platform, SafeAreaView, Button, StyleSheet, Text, View, AppRegistry, Image, TextInput, Alert, ScrollView, Keyboard, TouchableOpacity, Component } from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import Constants from 'expo-constants';
 import * as Font from 'expo-font';
+import { AppLoading } from 'expo';
 
+//imports of screens
+
+import StartScreen from './src/screens/StartScreen';
+import HomeScreen from './src/screens/HomeScreen';
+import ProfileScreen from './src/screens/ProfileScreen';
+import SignupScreen from './src/screens/SignupScreen';
+import LoginScreen from './src/screens/LoginScreen';
+import UploadRecipeScreen from './src/screens/UploadRecipeScreen';
+import RecipeBookScreen from './src/screens/RecipeBookScreen';
+import SearchScreen from './src/screens/SearchScreen';
+import RecipeScreen from './src/screens/RecipeScreen';
 
 function Separator() {
   return <View style={styles.separator}/>;
 }
-function StartScreen({ navigation }) {
-  return (
-    <SafeAreaView style={styles.container}>
-      <View style={{alignItems: 'center', justifyContent: 'center', backgroundColor:'#ffcece' }}>
-      <View style={{width: 334, height: 561, backgroundColor: 'white', position: 'absolute'}}/>
-          <Image
-            style={{width: 155, height: 150, top:-25}}
-            source={require('./logo1.png')}
-          />
-          <Text style={{color: '#ed4848', fontSize: 24, fontWeight: 'bold'}}>
-          Welcome to recipE-Z
-          </Text>
-          <Text>{"     "}</Text>
-          <Text>{"     "}</Text>
-          <Text>
-          Don’t know what to cook?
-          </Text>
-          <Text>
-          Have stuff you don’t want to go to waste?
-          </Text>
-          <Text>
-          Just enter the ingredients you have
-          </Text>
-          <Text>
-           and we’ll help you find a recipe.
-          </Text>
-          <Text>{"     "}</Text>
-          <Text>{"     "}</Text>
-          <Text style={{color: '#ed4848', fontSize: 16, fontWeight: 'bold'}}>
-          We put the E-Z in recipE-Z
-          </Text>
-          <Text>{"     "}</Text>
-          <Text>{"     "}</Text>
-          <TouchableOpacity
-            style={styles.startButton}
-            onPress={() => navigation.navigate('Log-In')}
-            underlayColor='#ed4848'>
-            <Text style={styles.startText}>LET'S GET STARTED</Text>
-          </TouchableOpacity>
-    </View>
-    </SafeAreaView>
-  );
-}
 
-
-//imports of screens
-
-import SearchScreen from './src/screens/SearchScreen';
-import LoginScreen from './src/screens/LoginScreen';
-import SignupScreen from './src/screens/SignupScreen';
-/////////////////////
-
-
-function HomeScreen({ navigation }) {
-  return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor:'coral' }}>
-      <Button title="Go to Profile" onPress={() => navigation.navigate('Profile')} />
-      <Button title="Upload Recipe" onPress={() => navigation.navigate('Upload')} />
-      <Button title="Recipe Book" onPress={() => navigation.navigate('Recipe Book')} />
-      <Button title="Search for Recipe" onPress={() => navigation.navigate('Search')} />
-      <Image
-        style={{width: 50, height: 50, top:-400}}
-        source={require('./RecipeBook.png')}
-        />
-      <Image
-        style={{width: 50, height: 50, left:-150, top:-450}}
-        source={require('./profile1.png')}
-        />
-    </View>
-  );
-}
-
-function ProfileScreen({ navigation }) {
-  return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor:'coral' }}>
-    </View>
-  );
-}
-
-function UploadRecipeScreen({ navigation }) {
-  return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor:'coral' }}>
-    </View>
-  );
-}
-
-function RecipeBookScreen({ navigation }) {
-  return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor:'coral' }}>
-      <Button title="Recipe" onPress={() => navigation.navigate('Recipe')} />
-    </View>
-  );
-}
-
-function SearchResultsScreen({ navigation, props }) {
-  return (
-    <View style = {styles.container}>
-      <Button title="Recipe" onPress={() => navigation.navigate('Recipe')} />
-      <View>
-        <Text style = {styles.header}>Search</Text>
-      </View>
-    </View>
-  );
-
-}
-
-function RecipeScreen({ navigation }) {
-  return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor:'coral' }}>
-    </View>
-  );
-}
-
+const fetchFonts = () => {
+  return Font.loadAsync({
+  'nunito-black': require('./assets/fonts/Nunito-Black.ttf'),
+  'nunito-blackitalic': require('./assets/fonts/Nunito-BlackItalic.ttf'),
+  'nunito-bold': require('./assets/fonts/Nunito-Bold.ttf'),
+  'nunito-bolditalic': require('./assets/fonts/Nunito-BoldItalic.ttf'),
+  'nunito-extrabold': require('./assets/fonts/Nunito-ExtraBold.ttf'),
+  'nunito-extrabolditalic': require('./assets/fonts/Nunito-ExtraBoldItalic.ttf'),
+  'nunito-italic': require('./assets/fonts/Nunito-Italic.ttf'),
+  'nunito-regular': require('./assets/fonts/Nunito-Regular.ttf'),
+  'nunito-semibold': require('./assets/fonts/Nunito-SemiBold.ttf'),
+  'nunito-semibolditalic': require('./assets/fonts/Nunito-SemiBoldItalic.ttf')
+  });
+};
 
 const Stack = createStackNavigator();
 
-function App() {
+
+export default class App extends React.Component {
+  state = {
+    fontLoaded: false,
+  };
+
+  async componentDidMount() {
+    await Font.loadAsync({
+      'nunito-black': require('./assets/fonts/Nunito-Black.ttf'),
+      'nunito-blackitalic': require('./assets/fonts/Nunito-BlackItalic.ttf'),
+      'nunito-bold': require('./assets/fonts/Nunito-Bold.ttf'),
+      'nunito-bolditalic': require('./assets/fonts/Nunito-BoldItalic.ttf'),
+      'nunito-extrabold': require('./assets/fonts/Nunito-ExtraBold.ttf'),
+      'nunito-extrabolditalic': require('./assets/fonts/Nunito-ExtraBoldItalic.ttf'),
+      'nunito-italic': require('./assets/fonts/Nunito-Italic.ttf'),
+      'nunito-regular': require('./assets/fonts/Nunito-Regular.ttf'),
+      'nunito-semibold': require('./assets/fonts/Nunito-SemiBold.ttf'),
+      'nunito-semibolditalic': require('./assets/fonts/Nunito-SemiBoldItalic.ttf')
+    });
+    this.setState({ fontLoaded: true });
+  }
+  
+  render() {
   return (
+    this.state.fontLoaded ? (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Start">
         <Stack.Screen name="Start" component={StartScreen} />
@@ -141,78 +78,6 @@ function App() {
         <Stack.Screen name="Recipe" component={RecipeScreen} />
       </Stack.Navigator>
     </NavigationContainer>
-  );
+    ) : null
+  );}
 }
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#ffcece',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  startButton: {
-    backgroundColor: '#ed4848',
-    marginRight: 40,
-    marginLeft: 40,
-    marginTop: 10,
-    paddingTop: 20,
-    paddingBottom: 20,
-    paddingLeft: 50,
-    paddingRight: 50,
-    borderRadius: 5,
-    borderWidth: 1,
-    borderColor: '#ed4848'
-  },
-  startText:{
-    color: 'white',
-    textAlign: 'center',
-    paddingLeft: 10,
-    paddingRight: 10,
-    fontWeight: 'bold'
-  },
-  loginButton: {
-    backgroundColor: '#ed4848',
-    color: 'white',
-    width: 100,
-    height: 50,
-    bottom: 0,
-    position: 'absolute'
-  },
-  textInput: {
-    borderColor: 'red',
-    borderTopWidth: 1,
-    borderBottomWidth: 1,
-    height: 50,
-    fontSize: 25,
-    paddingLeft: 20,
-    paddingRight: 20,
-  },
-  scrollView: {
-    borderColor: 'red',
-    marginHorizontal: 20,
-    paddingTop: 10,
-    paddingBottom: 20,
-  },
-  inputContainer: {
-    paddingTop: 15,
-  },
-  sendButton: {
-    borderWidth: 1,
-    borderColor: 'red',
-    backgroundColor: 'red',
-    padding: 15,
-    margin: 5,
-  },
-  sendButtonText: {
-    color: 'white',
-    fontSize: 20,
-    textAlign: 'center'
-  },
-  header: {
-    color: 'white',
-    fontSize: 20,
-    textAlign: 'center',
-    fontWeight: 'bold',
-  },
-});
-export default App;
