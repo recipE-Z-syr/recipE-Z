@@ -3,13 +3,14 @@ import { Button, StyleSheet, Text, TextInput, View, SafeAreaView, ScrollView, Ke
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import defaultStyles from './stylesheet';
+import NavigationBar from './NavigationBar';
 
 class ProfileScreen extends React.Component {
   render() {
     const {navigation} = this.props;
     return (
       <View style={[defaultStyles.container, {backgroundColor:'#ffcece'}]}>
-      <NavigationBar/>
+      <NavigationBar navigation={this.props.navigation}/>
       </View>
     ); //end return
 

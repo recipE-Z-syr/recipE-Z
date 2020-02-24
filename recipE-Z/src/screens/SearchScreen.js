@@ -74,7 +74,7 @@ class SearchScreen extends React.Component {
     return (
       <ScrollView>
        <ScrollView style = {defaultStyles.scrollView}>
-       <NavigationBar/>
+       <NavigationBar navigation={this.props.navigation}/>
         <TextInput
           placeholder = "Ingredient 1"
           placeholderTextColor = "grey"
