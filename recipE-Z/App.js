@@ -1,149 +1,83 @@
 import 'react-native-gesture-handler';
-import * as React from 'react';
-import { Button, StyleSheet, Text, TextInput, View, SafeAreaView, ScrollView, Keyboard, TouchableOpacity, Component } from 'react-native';
+import React, {useState} from 'react';
+import { Platform, SafeAreaView, Button, StyleSheet, Text, View, AppRegistry, Image, TextInput, Alert, ScrollView, Keyboard, TouchableOpacity, Component } from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
+import Constants from 'expo-constants';
+import * as Font from 'expo-font';
+import { AppLoading } from 'expo';
 
 //imports of screens
 
+import StartScreen from './src/screens/StartScreen';
+import HomeScreen from './src/screens/HomeScreen';
+import ProfileScreen from './src/screens/ProfileScreen';
+import SignupScreen from './src/screens/SignupScreen';
+import LoginScreen from './src/screens/LoginScreen';
+import UploadRecipeScreen from './src/screens/UploadRecipeScreen';
+import RecipeBookScreen from './src/screens/RecipeBookScreen';
 import SearchScreen from './src/screens/SearchScreen';
+import RecipeScreen from './src/screens/RecipeScreen';
 
-/////////////////////
-
-function LogInScreen({ navigation }) {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Button
-      title="Log-In"
-      onPress={() => navigation.navigate('Home')}
-      />
-      <Button
-      title="Sign-Up"
-      onPress={() => navigation.navigate('Sign-Up')}
-      />
-    </View>
-  );
+function Separator() {
+  return <View style={styles.separator}/>;
 }
 
-function SignUpScreen({ navigation }) {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-    </View>
-  );
-}
-function HomeScreen({ navigation }) {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Button title="Go to Profile" onPress={() => navigation.navigate('Profile')} />
-      <Button title="Upload Recipe" onPress={() => navigation.navigate('Upload')} />
-      <Button title="Recipe Book" onPress={() => navigation.navigate('Recipe Book')} />
-      <Button title="Search for Recipe" onPress={() => navigation.navigate('Search')} />
-    </View>
-  );
-}
-
-function ProfileScreen({ navigation }) {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-    </View>
-  );
-}
-
-function UploadRecipeScreen({ navigation }) {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-    </View>
-  );
-}
-
-function RecipeBookScreen({ navigation }) {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Button title="Recipe" onPress={() => navigation.navigate('Recipe')} />
-    </View>
-  );
-}
-
-function SearchResultsScreen({ navigation, props }) {
-  return (
-    <View style = {styles.container}>
-      <View>
-        <Text style = {styles.header}>Search</Text>
-      </View>
-    </View>
-  );
-
-}
-
-function RecipeScreen({ navigation }) {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-    </View>
-  );
-}
+const fetchFonts = () => {
+  return Font.loadAsync({
+  'nunito-black': require('./assets/fonts/Nunito-Black.ttf'),
+  'nunito-blackitalic': require('./assets/fonts/Nunito-BlackItalic.ttf'),
+  'nunito-bold': require('./assets/fonts/Nunito-Bold.ttf'),
+  'nunito-bolditalic': require('./assets/fonts/Nunito-BoldItalic.ttf'),
+  'nunito-extrabold': require('./assets/fonts/Nunito-ExtraBold.ttf'),
+  'nunito-extrabolditalic': require('./assets/fonts/Nunito-ExtraBoldItalic.ttf'),
+  'nunito-italic': require('./assets/fonts/Nunito-Italic.ttf'),
+  'nunito-regular': require('./assets/fonts/Nunito-Regular.ttf'),
+  'nunito-semibold': require('./assets/fonts/Nunito-SemiBold.ttf'),
+  'nunito-semibolditalic': require('./assets/fonts/Nunito-SemiBoldItalic.ttf')
+  });
+};
 
 const Stack = createStackNavigator();
 
-function App() {
+
+export default class App extends React.Component {
+  state = {
+    fontLoaded: false,
+  };
+
+  async componentDidMount() {
+    await Font.loadAsync({
+      'nunito-black': require('./assets/fonts/Nunito-Black.ttf'),
+      'nunito-blackitalic': require('./assets/fonts/Nunito-BlackItalic.ttf'),
+      'nunito-bold': require('./assets/fonts/Nunito-Bold.ttf'),
+      'nunito-bolditalic': require('./assets/fonts/Nunito-BoldItalic.ttf'),
+      'nunito-extrabold': require('./assets/fonts/Nunito-ExtraBold.ttf'),
+      'nunito-extrabolditalic': require('./assets/fonts/Nunito-ExtraBoldItalic.ttf'),
+      'nunito-italic': require('./assets/fonts/Nunito-Italic.ttf'),
+      'nunito-regular': require('./assets/fonts/Nunito-Regular.ttf'),
+      'nunito-semibold': require('./assets/fonts/Nunito-SemiBold.ttf'),
+      'nunito-semibolditalic': require('./assets/fonts/Nunito-SemiBoldItalic.ttf')
+    });
+    this.setState({ fontLoaded: true });
+  }
+  
+  render() {
   return (
+    this.state.fontLoaded ? (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Log-In">
+      <Stack.Navigator initialRouteName="Start">
+        <Stack.Screen name="Start" component={StartScreen} />
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Profile" component={ProfileScreen} />
-        <Stack.Screen name="Sign-Up" component={SignUpScreen} />
-        <Stack.Screen name="Log-In" component={LogInScreen} />
+        <Stack.Screen name="Sign-Up" component={SignupScreen} />
+        <Stack.Screen name="Log-In" component={LoginScreen} />
         <Stack.Screen name="Upload" component={UploadRecipeScreen} />
         <Stack.Screen name="Recipe Book" component={RecipeBookScreen} />
         <Stack.Screen name="Search" component={SearchScreen} />
         <Stack.Screen name="Recipe" component={RecipeScreen} />
       </Stack.Navigator>
     </NavigationContainer>
-  );
+    ) : null
+  );}
 }
-
-export default App;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  textInput: {
-    borderColor: 'red',
-    borderTopWidth: 1,
-    borderBottomWidth: 1,
-    height: 50,
-    fontSize: 25,
-    paddingLeft: 20,
-    paddingRight: 20,
-  },
-  scrollView: {
-    borderColor: 'red',
-    marginHorizontal: 20,
-    paddingTop: 10,
-    paddingBottom: 20,
-  },
-  inputContainer: {
-    paddingTop: 15,
-  },
-  sendButton: {
-    borderWidth: 1,
-    borderColor: 'red',
-    backgroundColor: 'red',
-    padding: 15,
-    margin: 5,
-  },
-  sendButtonText: {
-    color: 'white',
-    fontSize: 20,
-    textAlign: 'center'
-  },
-  header: {
-    color: 'white',
-    fontSize: 20,
-    textAlign: 'center',
-    fontWeight: 'bold',
-  },
-});

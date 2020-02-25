@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import { Button, StyleSheet, Text, TextInput, View, SafeAreaView, ScrollView, Keyboard, TouchableOpacity, Alert } from 'react-native';
+import { Button, StyleSheet, Text, TextInput, View, SafeAreaView, Keyboard, TouchableOpacity, Dimensions, Image } from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
+import defaultStyles from './stylesheet';
+import Autocomplete from 'react-native-autocomplete-input';
 //TODO:
 // finish the API query call with ALL Ingredients
 // create string builder function stringToList that creates a comma
@@ -14,38 +16,56 @@ import {createStackNavigator} from '@react-navigation/stack';
 
 const API_KEY = "8a9b90f8b89e43efa982e629b09590b8" // My spoonacular API key
 
+class IngredientItem extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {isClicked: false};
+  }
+
+  render () {
+    const {item, removeHandler} = this.props;
+    return (
+      <View>
+        <TouchableOpacity style={defaultStyles.ingredient} onPress={() => {this.setState({isClicked: !this.state.isClicked})}}>
+          <Text key={item} style={defaultStyles.ingredientText}>{item}</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => removeHandler(item)}>
+          <Image
+          key={item}
+          style={[{width: 20, height: 20, zIndex: 2, marginTop: -60, marginLeft: -5}, {display: this.state.isClicked ? 'block' : 'none'}]}
+          source={require('../img/delete.png')}
+          />
+        </TouchableOpacity>
+      </View>
+    )
+  }
+}
+
 class SearchScreen extends React.Component {
   constructor(props) {
     super(props)
 
     this.state = {
+      ingredients: [],
+      ingdata: ['eggs', 'milk', 'cheese', 'carrots', 'ice cream', 'cheddar', 'flour', 'macaroni', 'pasta', 'broth', 'chicken', 'beef', 'lettuce', 'peas'],
       dish: '',
-      ing0: '',
-      ing1: '',
-      ing2: '',
-      ing3: '',
-      ing4: '',
-      maxCals: '',
       cuisine: '',
       allergies: '',
       exclusions: '',
       ingredientsString: ''
     };
 
+    this.handleIngredients = this.handleIngredients.bind(this);
     this.handleDish = this.handleDish.bind(this);
-    this.handleIng0 = this.handleIng0.bind(this);
-    this.handleIng1 = this.handleIng1.bind(this);
-    this.handleIng2 = this.handleIng2.bind(this);
-    this.handleIng3 = this.handleIng3.bind(this);
-    this.handleIng4 = this.handleIng4.bind(this);
-    this.handleMaxCals = this.handleMaxCals.bind(this); //maxCals does not work when no value is input - it breaks the whole thing
     this.handleCuisine = this.handleCuisine.bind(this);
     this.handleAllergies = this.handleAllergies.bind(this);
     this.handleExclusions = this.handleExclusions.bind(this);
+    //this.handleMaxCals = this.handleMaxCals.bind(this); //maxCals does not work when no value is input - it breaks the whole thing
     this.getDataUsingGet = this.getDataUsingGet.bind(this);
     this.stringToList = this.stringToList.bind(this);
+    this.handleExclusions = this.removeItem.bind(this);
 
-  } //close constructor
+  }
 
   // if you use complex search, includeIngredients is a comma-seperated list of strings.
   // if you just search by ingredients, it's even easier
@@ -72,70 +92,9 @@ class SearchScreen extends React.Component {
       });
   } //end getDataUsingGet
 
-  // POST method for data retrieval (remove if unused, also API calls are placeholders) UNUSED AS OF NOW
-  getDataUsingPost() {
-    //POST json
-    var dataToSend = { title: 'foo', body: 'bar', userId: 1 };
-
-    //making data to send on server
-    var formBody = [];
-    for (var key in dataToSend) {
-      var encodedKey = encodeURIComponent(key);
-      var encodedValue = encodeURIComponent(dataToSend[key]);
-      formBody.push(encodedKey + '=' + encodedValue);
-    }
-    formBody = formBody.join('&');
-
-    //POST request
-    fetch('https://jsonplaceholder.typicode.com/posts', {
-      method: 'POST', //Request Type
-      body: formBody, //post body
-      headers: {
-        //Header Defination
-        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
-      },
-    })
-      .then(response => response.json())
-      //If response is in json then in success
-      .then(responseJson => {
-        alert(JSON.stringify(responseJson));
-        console.log(responseJson);
-      })
-      //If response is not in json then in error
-      .catch(error => {
-        alert(JSON.stringify(error));
-        console.error(error);
-      });
-  }
-
   // Handler methods for text inputs
   handleDish(text) {
     this.setState({ dish: text });
-    //console.log(this.state.dish);
-  }
-
-  handleIng0(text) { //handling state change of text in inputs
-    this.setState({ ing0: text });
-  }
-
-  handleIng1(text) {
-    this.setState({ ing1: text });
-  }
-
-  handleIng2(text) {
-    this.setState({ ing2: text });
-  }
-
-  handleIng3(text) {
-    this.setState({ ing3: text });
-  }
-
-  handleIng4(text) {
-    this.setState({ ing4: text });
-  }
-
-  handleMaxCals(text) {
-    this.setState({ maxCals: text })
   }
 
   handleCuisine(text) {
@@ -150,147 +109,112 @@ class SearchScreen extends React.Component {
     this.setState({ exclusions: text });
   }
 
-  stringToList() { //turns ingredients / Allergies array into a comma seperated list
+  handleIngredients(text) {
+    if(!this.state.ingredients.includes(text)){
+      this.setState({ ingredients: [...this.state.ingredients, text] });
+    }
+  }
 
+  removeItem(item) {
+    // console.log(this.state.ingredients);
+    var array = this.state.ingredients;
+    var index = array.indexOf(item);
+    if (index !== -1) array.splice(index, 1);
+    this.setState({ingredients: array})
+  }
+
+  suggestIngredient(text) {
+    if (text === '') {
+      return [];
+    }
+    const { ingdata } = this.state;
+    const regex = new RegExp(`${text.trim()}`, 'i');
+    return ingdata.filter(ing => ing.search(regex) >= 0);
+  }
+
+  stringToList() { //turns ingredients / Allergies array into a comma seperated list
   }
 
   //////////// render block //////////////////
 
   render() {
+    const {navigation} = this.props;
+    const { query } = this.state;
+    const data = this.suggestIngredient(query);
     return (
-      <ScrollView keyboardShouldPersistTaps = 'always'>
-       <ScrollView style = {styles.scrollView}>
-       <TextInput
-         placeholder = "Dish (e.g. pasta)"
-         placeholderTextColor = "grey"
-         style={styles.textInput}
-         onBlur = {Keyboard.dismiss}
-         value = {this.state.dish}
-         onChangeText = {this.handleDish}
-       />
-        <TextInput
-          placeholder = "Ingredient 1"
-          placeholderTextColor = "grey"
-          style={styles.textInput}
-          onBlur = {Keyboard.dismiss}
-          value = {this.state.ing0}
-          onChangeText = {this.handleIng0}
+      <View style={{
+        flex:1,
+        height: Dimensions.get('window').height,
+        backgroundColor:'#fff',
+        alignItems: 'center',
+        justifyContent: 'space-around'
+      }}>
+       <View style= {[defaultStyles.searchContainer]}>
+       <Image
+        style={{width: 65, height: 65, marginBottom: 40}}
+        source={require('../img/logo.png')}
         />
-        <TextInput
-          placeholder = "Ingredient 2 (optional)"
-          placeholderTextColor = "grey"
-          style={styles.textInput}
-          onBlur = {Keyboard.dismiss}
-          value = {this.state.ing1}
-          onChangeText = {this.handleIng1}
+       <Text style={[defaultStyles.h1, {fontSize: 24}]}>Search for recipes</Text>
+       <Text style={[defaultStyles.textLink, {textAlign: 'left', paddingTop: 5}]}>You can search by entering the ingredients you have</Text>
+       <Text style={[defaultStyles.textLink, {textAlign: 'left', paddingBottom: 15}]}>or by typing in a recipe name</Text>
+        <Autocomplete
+          containerStyle={defaultStyles.autocompleteContainer}
+          inputContainerStyle={defaultStyles.acInputContainer}
+          listStyle={{borderWidth: 0}}
+          data={data}
+          defaultValue={query}
+          onChangeText={text => this.setState({ query: text })}
+          renderItem={({ item, i }) => (
+            <TouchableOpacity style={defaultStyles.acListStyle} onPress={() => {this.handleIngredients(item)}}>
+              <Text style={{color: '#ed4848'}}>{item}</Text>
+            </TouchableOpacity>
+          )}
         />
-        <TextInput
-          placeholder = "Ingredient 3 (optional)"
-          placeholderTextColor = "grey"
-          style={styles.textInput}
-          onBlur = {Keyboard.dismiss}
-          value = {this.state.ing2}
-          onChangeText = {this.handleIng2}
-        />
-        <TextInput
-          placeholder = "Ingredient 4 (optional)"
-          placeholderTextColor = "grey"
-          style={styles.textInput}
-          onBlur = {Keyboard.dismiss}
-          value = {this.state.ing3}
-          onChangeText = {this.handleIng3}
-        />
-        <TextInput
-          placeholder = "Ingredient 5 (optional)"
-          placeholderTextColor = "grey"
-          style={styles.textInput}
-          onBlur = {Keyboard.dismiss}
-          value = {this.state.ing4}
-          onChangeText = {this.handleIng4}
-        />
-        <TextInput
-          placeholder = "maxCals (doesn't work, unused)"
-          placeholderTextColor = "grey"
-          style={styles.textInput}
-          onBlur = {Keyboard.dismiss}
-          value = {this.state.maxCals}
-          onChangeText = {this.handleMaxCals}
-        />
-        <TextInput
-          placeholder = "Cuisine (optional)"
-          placeholderTextColor = "grey"
-          style={styles.textInput}
-          onBlur = {Keyboard.dismiss}
-          value = {this.state.cuisine}
-          onChangeText = {this.handleCuisine}
-        />
-        <TextInput
-          placeholder = "Allergies / Intolerences (consult your doctor!) (optional)"  ////maybe delete? complex. read docs
-          placeholderTextColor = "grey"
-          style={styles.textInput}
-          onBlur = {Keyboard.dismiss}
-          value = {this.state.allergies}
-          onChangeText = {this.handleAllergies}
-        />
-        <TextInput
-          placeholder = "Exclude Ingredients (optional)"
-          placeholderTextColor = "grey"
-          style={styles.textInput}
-          onBlur = {Keyboard.dismiss}
-          value = {this.state.exclusions}
-          onChangeText = {this.handleExclusions}
-        />
-        <View style = {styles.inputContainer}>
-          <TouchableOpacity
-            style = {styles.sendButton}
-            onPress = {this.getDataUsingGet} //change this
-            >
-           <Text style = {styles.sendButtonText}>Search</Text>
-          </TouchableOpacity>
         </View>
-       </ScrollView>
-     </ScrollView>
+        <View style = {[defaultStyles.inputContainer,]}>
+          <Text style={[defaultStyles.h1, {fontSize: 24, color: "#fff", width: 350}]}>Ingredients:</Text>
+          <View style= {defaultStyles.ingredientsContainer}>
+          {this.state.ingredients.map(item => (
+            <IngredientItem item={item} removeHandler={this.removeItem.bind(this)}/>
+          ))}
+          </View>
+          <TouchableOpacity
+            style = {[defaultStyles.redButton, {backgroundColor: '#fff', width: 350}]}
+            //onPress = {this.handleSendSearch}
+            >
+            <Text style = {[defaultStyles.redButtonText, {color: '#ed4848'}]}>Find Recipes</Text>
+            </TouchableOpacity>
+        </View>
+     </View>
    ); //end return
  }//end render
 }//end class
 
+// <TextInput
+//   placeholder = "Cuisine (optional)"
+//   placeholderTextColor = "grey"
+//   style={defaultStyles.searchTextInput}
+//   onBlur = {Keyboard.dismiss}
+//   value = {this.state.cuisine}
+//   onChangeText = {this.handleCuisine}
+// />
+// <TextInput
+//   placeholder = "Allergies / Intolerences (consult your doctor!) (optional)"  ////maybe delete? complex. read docs
+//   placeholderTextColor = "grey"
+//   style={defaultStyles.searchTextInput}
+//   onBlur = {Keyboard.dismiss}
+//   value = {this.state.allergies}
+//   onChangeText = {this.handleAllergies}
+// />
+// <TextInput
+//   placeholder = "Exclude Ingredients (optional)"
+//   placeholderTextColor = "grey"
+//   style={defaultStyles.searchTextInput}
+//   onBlur = {Keyboard.dismiss}
+//   value = {this.state.exclusions}
+//   onChangeText = {this.handleExclusions}
+// />
 export default SearchScreen;
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  textInput: {
-    borderColor: 'red',
-    borderTopWidth: 1,
-    borderBottomWidth: 1,
-    height: 50,
-    fontSize: 25,
-    paddingLeft: 20,
-    paddingRight: 20,
-  },
-  scrollView: {
-    borderColor: 'red',
-    marginHorizontal: 20,
-    paddingTop: 10,
-    paddingBottom: 20,
-  },
-  inputContainer: {
-    paddingTop: 15,
-  },
-  sendButton: {
-    borderWidth: 1,
-    borderColor: 'red',
-    backgroundColor: 'red',
-    padding: 15,
-    margin: 5,
-  },
-  sendButtonText: {
-    color: 'white',
-    fontSize: 20,
-    textAlign: 'center'
-  },
-});
+// const styles = StyleSheet.create({
+// });
