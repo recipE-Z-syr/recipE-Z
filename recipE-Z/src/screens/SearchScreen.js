@@ -64,6 +64,7 @@ class SearchScreen extends React.Component {
     this.stringToList = this.stringToList.bind(this);
     this.handleExclusions = this.removeItem.bind(this);
     this.suggestIngredient = this.suggestIngredient.bind(this);
+    this.clear = this.clear.bind(this);
 
   }
 
@@ -123,6 +124,10 @@ class SearchScreen extends React.Component {
     this.setState({ingredients: array})
   }
 
+  clear() {
+    this.setState({ingredients: []});
+  }
+
   suggestIngredient(text) {
     if (text === '') {
       return [];
@@ -174,6 +179,9 @@ class SearchScreen extends React.Component {
         </View>
         <View style = {[defaultStyles.inputContainer,]}>
           <Text style={[defaultStyles.h1, {fontSize: 24, color: "#fff", width: 350}]}>Ingredients:</Text>
+          <TouchableOpacity onPress = {this.clear} style={{position: 'absolute', top: 30, right: 40}}>
+            <Text style = {[defaultStyles.textLink, {fontSize: 14, color: '#fff'}]}>CLEAR</Text>
+            </TouchableOpacity>
           <View style= {defaultStyles.ingredientsContainer}>
           {this.state.ingredients.map(item => (
             <IngredientItem item={item} removeHandler={this.removeItem.bind(this)}/>
