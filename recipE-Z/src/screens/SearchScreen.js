@@ -5,7 +5,14 @@ import {createStackNavigator} from '@react-navigation/stack';
 import defaultStyles from './stylesheet';
 import Autocomplete from 'react-native-autocomplete-input';
 //TODO:
-// have handleSendSearch transmit user inputs to the API and send request (maybe diff file?)
+// finish the API query call with ALL Ingredients (handle ings)
+// re implement dish (query), allergies, exclusions, and cuisine
+
+// create string builder function stringToList that creates a comma
+// - seperated list of strings for the ingredients query, and then bind it (perhaps unneeded? grab Cynthias code first)
+// handle results and display, maybe in another file? navigate to results and call API
+
+const API_KEY = "8a9b90f8b89e43efa982e629b09590b8" // My spoonacular API key
 
 class IngredientItem extends React.Component {
   constructor(props) {
@@ -34,43 +41,76 @@ class IngredientItem extends React.Component {
 
 class SearchScreen extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
 
     this.state = {
       ingredients: [],
       ingdata: ['eggs', 'milk', 'cheese', 'carrots', 'ice cream', 'cheddar', 'flour', 'macaroni', 'pasta', 'broth', 'chicken', 'beef', 'lettuce', 'peas'],
       query: '',
       cuisine: '',
-      allergies: '',
-      exclusions: ''
+      allergies: [],
+      exclusions: [],
+      ingredientsString: ''
     };
 
     this.handleIngredients = this.handleIngredients.bind(this);
+    this.handleQuery = this.handleQuery.bind(this); //query = dish (eg pasta)
     this.handleCuisine = this.handleCuisine.bind(this);
     this.handleAllergies = this.handleAllergies.bind(this);
     this.handleExclusions = this.handleExclusions.bind(this);
+    //this.handleMaxCals = this.handleMaxCals.bind(this); //maxCals does not work when no value is input - it breaks the whole thing
+    this.getDataUsingGet = this.getDataUsingGet.bind(this);
+    this.stringToList = this.stringToList.bind(this);
     this.handleExclusions = this.removeItem.bind(this);
+    this.suggestIngredient = this.suggestIngredient.bind(this);
 
-    //this.handleSendSearch = this.handleSendSearch.bind(this);
   }
 
-  //handling state change of text in inputs
+  // if you use complex search, includeIngredients is a comma-seperated list of strings.
+  // if you just search by ingredients, it's even easier
+  // api call also ignores null parameters
+  // increase number from 5 when finished testing
+  // https://spoonacular.com/food-api/docs#Search-Recipes
+  getDataUsingGet() {
+    fetch('https://api.spoonacular.com/recipes/complexSearch?query='+ this.state.query +'&cuisine='+ this.state.cuisine +'&fillIngredients=false&number=2&apiKey='+ API_KEY +'', {
+      method: 'GET',
+      headers: {
+        Accept: "application/json",
+        "Content-Type" : "application/json"
+      }
+    })
+      .then(response => response.json()) //success
+      .then(responseJson => {
+        alert(JSON.stringify(responseJson)); //do stuff with results of API call
+        console.log(responseJson);
+      })
+      //on fail
+      .catch(error => {
+        alert(JSON.stringify(error));
+        console.error(error);
+      });
+  } //end getDataUsingGet
+
+  // Handler methods for text inputs
+  handleQuery(text) {
+    this.setState({ query: text });
+  }
 
   handleCuisine(text) {
-    this.setState({ text });
+    this.setState({ cuisine: text });
   }
 
   handleAllergies(text) {
-    this.setState({ text });
+    this.setState({ allergies: text });
   }
 
   handleExclusions(text) {
-    this.setState({ text });
+    this.setState({ exclusions: text });
   }
 
   handleIngredients(text) {
     if(!this.state.ingredients.includes(text)){
-      this.setState({ ingredients: [...this.state.ingredients, text] }); 
+      this.setState({ ingredients: [...this.state.ingredients, text] });
     }
   }
 
@@ -91,9 +131,10 @@ class SearchScreen extends React.Component {
     return ingdata.filter(ing => ing.search(regex) >= 0);
   }
 
-  /* handleSendSearch() {
-    recipeSearch(this.state); //calls search! integrate API before using
-  } */
+  stringToList() { //turns ingredients / Allergies / exclusions array into a comma seperated list
+  }
+
+  //////////// render block //////////////////
 
   render() {
     const {navigation} = this.props;
@@ -138,7 +179,7 @@ class SearchScreen extends React.Component {
           </View>
           <TouchableOpacity
             style = {[defaultStyles.redButton, {backgroundColor: '#fff', width: 350}]}
-            //onPress = {this.handleSendSearch}
+            onPress = {this.getDataUsingGet} //calls API!
             >
             <Text style = {[defaultStyles.redButtonText, {color: '#ed4848'}]}>Find Recipes</Text>
             </TouchableOpacity>
