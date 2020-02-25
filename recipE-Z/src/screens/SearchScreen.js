@@ -3,10 +3,10 @@ import { Button, StyleSheet, Text, TextInput, View, SafeAreaView, ScrollView, Ke
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 //TODO:
-// finish the API query call with all inputs
+// finish the API query call with ALL Ingredients
 // create string builder function stringToList that creates a comma
-// -seperated list of strings for the ingredients query, and then bind it
-// handle results and display, maybe in another file? navigate to results and call API? YES DO this
+// - seperated list of strings for the ingredients query, and then bind it (perhaps unneeded? grab Cynthias code first)
+// handle results and display, maybe in another file? navigate to results and call API
 
 //USEFUL API STUFF: :)
 // it comes with a sort parameter!
@@ -29,6 +29,7 @@ class SearchScreen extends React.Component {
       cuisine: '',
       allergies: '',
       exclusions: '',
+      ingredientsString: ''
     };
 
     this.handleDish = this.handleDish.bind(this);
@@ -37,12 +38,12 @@ class SearchScreen extends React.Component {
     this.handleIng2 = this.handleIng2.bind(this);
     this.handleIng3 = this.handleIng3.bind(this);
     this.handleIng4 = this.handleIng4.bind(this);
-    this.handleMaxCals = this.handleMaxCals.bind(this);
+    this.handleMaxCals = this.handleMaxCals.bind(this); //maxCals does not work when no value is input - it breaks the whole thing
     this.handleCuisine = this.handleCuisine.bind(this);
     this.handleAllergies = this.handleAllergies.bind(this);
     this.handleExclusions = this.handleExclusions.bind(this);
     this.getDataUsingGet = this.getDataUsingGet.bind(this);
-    //this.stringToList = this.stringToList.bind(this);
+    this.stringToList = this.stringToList.bind(this);
 
   } //close constructor
 
@@ -52,7 +53,7 @@ class SearchScreen extends React.Component {
   // increase number from 5 when finished testing
   // https://spoonacular.com/food-api/docs#Search-Recipes
   getDataUsingGet() {
-    fetch('https://api.spoonacular.com/recipes/complexSearch?query='+ this.state.dish +'&cuisine='+ this.state.cuisine +'&number=5&maxCalories='+ this.state.maxCals +'&apiKey='+ API_KEY +'', {
+    fetch('https://api.spoonacular.com/recipes/complexSearch?query='+ this.state.dish +'&cuisine='+ this.state.cuisine +'&fillIngredients=false&number=2&apiKey='+ API_KEY +'', {
       method: 'GET',
       headers: {
         Accept: "application/json",
@@ -149,7 +150,11 @@ class SearchScreen extends React.Component {
     this.setState({ exclusions: text });
   }
 
-// begin render block. all rules OUT THE WINDOW
+  stringToList() { //turns ingredients / Allergies array into a comma seperated list
+
+  }
+
+  //////////// render block //////////////////
 
   render() {
     return (
@@ -204,7 +209,7 @@ class SearchScreen extends React.Component {
           onChangeText = {this.handleIng4}
         />
         <TextInput
-          placeholder = "Max # of Calories (optional)"
+          placeholder = "maxCals (doesn't work, unused)"
           placeholderTextColor = "grey"
           style={styles.textInput}
           onBlur = {Keyboard.dismiss}
