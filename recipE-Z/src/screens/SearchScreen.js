@@ -3,9 +3,10 @@ import { Button, StyleSheet, Text, TextInput, View, SafeAreaView, ScrollView, Ke
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 //TODO:
-// call API with inputted user info! rather than placeholders
+// finish the API query call with all inputs
+// create string builder function stringToList that creates a comma
+// -seperated list of strings for the ingredients query, and then bind it
 // handle results and display, maybe in another file? navigate to results and call API? YES DO this
-//for above, create stacknativator in this screen and pass parameters and display
 
 //USEFUL API STUFF: :)
 // it comes with a sort parameter!
@@ -24,15 +25,34 @@ class SearchScreen extends React.Component {
       ing2: '',
       ing3: '',
       ing4: '',
+      maxCals: '',
       cuisine: '',
       allergies: '',
       exclusions: '',
     };
 
+    this.handleDish = this.handleDish.bind(this);
+    this.handleIng0 = this.handleIng0.bind(this);
+    this.handleIng1 = this.handleIng1.bind(this);
+    this.handleIng2 = this.handleIng2.bind(this);
+    this.handleIng3 = this.handleIng3.bind(this);
+    this.handleIng4 = this.handleIng4.bind(this);
+    this.handleMaxCals = this.handleMaxCals.bind(this);
+    this.handleCuisine = this.handleCuisine.bind(this);
+    this.handleAllergies = this.handleAllergies.bind(this);
+    this.handleExclusions = this.handleExclusions.bind(this);
+    this.getDataUsingGet = this.getDataUsingGet.bind(this);
+    //this.stringToList = this.stringToList.bind(this);
+
   } //close constructor
 
+  // if you use complex search, includeIngredients is a comma-seperated list of strings.
+  // if you just search by ingredients, it's even easier
+  // api call also ignores null parameters
+  // increase number from 5 when finished testing
+  // https://spoonacular.com/food-api/docs#Search-Recipes
   getDataUsingGet() {
-    fetch('https://api.spoonacular.com/recipes/complexSearch?query='+ this.state.dish +'&cuisine=italian&number=5&apiKey='+ API_KEY +'', {
+    fetch('https://api.spoonacular.com/recipes/complexSearch?query='+ this.state.dish +'&cuisine='+ this.state.cuisine +'&number=5&maxCalories='+ this.state.maxCals +'&apiKey='+ API_KEY +'', {
       method: 'GET',
       headers: {
         Accept: "application/json",
@@ -88,9 +108,9 @@ class SearchScreen extends React.Component {
   }
 
   // Handler methods for text inputs
-
   handleDish(text) {
     this.setState({ dish: text });
+    //console.log(this.state.dish);
   }
 
   handleIng0(text) { //handling state change of text in inputs
@@ -111,6 +131,10 @@ class SearchScreen extends React.Component {
 
   handleIng4(text) {
     this.setState({ ing4: text });
+  }
+
+  handleMaxCals(text) {
+    this.setState({ maxCals: text })
   }
 
   handleCuisine(text) {
@@ -137,7 +161,7 @@ class SearchScreen extends React.Component {
          style={styles.textInput}
          onBlur = {Keyboard.dismiss}
          value = {this.state.dish}
-         onChangeText = {this.handleDish.bind(this)}
+         onChangeText = {this.handleDish}
        />
         <TextInput
           placeholder = "Ingredient 1"
@@ -145,7 +169,7 @@ class SearchScreen extends React.Component {
           style={styles.textInput}
           onBlur = {Keyboard.dismiss}
           value = {this.state.ing0}
-          onChangeText = {this.handleIng0.bind(this)}
+          onChangeText = {this.handleIng0}
         />
         <TextInput
           placeholder = "Ingredient 2 (optional)"
@@ -153,7 +177,7 @@ class SearchScreen extends React.Component {
           style={styles.textInput}
           onBlur = {Keyboard.dismiss}
           value = {this.state.ing1}
-          onChangeText = {this.handleIng1.bind(this)}
+          onChangeText = {this.handleIng1}
         />
         <TextInput
           placeholder = "Ingredient 3 (optional)"
@@ -161,7 +185,7 @@ class SearchScreen extends React.Component {
           style={styles.textInput}
           onBlur = {Keyboard.dismiss}
           value = {this.state.ing2}
-          onChangeText = {this.handleIng2.bind(this)}
+          onChangeText = {this.handleIng2}
         />
         <TextInput
           placeholder = "Ingredient 4 (optional)"
@@ -169,7 +193,7 @@ class SearchScreen extends React.Component {
           style={styles.textInput}
           onBlur = {Keyboard.dismiss}
           value = {this.state.ing3}
-          onChangeText = {this.handleIng3.bind(this)}
+          onChangeText = {this.handleIng3}
         />
         <TextInput
           placeholder = "Ingredient 5 (optional)"
@@ -177,7 +201,15 @@ class SearchScreen extends React.Component {
           style={styles.textInput}
           onBlur = {Keyboard.dismiss}
           value = {this.state.ing4}
-          onChangeText = {this.handleIng4.bind(this)}
+          onChangeText = {this.handleIng4}
+        />
+        <TextInput
+          placeholder = "Max # of Calories (optional)"
+          placeholderTextColor = "grey"
+          style={styles.textInput}
+          onBlur = {Keyboard.dismiss}
+          value = {this.state.maxCals}
+          onChangeText = {this.handleMaxCals}
         />
         <TextInput
           placeholder = "Cuisine (optional)"
@@ -185,7 +217,7 @@ class SearchScreen extends React.Component {
           style={styles.textInput}
           onBlur = {Keyboard.dismiss}
           value = {this.state.cuisine}
-          onChangeText = {this.handleCuisine.bind(this)}
+          onChangeText = {this.handleCuisine}
         />
         <TextInput
           placeholder = "Allergies / Intolerences (consult your doctor!) (optional)"  ////maybe delete? complex. read docs
@@ -193,7 +225,7 @@ class SearchScreen extends React.Component {
           style={styles.textInput}
           onBlur = {Keyboard.dismiss}
           value = {this.state.allergies}
-          onChangeText = {this.handleAllergies.bind(this)}
+          onChangeText = {this.handleAllergies}
         />
         <TextInput
           placeholder = "Exclude Ingredients (optional)"
@@ -201,7 +233,7 @@ class SearchScreen extends React.Component {
           style={styles.textInput}
           onBlur = {Keyboard.dismiss}
           value = {this.state.exclusions}
-          onChangeText = {this.handleExclusions.bind(this)}
+          onChangeText = {this.handleExclusions}
         />
         <View style = {styles.inputContainer}>
           <TouchableOpacity
