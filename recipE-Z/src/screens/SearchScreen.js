@@ -4,6 +4,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import defaultStyles from './stylesheet';
 import Autocomplete from 'react-native-autocomplete-input';
+import NavigationBar from './NavigationBar';
 //TODO:
 // finish the API query call with ALL Ingredients (handle ings)
 // re implement dish (query), allergies, exclusions, and cuisine
@@ -149,6 +150,7 @@ class SearchScreen extends React.Component {
         justifyContent: 'space-around'
       }}>
        <View style= {[defaultStyles.searchContainer]}>
+       <NavigationBar navigation={this.props.navigation}/>
        <Image
         style={{width: 65, height: 65, marginBottom: 40}}
         source={require('../img/logo.png')}
