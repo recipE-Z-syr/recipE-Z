@@ -6,12 +6,8 @@ import defaultStyles from './stylesheet';
 import Autocomplete from 'react-native-autocomplete-input';
 import NavigationBar from './NavigationBar';
 //TODO:
-// finish the API query call with ALL Ingredients (handle ings)
 // re implement dish (query), allergies, exclusions, and cuisine
-
-// create string builder function stringToList that creates a comma
-// - seperated list of strings for the ingredients query, and then bind it (perhaps unneeded? grab Cynthias code first)
-// handle results and display, maybe in another file? navigate to results and call API
+// handle results and display in another file, navigate to results and pass api
 
 const API_KEY = "8a9b90f8b89e43efa982e629b09590b8" // My spoonacular API key
 
@@ -61,7 +57,6 @@ class SearchScreen extends React.Component {
     this.handleExclusions = this.handleExclusions.bind(this);
     //this.handleMaxCals = this.handleMaxCals.bind(this); //maxCals does not work when no value is input - it breaks the whole thing
     this.getDataUsingGet = this.getDataUsingGet.bind(this);
-    this.stringToList = this.stringToList.bind(this);
     this.handleExclusions = this.removeItem.bind(this);
     this.suggestIngredient = this.suggestIngredient.bind(this);
     this.clear = this.clear.bind(this);
@@ -72,9 +67,10 @@ class SearchScreen extends React.Component {
   // if you just search by ingredients, it's even easier
   // api call also ignores null parameters
   // increase number from 5 when finished testing
+  // may have to call this.state.ingredientsString instead of the array (test first, [] may work)
   // https://spoonacular.com/food-api/docs#Search-Recipes
   getDataUsingGet() {
-    fetch('https://api.spoonacular.com/recipes/complexSearch?query='+ this.state.query +'&cuisine='+ this.state.cuisine +'&fillIngredients=false&number=2&apiKey='+ API_KEY +'', {
+    fetch('https://api.spoonacular.com/recipes/complexSearch?query='+ this.state.query +'&cuisine='+ this.state.cuisine +'&fillIngredients=false&includeIngredients='+ this.state.ingredients +'&number=2&apiKey='+ API_KEY +'', {
       method: 'GET',
       headers: {
         Accept: "application/json",
@@ -137,9 +133,6 @@ class SearchScreen extends React.Component {
     return ingdata.filter(ing => ing.search(regex) >= 0);
   }
 
-  stringToList() { //turns ingredients / Allergies / exclusions array into a comma seperated list
-  }
-
   //////////// render block //////////////////
 
   render() {
@@ -154,6 +147,7 @@ class SearchScreen extends React.Component {
         alignItems: 'center',
         justifyContent: 'space-around'
       }}>
+
        <View style= {[defaultStyles.searchContainer]}>
        <NavigationBar navigation={this.props.navigation}/>
        <Image
@@ -189,7 +183,7 @@ class SearchScreen extends React.Component {
           </View>
           <TouchableOpacity
             style = {[defaultStyles.redButton, {backgroundColor: '#fff', width: 350}]}
-            onPress = {this.getDataUsingGet} //calls API!
+            onPress = {this.getDataUsingGet} // calls API
             >
             <Text style = {[defaultStyles.redButtonText, {color: '#ed4848'}]}>Find Recipes</Text>
             </TouchableOpacity>
