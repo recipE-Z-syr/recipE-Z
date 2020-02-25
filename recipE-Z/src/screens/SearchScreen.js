@@ -4,46 +4,44 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 //TODO:
 // call API with inputted user info! rather than placeholders
-// handle results and display, maybe in another file? navigate to results and call API?
+// handle results and display, maybe in another file? navigate to results and call API? YES DO this
+//for above, create stacknativator in this screen and pass parameters and display
 
 //USEFUL API STUFF: :)
 // it comes with a sort parameter!
+// declare constants before class
+
+const API_KEY = "8a9b90f8b89e43efa982e629b09590b8" // My spoonacular API key
 
 class SearchScreen extends React.Component {
-
   constructor(props) {
-    super(props);
+    super(props)
 
-    this.state = { ing0: '' }
-    this.state = { ing1: '' }
-    this.state = { ing2: '' }
-    this.state = { ing3: '' }
-    this.state = { ing4: '' }
-    this.state = { cuisine: '' }
-    this.state = { allergies: '' }
-    this.state = { exclusions: '' }
-    this.state = { test: ' '} //doesn't do anything but the code doesn't work without it
-
-    this.handleIng0 = this.handleIng0.bind(this);
-    this.handleIng1 = this.handleIng0.bind(this);
-    this.handleIng2 = this.handleIng0.bind(this);
-    this.handleIng3 = this.handleIng0.bind(this);
-    this.handleIng4 = this.handleIng0.bind(this);
-    this.handleCuisine = this.handleCuisine.bind(this);
-    this.handleAllergies = this.handleAllergies.bind(this);
-    this.handleExclusions = this.handleExclusions.bind(this);
-    this.handleTest = this.handleTest.bind(this); // ditto
+    this.state = {
+      dish: '',
+      ing0: '',
+      ing1: '',
+      ing2: '',
+      ing3: '',
+      ing4: '',
+      cuisine: '',
+      allergies: '',
+      exclusions: '',
+    };
 
   } //close constructor
 
-  // GET method for data retreival
   getDataUsingGet() {
-    fetch('https://api.spoonacular.com/recipes/complexSearch?query=cuisine&number=5&apiKey=8a9b90f8b89e43efa982e629b09590b8', {
+    fetch('https://api.spoonacular.com/recipes/complexSearch?query='+ this.state.dish +'&cuisine=italian&number=5&apiKey='+ API_KEY +'', {
       method: 'GET',
+      headers: {
+        Accept: "application/json",
+        "Content-Type" : "application/json"
+      }
     })
       .then(response => response.json()) //success
       .then(responseJson => {
-        alert(JSON.stringify(responseJson));
+        alert(JSON.stringify(responseJson)); //do stuff with results of API call
         console.log(responseJson);
       })
       //on fail
@@ -53,7 +51,7 @@ class SearchScreen extends React.Component {
       });
   } //end getDataUsingGet
 
-  // POST method for data retrieval (remove if unused, also API calls are placeholders)
+  // POST method for data retrieval (remove if unused, also API calls are placeholders) UNUSED AS OF NOW
   getDataUsingPost() {
     //POST json
     var dataToSend = { title: 'foo', body: 'bar', userId: 1 };
@@ -91,40 +89,40 @@ class SearchScreen extends React.Component {
 
   // Handler methods for text inputs
 
+  handleDish(text) {
+    this.setState({ dish: text });
+  }
+
   handleIng0(text) { //handling state change of text in inputs
-    this.setState({ text });
+    this.setState({ ing0: text });
   }
 
   handleIng1(text) {
-    this.setState({ text });
+    this.setState({ ing1: text });
   }
 
   handleIng2(text) {
-    this.setState({ text });
+    this.setState({ ing2: text });
   }
 
   handleIng3(text) {
-    this.setState({ text });
+    this.setState({ ing3: text });
   }
 
   handleIng4(text) {
-    this.setState({ text });
+    this.setState({ ing4: text });
   }
 
   handleCuisine(text) {
-    this.setState({ text });
+    this.setState({ cuisine: text });
   }
 
   handleAllergies(text) {
-    this.setState({ text });
+    this.setState({ allergies: text });
   }
 
   handleExclusions(text) {
-    this.setState({ text });
-  }
-
-  handleTest(text) {
-    this.setState({ text });
+    this.setState({ exclusions: text });
   }
 
 // begin render block. all rules OUT THE WINDOW
@@ -133,13 +131,21 @@ class SearchScreen extends React.Component {
     return (
       <ScrollView keyboardShouldPersistTaps = 'always'>
        <ScrollView style = {styles.scrollView}>
+       <TextInput
+         placeholder = "Dish (e.g. pasta)"
+         placeholderTextColor = "grey"
+         style={styles.textInput}
+         onBlur = {Keyboard.dismiss}
+         value = {this.state.dish}
+         onChangeText = {this.handleDish.bind(this)}
+       />
         <TextInput
           placeholder = "Ingredient 1"
           placeholderTextColor = "grey"
           style={styles.textInput}
           onBlur = {Keyboard.dismiss}
           value = {this.state.ing0}
-          onChangeText = {this.handleIng0}
+          onChangeText = {this.handleIng0.bind(this)}
         />
         <TextInput
           placeholder = "Ingredient 2 (optional)"
@@ -147,7 +153,7 @@ class SearchScreen extends React.Component {
           style={styles.textInput}
           onBlur = {Keyboard.dismiss}
           value = {this.state.ing1}
-          onChangeText = {this.handleIng1}
+          onChangeText = {this.handleIng1.bind(this)}
         />
         <TextInput
           placeholder = "Ingredient 3 (optional)"
@@ -155,7 +161,7 @@ class SearchScreen extends React.Component {
           style={styles.textInput}
           onBlur = {Keyboard.dismiss}
           value = {this.state.ing2}
-          onChangeText = {this.handleIng2}
+          onChangeText = {this.handleIng2.bind(this)}
         />
         <TextInput
           placeholder = "Ingredient 4 (optional)"
@@ -163,7 +169,7 @@ class SearchScreen extends React.Component {
           style={styles.textInput}
           onBlur = {Keyboard.dismiss}
           value = {this.state.ing3}
-          onChangeText = {this.handleIng3}
+          onChangeText = {this.handleIng3.bind(this)}
         />
         <TextInput
           placeholder = "Ingredient 5 (optional)"
@@ -171,7 +177,7 @@ class SearchScreen extends React.Component {
           style={styles.textInput}
           onBlur = {Keyboard.dismiss}
           value = {this.state.ing4}
-          onChangeText = {this.handleIng4}
+          onChangeText = {this.handleIng4.bind(this)}
         />
         <TextInput
           placeholder = "Cuisine (optional)"
@@ -179,7 +185,7 @@ class SearchScreen extends React.Component {
           style={styles.textInput}
           onBlur = {Keyboard.dismiss}
           value = {this.state.cuisine}
-          onChangeText = {this.handleCuisine}
+          onChangeText = {this.handleCuisine.bind(this)}
         />
         <TextInput
           placeholder = "Allergies / Intolerences (consult your doctor!) (optional)"  ////maybe delete? complex. read docs
@@ -187,7 +193,7 @@ class SearchScreen extends React.Component {
           style={styles.textInput}
           onBlur = {Keyboard.dismiss}
           value = {this.state.allergies}
-          onChangeText = {this.handleAllergies}
+          onChangeText = {this.handleAllergies.bind(this)}
         />
         <TextInput
           placeholder = "Exclude Ingredients (optional)"
@@ -195,12 +201,12 @@ class SearchScreen extends React.Component {
           style={styles.textInput}
           onBlur = {Keyboard.dismiss}
           value = {this.state.exclusions}
-          onChangeText = {this.handleExclusions}
+          onChangeText = {this.handleExclusions.bind(this)}
         />
         <View style = {styles.inputContainer}>
           <TouchableOpacity
             style = {styles.sendButton}
-            onPress = {this.getDataUsingGet}
+            onPress = {this.getDataUsingGet} //change this
             >
            <Text style = {styles.sendButtonText}>Search</Text>
           </TouchableOpacity>
