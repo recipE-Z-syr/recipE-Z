@@ -27,7 +27,7 @@ class IngredientItem extends React.Component {
         <TouchableOpacity onPress={() => removeHandler(item)}>
           <Image
           key={item}
-          style={[{width: 20, height: 20, zIndex: 2, marginTop: -60, marginLeft: -5}, {display: this.state.isClicked ? 'block' : 'none'}]}
+          style={[{width: 20, height: 20, zIndex: 2, marginTop: -60, marginLeft: -5}, {display: this.state.isClicked ? 'flex' : 'none'}]}
           source={require('../img/delete.png')}
           />
         </TouchableOpacity>
@@ -109,6 +109,7 @@ class SearchScreen extends React.Component {
   handleIngredients(text) {
     if(!this.state.ingredients.includes(text)){
       this.setState({ ingredients: [...this.state.ingredients, text] });
+      this.setState({ query: '' });
     }
   }
 
@@ -169,7 +170,7 @@ class SearchScreen extends React.Component {
           defaultValue={query}
           onChangeText={text => this.setState({ query: text })}
           renderItem={({ item, i }) => (
-            <TouchableOpacity style={defaultStyles.acListStyle} onPress={() => {this.handleIngredients(item)}}>
+            <TouchableOpacity key={item} style={defaultStyles.acListStyle} onPress={() => {this.handleIngredients(item)}}>
               <Image 
               style={{height: 18, width:18, marginRight: 8}}
               source={require('../img/plus.png')}
