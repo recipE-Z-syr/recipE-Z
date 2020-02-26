@@ -57,33 +57,78 @@ export default defaultStyles = StyleSheet.create({
     fontFamily: 'nunito-bold'
   },
 
-  searchTextInput: {
-    borderColor: 'red',
-    borderTopWidth: 1,
-    borderBottomWidth: 1,
-    height: 50,
-    fontSize: 25,
+  searchContainer: {
+    // flex:4, 
+    flex:5, 
+    backgroundColor: '#fff', 
+    width:'100%',
+    alignItems: 'flex-start',
+    justifyContent: 'center',
+    paddingLeft: 32,
+    paddingRight: 32
+  },
+  autocompleteContainer: {
+    width: 350,
+    height: 34,
+    alignSelf: 'center',
+    marginBottom: 20,
+    fontFamily: 'nunito-regular',
+  },
+  acInputContainer: {
+    borderColor: '#ed4848',
+    borderRadius: 10,
+    borderWidth: 1,
+    paddingLeft: 10,
+    paddingRight: 10
+  },
+  acListStyle: {
+    borderWidth: 1,
+    borderColor: '#ed4848',
+    paddingLeft: 10,
+    paddingRight: 10,
+    paddingTop: 10,
+    paddingBottom: 10,
+    flexDirection: 'row',
+  },
+  ingredientsContainer: {
+    paddingTop: 15,
+    paddingBottom: 5,
+    alignItems: 'flex-start',
+    justifyContent: 'flex-start',
+    flex: 1,
+    flexWrap: 'wrap',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  ingredient: {
+    backgroundColor: '#fff',
+    borderRadius: 20,
+    borderWidth: 1,
+    borderColor: '#fff',
     paddingLeft: 20,
     paddingRight: 20,
-  },
-  scrollView: {
-    marginHorizontal: 20,
     paddingTop: 10,
-    paddingBottom: 20,
+    paddingBottom: 10,
+    marginRight: 12,
+    marginBottom: 12
+  },
+  ingredientText: {
+    color: '#ed4848',
+    fontFamily: 'nunito-bold',
+    fontSize: 15
   },
   inputContainer: {
-    paddingTop: 15,
-  },
-  sendButton: {
-    borderWidth: 1,
-    borderColor: 'red',
-    backgroundColor: 'red',
-    padding: 15,
-    margin: 5,
-  },
-  sendButtonText: {
-    color: 'white',
-    fontSize: 20,
-    textAlign: 'center'
+    // flex:7, 
+    zIndex: -1,
+    flex:8, 
+    backgroundColor:'#ed4848',
+    width:'100%',
+    alignItems: 'flex-start',
+    justifyContent: 'flex-start',
+    paddingLeft: 32,
+    paddingRight: 32,
+    paddingTop: 20,
+    paddingBottom: 65
   }
 });
