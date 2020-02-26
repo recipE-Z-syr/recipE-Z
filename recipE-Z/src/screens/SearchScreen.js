@@ -163,6 +163,10 @@ class SearchScreen extends React.Component {
        <Text style={[defaultStyles.h1, {fontSize: 24}]}>Search for recipes</Text>
        <Text style={[defaultStyles.textLink, {textAlign: 'left', paddingTop: 5}]}>You can search by entering the ingredients you have</Text>
        <Text style={[defaultStyles.textLink, {textAlign: 'left', paddingBottom: 15}]}>or by typing in a recipe name</Text>
+        <Image 
+        style={{height: 20, width:20, position: 'absolute', top: 217, right: 50, zIndex: 2}}
+        source={require('../img/search.png')}
+        />
         <Autocomplete
           containerStyle={defaultStyles.autocompleteContainer}
           inputContainerStyle={defaultStyles.acInputContainer}
@@ -172,6 +176,10 @@ class SearchScreen extends React.Component {
           onChangeText={text => this.setState({ query: text })}
           renderItem={({ item, i }) => (
             <TouchableOpacity style={defaultStyles.acListStyle} onPress={() => {this.handleIngredients(item)}}>
+              <Image 
+              style={{height: 18, width:18, marginRight: 8}}
+              source={require('../img/plus.png')}
+              />
               <Text style={{color: '#ed4848'}}>{item}</Text>
             </TouchableOpacity>
           )}

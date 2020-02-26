@@ -87,7 +87,8 @@ export default defaultStyles = StyleSheet.create({
     paddingLeft: 10,
     paddingRight: 10,
     paddingTop: 10,
-    paddingBottom: 10
+    paddingBottom: 10,
+    flexDirection: 'row',
   },
   ingredientsContainer: {
     paddingTop: 15,
@@ -96,7 +97,9 @@ export default defaultStyles = StyleSheet.create({
     justifyContent: 'flex-start',
     flex: 1,
     flexWrap: 'wrap',
-    flexDirection: 'row'
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   ingredient: {
     backgroundColor: '#fff',
