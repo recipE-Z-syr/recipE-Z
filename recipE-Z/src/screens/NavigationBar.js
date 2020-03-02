@@ -11,24 +11,24 @@ class NavigationBar extends React.Component {
   render() {
     const {navigation} = this.props;
     return (
-      <View style={{flex: 1, flexDirection: 'row-reverse'}}>
+      <View style={{flex: 1, flexDirection: 'row-reverse', position: 'absolute', top: 30, right: 30}}>
       <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
         <Image
-          style={{width: 25, height: 25}}
+          style={{width: 25, height: 25, marginLeft: 20}}
           source={require('../img/profile-color.png')}
         />
       </TouchableOpacity>
 
         <TouchableOpacity onPress={() => navigation.navigate('RecipeBook')}>
           <Image
-            style={{width: 25, height: 25}}
+            style={{width: 25, height: 25, marginLeft: 20}}
             source={require('../img/favorites.png')}
           />
         </TouchableOpacity>
 
         <TouchableOpacity onPress={() => navigation.navigate('Upload')}>
           <Image
-            style={{width: 25, height: 25}}
+            style={{width: 25, height: 25, marginLeft: 20}}
             source={require('../img/create.png')}
           />
         </TouchableOpacity>

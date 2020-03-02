@@ -18,6 +18,7 @@ import UploadRecipeScreen from './src/screens/UploadRecipeScreen';
 import RecipeBookScreen from './src/screens/RecipeBookScreen';
 import SearchScreen from './src/screens/SearchScreen';
 import RecipeScreen from './src/screens/RecipeScreen';
+import FilterScreen from './src/screens/FilterScreen';
 
 function Separator() {
   return <View style={styles.separator}/>;
@@ -76,6 +77,7 @@ export default class App extends React.Component {
         <Stack.Screen name="Search" component={SearchScreen} />
         <Stack.Screen name="Recipe" component={RecipeScreen} />
         <Stack.Screen name="Results" component={ResultsScreen} />
+        <Stack.Screen name="Filter" component={FilterScreen} />
       </Stack.Navigator>
     </NavigationContainer>
     ) : null
