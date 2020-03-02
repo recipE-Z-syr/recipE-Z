@@ -201,6 +201,10 @@ class UploadRecipeScreen extends React.Component {
 		      placeholder='Optional'
 		      />
 	      </View>
+	      <Text style={{fontFamily:'nunito-semibold', fontSize:15, color:'#ed4848', marginTop: 20}}>Upload a Picture of Your Dish (Optional)</Text>
+	      <TouchableOpacity style={{marginTop: 8, height: 60, width: 60}} >
+	      <Image style={{height: 60, width: 60}} source={require('../img/uploadPicture.png')}/>
+	      </TouchableOpacity>
 	      <TouchableOpacity
 	        style={[defaultStyles.redButton, {alignSelf: 'center', marginTop: 30, marginBottom: 200}]}
 	        onPress={() => navigation.navigate('Search')}
