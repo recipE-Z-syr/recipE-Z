@@ -99,7 +99,7 @@ export default defaultStyles = StyleSheet.create({
     flexWrap: 'wrap',
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'flex-start'
   },
   ingredient: {
     backgroundColor: '#fff',
