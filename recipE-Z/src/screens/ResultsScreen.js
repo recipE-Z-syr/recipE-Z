@@ -6,9 +6,90 @@ import {createStackNavigator} from '@react-navigation/stack';
 import defaultStyles from './stylesheet';
 import NavigationBar from './NavigationBar';
 
+const API_KEY = "8a9b90f8b89e43efa982e629b09590b8" // My spoonacular API key
+
 class ResultsScreen extends React.Component {
+  constructor(props) {
+    super(props);
+    const { navigation } = this.props;
+    const { route } = this.props;
+    var ingArray = route.params;
+
+    this.state = {
+      ingArray: ingArray, //calling ings from searchScreen
+      api_response: '',
+    };
+
+    alert('current ingredients:'+JSON.stringify(ingArray)); // PASSES CORRECTLY! yay
+    console.log(this.state.api_response);
+    this.getDataUsingGet = this.getDataUsingGet.bind(this); //binding api call to state
+    this.setApiResponseState = this.setApiResponseState.bind(this);
+    this.componentDidMount = this.componentDidMount.bind(this);
+
+  }//end props constructor
+
+  componentDidMount() { //on screen load
+    this.getDataUsingGet;
+    //alert(this.state.ingArray);
+    //alert(this.state.api_response);
+  }
+
+  /////
+  // Search By Ingredients:
+  // api call ignores null parameters
+  // increase number from 5 when finished testing
+  // returns recipe objects
+  // look here for an example response :
+  // https://spoonacular.com/food-api/docs#Search-Recipes-by-Ingredients
+  // Then, access inner components (like the segment shown below), do like so
+  // [(this is an example response)
+  /*  {
+        "id": 73420,
+        "image": "https://spoonacular.com/recipeImages/73420-312x231.jpg",
+        "imageType": "jpg",
+        "likes": 0,
+        "missedIngredientCount": 3,
+        "missedIngredients": [
+            {
+                "aisle": "Baking",
+                "amount": 1.0,
+                "id": 18371,
+
+        // TO ACCESS: ex)   responseJson.id[0].ailse = 'Baking'
+        //
+  ///// */// The implementation of this as of 3/3/2020 is NOT DONE, it reads state from Search but dones't call get correctly yet.
+  // // // / You can probably implement the construction of the actual rendered screen regardless.
+
+    getDataUsingGet() {
+      alert('FUNCTION CALL WORKS');
+      fetch('https://api.spoonacular.com/recipes/findByIngredients?ingredients='+ this.state.ingArray +'&ranking=1&ignorePantry=true&number=5&apiKey='+ API_KEY +'', {
+        method: 'GET',
+        headers: {
+          Accept: "application/json",
+          "Content-Type" : "application/json"
+        }
+      })
+        .then(response => response.json()) //success
+        .then(responseJson => {
+          alert(JSON.stringify(responseJson)); //do stuff with results of API call
+          this.setApiResponseState(JSON.stringify(responseJson));
+          alert('works');
+          console.log(JSON.stringify(responseJson));
+        })
+        //on fail
+        .catch(error => {
+          alert(JSON.stringify(error));
+          console.error(error);
+        });
+    } //end getDataUsingGet
+
+    setApiResponseState(response){
+      this.setState({ api_response: response });
+    }
+
   render() {
-    const {navigation} = this.props;
+    const { navigation } = this.props;
+    const { route } = this.props;
     return (
       <View style={[defaultStyles.container, {backgroundColor:'#FFFFFF'}]}>
         <NavigationBar navigation={this.props.navigation}/>

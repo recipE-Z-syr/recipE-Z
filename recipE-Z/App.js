@@ -13,12 +13,11 @@ import StartScreen from './src/screens/StartScreen';
 import ProfileScreen from './src/screens/ProfileScreen';
 import SignupScreen from './src/screens/SignupScreen';
 import LoginScreen from './src/screens/LoginScreen';
-import ResultsScreen from './src/screens/ResultsScreen';
 import UploadRecipeScreen from './src/screens/UploadRecipeScreen';
 import RecipeBookScreen from './src/screens/RecipeBookScreen';
 import SearchScreen from './src/screens/SearchScreen';
 import RecipeScreen from './src/screens/RecipeScreen';
-import FilterScreen from './src/screens/FilterScreen';
+import ResultsScreen from './src/screens/ResultsScreen';
 
 function Separator() {
   return <View style={styles.separator}/>;
@@ -40,7 +39,6 @@ const fetchFonts = () => {
 };
 
 const Stack = createStackNavigator();
-
 
 export default class App extends React.Component {
   state = {
@@ -77,7 +75,6 @@ export default class App extends React.Component {
         <Stack.Screen name="Search" component={SearchScreen} />
         <Stack.Screen name="Recipe" component={RecipeScreen} />
         <Stack.Screen name="Results" component={ResultsScreen} />
-        <Stack.Screen name="Filter" component={FilterScreen} />
       </Stack.Navigator>
     </NavigationContainer>
     ) : null

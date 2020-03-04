@@ -5,11 +5,6 @@ import {createStackNavigator} from '@react-navigation/stack';
 import defaultStyles from './stylesheet';
 import Autocomplete from 'react-native-autocomplete-input';
 import NavigationBar from './NavigationBar';
-//TODO:
-// re implement dish (query), allergies, exclusions, and cuisine
-// handle results and display in another file, navigate to results and pass api
-
-const API_KEY = "8a9b90f8b89e43efa982e629b09590b8" // My spoonacular API key
 
 class IngredientItem extends React.Component {
   constructor(props) {
@@ -46,8 +41,7 @@ class SearchScreen extends React.Component {
       query: '',
       cuisine: '',
       allergies: [],
-      exclusions: [],
-      ingredientsString: ''
+      exclusions: []
     };
 
     this.handleIngredients = this.handleIngredients.bind(this);
@@ -56,38 +50,11 @@ class SearchScreen extends React.Component {
     this.handleAllergies = this.handleAllergies.bind(this);
     this.handleExclusions = this.handleExclusions.bind(this);
     //this.handleMaxCals = this.handleMaxCals.bind(this); //maxCals does not work when no value is input - it breaks the whole thing
-    this.getDataUsingGet = this.getDataUsingGet.bind(this);
     this.handleExclusions = this.removeItem.bind(this);
     this.suggestIngredient = this.suggestIngredient.bind(this);
     this.clear = this.clear.bind(this);
 
   }
-
-  // if you use complex search, includeIngredients is a comma-seperated list of strings.
-  // if you just search by ingredients, it's even easier
-  // api call also ignores null parameters
-  // increase number from 5 when finished testing
-  // may have to call this.state.ingredientsString instead of the array (test first, [] may work)
-  // https://spoonacular.com/food-api/docs#Search-Recipes
-  getDataUsingGet() {
-    fetch('https://api.spoonacular.com/recipes/complexSearch?query='+ this.state.query +'&cuisine='+ this.state.cuisine +'&fillIngredients=false&includeIngredients='+ this.state.ingredients +'&number=2&apiKey='+ API_KEY +'', {
-      method: 'GET',
-      headers: {
-        Accept: "application/json",
-        "Content-Type" : "application/json"
-      }
-    })
-      .then(response => response.json()) //success
-      .then(responseJson => {
-        alert(JSON.stringify(responseJson)); //do stuff with results of API call
-        console.log(responseJson);
-      })
-      //on fail
-      .catch(error => {
-        alert(JSON.stringify(error));
-        console.error(error);
-      });
-  } //end getDataUsingGet
 
   // Handler methods for text inputs
   handleQuery(text) {
@@ -184,7 +151,7 @@ class SearchScreen extends React.Component {
           <Text style={[defaultStyles.h1, {fontSize: 24, color: "#fff", width: 350}]}>Ingredients:</Text>
           <TouchableOpacity onPress = {this.clear} style={{position: 'absolute', top: 30, right: 40}}>
             <Text style = {[defaultStyles.textLink, {fontSize: 14, color: '#fff'}]}>CLEAR</Text>
-            </TouchableOpacity>
+          </TouchableOpacity>
           <View style= {defaultStyles.ingredientsContainer}>
           {this.state.ingredients.map(item => (
             <IngredientItem item={item} removeHandler={this.removeItem.bind(this)}/>
@@ -192,42 +159,16 @@ class SearchScreen extends React.Component {
           </View>
           <TouchableOpacity
             style = {[defaultStyles.redButton, {backgroundColor: '#fff', width: 350}]}
-            onPress = {this.getDataUsingGet} // calls API
-          //  onPress = {navigation.navigate('Results')}
+            onPress ={() => this.props.navigation.navigate(
+              'Results',
+              { ingArray: this.state.ingredients })}
             >
             <Text style = {[defaultStyles.redButtonText, {color: '#ed4848'}]}>Find Recipes</Text>
-            </TouchableOpacity>
+          </TouchableOpacity>
         </View>
      </View>
    ); //end return
  }//end render
 }//end class
 
-// <TextInput
-//   placeholder = "Cuisine (optional)"
-//   placeholderTextColor = "grey"
-//   style={defaultStyles.searchTextInput}
-//   onBlur = {Keyboard.dismiss}
-//   value = {this.state.cuisine}
-//   onChangeText = {this.handleCuisine}
-// />
-// <TextInput
-//   placeholder = "Allergies / Intolerences (consult your doctor!) (optional)"  ////maybe delete? complex. read docs
-//   placeholderTextColor = "grey"
-//   style={defaultStyles.searchTextInput}
-//   onBlur = {Keyboard.dismiss}
-//   value = {this.state.allergies}
-//   onChangeText = {this.handleAllergies}
-// />
-// <TextInput
-//   placeholder = "Exclude Ingredients (optional)"
-//   placeholderTextColor = "grey"
-//   style={defaultStyles.searchTextInput}
-//   onBlur = {Keyboard.dismiss}
-//   value = {this.state.exclusions}
-//   onChangeText = {this.handleExclusions}
-// />
 export default SearchScreen;
-
-// const styles = StyleSheet.create({
-// });
