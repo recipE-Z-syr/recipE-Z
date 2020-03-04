@@ -13,25 +13,26 @@ class ResultsScreen extends React.Component {
     super(props);
     const { navigation } = this.props;
     const { route } = this.props;
-    var ingArray = route.params;
+    var ingArray = route.params; //parameters recieved from the user's search
 
     this.state = {
       ingArray: ingArray, //calling ings from searchScreen
-      api_response: '',
+      api_response: [],
     };
 
     alert('current ingredients:'+JSON.stringify(ingArray)); // PASSES CORRECTLY! yay
-    console.log(this.state.api_response);
+    //console.log(this.state.api_response);
     this.getDataUsingGet = this.getDataUsingGet.bind(this); //binding api call to state
-    this.setApiResponseState = this.setApiResponseState.bind(this);
     this.componentDidMount = this.componentDidMount.bind(this);
 
   }//end props constructor
 
-  componentDidMount() { //on screen load
+
+  //pretty sure this is the problem. it doesn't get invoked correctly on launch
+  componentDidMount() { //on screen load (only thing that DNW)
     this.getDataUsingGet;
+    console.log(JSON.stringify(this.getDataUsingGet));
     //alert(this.state.ingArray);
-    //alert(this.state.api_response);
   }
 
   /////
@@ -61,7 +62,8 @@ class ResultsScreen extends React.Component {
   // // // / You can probably implement the construction of the actual rendered screen regardless.
 
     getDataUsingGet() {
-      alert('FUNCTION CALL WORKS');
+      alert('FUNCTION CALL WORKS'); //lies
+      var data = [];
       fetch('https://api.spoonacular.com/recipes/findByIngredients?ingredients='+ this.state.ingArray +'&ranking=1&ignorePantry=true&number=5&apiKey='+ API_KEY +'', {
         method: 'GET',
         headers: {
@@ -71,10 +73,11 @@ class ResultsScreen extends React.Component {
       })
         .then(response => response.json()) //success
         .then(responseJson => {
-          alert(JSON.stringify(responseJson)); //do stuff with results of API call
-          this.setApiResponseState(JSON.stringify(responseJson));
-          alert('works');
-          console.log(JSON.stringify(responseJson));
+          //alert('works if appears:'+JSON.stringify(responseJson)); //do stuff with results of API call
+          data.push(responseJson);
+          alert(data); //works if appears
+          this.setState({ api_response: data }); //array of response objects stored in state
+          //console.log(JSON.stringify(responseJson));
         })
         //on fail
         .catch(error => {
@@ -82,10 +85,6 @@ class ResultsScreen extends React.Component {
           console.error(error);
         });
     } //end getDataUsingGet
-
-    setApiResponseState(response){
-      this.setState({ api_response: response });
-    }
 
   render() {
     const { navigation } = this.props;
