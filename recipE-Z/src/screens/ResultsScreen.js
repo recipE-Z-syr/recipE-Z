@@ -24,15 +24,20 @@ class ResultsScreen extends React.Component {
     //console.log(this.state.api_response);
     this.getDataUsingGet = this.getDataUsingGet.bind(this); //binding api call to state
     this.componentDidMount = this.componentDidMount.bind(this);
+    this.handleApiResponse = this.handleApiResponse.bind(this);
 
   }//end props constructor
 
 
-  //pretty sure this is the problem. it doesn't get invoked correctly on launch
-  componentDidMount() { //on screen load (only thing that DNW)
-    this.getDataUsingGet;
-    console.log(JSON.stringify(this.getDataUsingGet));
-    //alert(this.state.ingArray);
+  //invoke on launch
+  componentDidMount() {
+    this.getDataUsingGet();
+    console.log(JSON.stringify(this.state.api_response));
+    console.log(this.state.ingArray);
+  }
+
+  handleApiResponse(arr) {
+    this.setState({ api_response: arr });
   }
 
   /////
@@ -57,12 +62,12 @@ class ResultsScreen extends React.Component {
                 "id": 18371,
 
         // TO ACCESS: ex)   responseJson.id[0].ailse = 'Baking'
+        // OR:        ex)   this.state.api_response.image[0] = image of the first recipe object
         //
-  ///// */// The implementation of this as of 3/3/2020 is NOT DONE, it reads state from Search but dones't call get correctly yet.
+  ///// */// The implementation of this as of 3/3/2020 is NOT DONE, API call doesn't work and IDK why.
   // // // / You can probably implement the construction of the actual rendered screen regardless.
 
     getDataUsingGet() {
-      alert('FUNCTION CALL WORKS'); //lies
       var data = [];
       fetch('https://api.spoonacular.com/recipes/findByIngredients?ingredients='+ this.state.ingArray +'&ranking=1&ignorePantry=true&number=5&apiKey='+ API_KEY +'', {
         method: 'GET',
@@ -71,12 +76,13 @@ class ResultsScreen extends React.Component {
           "Content-Type" : "application/json"
         }
       })
-        .then(response => response.json()) //success
-        .then(responseJson => {
-          //alert('works if appears:'+JSON.stringify(responseJson)); //do stuff with results of API call
-          data.push(responseJson);
-          alert(data); //works if appears
-          this.setState({ api_response: data }); //array of response objects stored in state
+        .then((response) => response.json()) //success
+        .then((responseJson) => {
+          alert('works if appears:'+JSON.stringify((responseJson))); //do stuff with results of API call
+          data.push((responseJson));
+          //alert(data); //works if appears
+          //responseJson is empty rn
+          this.handleApiResponse(responseJson); //array of response objects stored in state
           //console.log(JSON.stringify(responseJson));
         })
         //on fail
