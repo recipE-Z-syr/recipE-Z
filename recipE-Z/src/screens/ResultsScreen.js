@@ -13,31 +13,26 @@ class ResultsScreen extends React.Component {
     super(props);
     const { navigation } = this.props;
     const { route } = this.props;
-    var ingArray = route.params; //parameters recieved from the user's search
+    var ingArray = route.params; // parameters recieved from the user's search
+    this.getDataUsingGet(ingArray); // call function on construction
 
     this.state = {
-      ingArray: ingArray, //calling ings from searchScreen
+      ingArray: [], //calling ings from searchScreen
       api_response: [],
     };
 
-    alert('current ingredients:'+JSON.stringify(ingArray)); // PASSES CORRECTLY! yay
-    //console.log(this.state.api_response);
     this.getDataUsingGet = this.getDataUsingGet.bind(this); //binding api call to state
-    this.componentDidMount = this.componentDidMount.bind(this);
     this.handleApiResponse = this.handleApiResponse.bind(this);
+    this.setIngArray = this.setIngArray.bind(this);
 
   }//end props constructor
 
-
-  //invoke on launch
-  componentDidMount() {
-    this.getDataUsingGet();
-    console.log(JSON.stringify(this.state.api_response));
-    console.log(this.state.ingArray);
-  }
-
   handleApiResponse(arr) {
     this.setState({ api_response: arr });
+  }
+
+  setIngArray(text) {
+    this.setState({ ingArray: text });
   }
 
   /////
@@ -64,12 +59,13 @@ class ResultsScreen extends React.Component {
         // TO ACCESS: ex)   responseJson.id[0].ailse = 'Baking'
         // OR:        ex)   this.state.api_response.image[0] = image of the first recipe object
         //
-  ///// */// The implementation of this as of 3/3/2020 is NOT DONE, API call doesn't work and IDK why.
-  // // // / You can probably implement the construction of the actual rendered screen regardless.
+  ///// *///
+  //      // the API calls on start, and loads the response into state: api_response.
+  //         increase number from 1 in production
 
-    getDataUsingGet() {
+    getDataUsingGet(ingArr) {
       var data = [];
-      fetch('https://api.spoonacular.com/recipes/findByIngredients?ingredients='+ this.state.ingArray +'&ranking=1&ignorePantry=true&number=5&apiKey='+ API_KEY +'', {
+      fetch('https://api.spoonacular.com/recipes/findByIngredients?ingredients='+ ingArr.ingArray +'&ranking=1&ignorePantry=true&number=1&apiKey='+ API_KEY +'', {
         method: 'GET',
         headers: {
           Accept: "application/json",
@@ -78,12 +74,12 @@ class ResultsScreen extends React.Component {
       })
         .then((response) => response.json()) //success
         .then((responseJson) => {
-          alert('works if appears:'+JSON.stringify((responseJson))); //do stuff with results of API call
+          //alert('works if appears:'+JSON.stringify((responseJson))); //testing alert
           data.push((responseJson));
-          //alert(data); //works if appears
-          //responseJson is empty rn
-          this.handleApiResponse(responseJson); //array of response objects stored in state
-          //console.log(JSON.stringify(responseJson));
+          this.handleApiResponse(data); //array of response objects stored in state
+          this.setIngArray(ingArr);
+          //console.log(this.state.ingArray.ingArray); //checking if setIngArray works (it does)
+          console.log(this.state.api_response); //testing (state storage works!)
         })
         //on fail
         .catch(error => {
