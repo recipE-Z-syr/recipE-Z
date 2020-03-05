@@ -8,27 +8,28 @@ export default defaultStyles = StyleSheet.create({
     fontFamily: 'nunito-regular'
   },
   whiteContainer: {
-    width: 334, 
-    height: 561, 
-    backgroundColor: 'white', 
-    position: 'absolute', 
-    alignItems: 'center', 
-    justifyContent: 'space-around', 
-    paddingTop: 70, 
+    width: 334,
+    height: 561,
+    backgroundColor: 'white',
+    position: 'absolute',
+    alignItems: 'center',
+    justifyContent: 'space-around',
+    paddingTop: 70,
     paddingBottom: 70
   },
   redButton: {
     backgroundColor: '#ed4848',
-    paddingTop: 20,
-    paddingBottom: 20,
-    width: 250,
+    justifyContent: 'center',
+    paddingTop: 10,
+    paddingBottom: 10,
+    width: 200,
     borderRadius: 5,
-    borderWidth: 1,
+    borderWidth: 10,
     borderColor: '#ed4848'
   },
   h1: {
-    color: '#ed4848', 
-    fontSize: 20, 
+    color: '#ed4848',
+    fontSize: 20,
     fontFamily: 'nunito-extrabold'
   },
   textLink: {
@@ -38,12 +39,12 @@ export default defaultStyles = StyleSheet.create({
     fontFamily: 'nunito-regular'
   },
   textInput: {
-    width: 280, 
-    height: 50, 
-    borderColor: 'lightgrey', 
-    borderWidth: 1, 
-    backgroundColor: 'white', 
-    opacity: .7, 
+    width: 280,
+    height: 50,
+    borderColor: 'lightgrey',
+    borderWidth: 1,
+    backgroundColor: 'white',
+    opacity: .7,
     paddingLeft: 15,
     marginTop: 5,
     marginBottom: 5,
@@ -58,9 +59,9 @@ export default defaultStyles = StyleSheet.create({
   },
 
   searchContainer: {
-    // flex:4, 
-    flex:5, 
-    backgroundColor: '#fff', 
+    // flex:4,
+    flex:5,
+    backgroundColor: '#fff',
     width:'100%',
     alignItems: 'flex-start',
     justifyContent: 'center',
@@ -119,9 +120,9 @@ export default defaultStyles = StyleSheet.create({
     fontSize: 15
   },
   inputContainer: {
-    // flex:7, 
+    // flex:7,
     zIndex: -1,
-    flex:8, 
+    flex:8,
     backgroundColor:'#ed4848',
     width:'100%',
     alignItems: 'flex-start',

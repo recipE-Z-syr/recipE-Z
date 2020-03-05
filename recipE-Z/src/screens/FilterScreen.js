@@ -5,19 +5,18 @@ import {createStackNavigator} from '@react-navigation/stack';
 import defaultStyles from './stylesheet';
 import NavigationBar from './NavigationBar';
 
-class ProfileScreen extends React.Component {
+class FilterScreen extends React.Component {
   render() {
     const {navigation} = this.props;
     return (
-      <View style={[defaultStyles.container, {backgroundColor:'#ffcece'}]}>
-      <NavigationBar navigation={this.props.navigation}/>
+      <View style={[defaultStyles.container, {backgroundColor:'#FFFFFF'}]}>
       </View>
-    ); //end return
+   ); //end return
 
  }//end render
 }//end class
 
-export default ProfileScreen;
+export default FilterScreen;
 
 const styles = StyleSheet.create({
 });
