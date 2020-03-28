@@ -17,6 +17,7 @@ import UploadRecipeScreen from './src/screens/UploadRecipeScreen';
 import RecipeBookScreen from './src/screens/RecipeBookScreen';
 import SearchScreen from './src/screens/SearchScreen';
 import RecipeScreen from './src/screens/RecipeScreen';
+import ResultsScreen from './src/screens/ResultsScreen';
 
 function Separator() {
   return <View style={styles.separator}/>;
@@ -39,7 +40,6 @@ const fetchFonts = () => {
 
 const Stack = createStackNavigator();
 
-
 export default class App extends React.Component {
   state = {
     fontLoaded: false,
@@ -60,7 +60,7 @@ export default class App extends React.Component {
     });
     this.setState({ fontLoaded: true });
   }
-  
+
   render() {
   return (
     this.state.fontLoaded ? (
@@ -74,6 +74,7 @@ export default class App extends React.Component {
         <Stack.Screen name="RecipeBook" component={RecipeBookScreen} />
         <Stack.Screen name="Search" component={SearchScreen} />
         <Stack.Screen name="Recipe" component={RecipeScreen} />
+        <Stack.Screen name="Results" component={ResultsScreen} />
       </Stack.Navigator>
     </NavigationContainer>
     ) : null

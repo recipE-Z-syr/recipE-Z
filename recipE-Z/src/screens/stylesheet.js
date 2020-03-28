@@ -19,11 +19,12 @@ export default defaultStyles = StyleSheet.create({
   },
   redButton: {
     backgroundColor: '#ed4848',
-    paddingTop: 20,
-    paddingBottom: 20,
-    width: 250,
+    justifyContent: 'center',
+    paddingTop: 10,
+    paddingBottom: 10,
+    width: 200,
     borderRadius: 5,
-    borderWidth: 1,
+    borderWidth: 10,
     borderColor: '#ed4848'
   },
   h1: {

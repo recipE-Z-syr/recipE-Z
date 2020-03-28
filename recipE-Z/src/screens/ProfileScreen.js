@@ -18,7 +18,6 @@ class PageHeader extends React.Component {
 	}
 }
 
-
 class ProfileScreen extends React.Component {
   render() {
     const {navigation} = this.props;
@@ -26,32 +25,32 @@ class ProfileScreen extends React.Component {
       <View style={[defaultStyles.container, {backgroundColor:'white'}]}>
       <NavigationBar navigation={this.props.navigation}/>
       <PageHeader title='Settings' trianglePosition={-364}/>
-			<View style={{alignItems: 'flex-start', justifyContent: 'flex-start'}}>
-				<Image source={require('../img/profilePicture.png')} style={{alignSelf: 'center', marginBottom: 55, marginTop: 35}}/>
-				<View style={{flexDirection: 'row', alignItems: 'center', marginBottom: 50, marginLeft: -25}}>
-					<Image source={require('../img/Name.png')} style={{height: 20, width: 20, marginRight: 35}}/>
-					<Text style={[defaultStyles.h1, {fontSize: 18}]}>John Doe</Text>
-				</View>
-				<View style={{flexDirection: 'row', alignItems: 'center', marginBottom: 50, marginLeft: -25}}>
-					<Image source={require('../img/Location.png')} style={{height: 20, width: 20, marginRight: 35}}/>
-					<Text style={[defaultStyles.h1, {fontSize: 18}]}>San Francisco, CA</Text>
-				</View>
-				<View style={{flexDirection: 'row', alignItems: 'center', marginBottom: 50, marginLeft: -25}}>
-					<Image source={require('../img/email.png')} style={{height: 20, width: 20, marginRight: 35}}/>
-					<Text style={[defaultStyles.h1, {fontSize: 18}]}>john.doe@mail.com</Text>
-				</View>
-				<View style={{flexDirection: 'row', alignItems: 'center', marginBottom: 50, marginLeft: -25}}>
-					<Image source={require('../img/password.png')} style={{height: 20, width: 20, marginRight: 35, marginBottom: 10}}/>
-					<Text style={[defaultStyles.h1, {fontSize: 18}]}>●●●●●●●</Text>
-				</View>
+		<View style={{alignItems: 'flex-start', justifyContent: 'flex-start'}}>
+			<Image source={require('../img/profilePicture.png')} style={{alignSelf: 'center', marginBottom: 55, marginTop: 35}}/>
+			<View style={{flexDirection: 'row', alignItems: 'center', marginBottom: 50, marginLeft: -25}}>
+				<Image source={require('../img/Name.png')} style={{height: 20, width: 20, marginRight: 35}}/>
+				<Text style={[defaultStyles.h1, {fontSize: 18}]}>John Doe</Text>
+			</View>
+			<View style={{flexDirection: 'row', alignItems: 'center', marginBottom: 50, marginLeft: -25}}>
+				<Image source={require('../img/Location.png')} style={{height: 20, width: 20, marginRight: 35}}/>
+				<Text style={[defaultStyles.h1, {fontSize: 18}]}>San Francisco, CA</Text>
+			</View>
+			<View style={{flexDirection: 'row', alignItems: 'center', marginBottom: 50, marginLeft: -25}}>
+				<Image source={require('../img/email.png')} style={{height: 20, width: 20, marginRight: 35}}/>
+				<Text style={[defaultStyles.h1, {fontSize: 18}]}>john.doe@mail.com</Text>
+			</View>
+			<View style={{flexDirection: 'row', alignItems: 'center', marginBottom: 50, marginLeft: -25}}>
+				<Image source={require('../img/password.png')} style={{height: 20, width: 20, marginRight: 35, marginBottom: 10}}/>
+				<Text style={[defaultStyles.h1, {fontSize: 18}]}>●●●●●●●</Text>
+			</View>
 			<TouchableOpacity
-        style={[defaultStyles.settingsButton]}
-        onPress={() => navigation.navigate('Search')}
-        underlayColor='#ed4848'>
-        <Text style={defaultStyles.redButtonText}>SAVE</Text>
-      </TouchableOpacity>
-			</View>
-			</View>
+		        style={[defaultStyles.settingsButton]}
+		        onPress={() => navigation.navigate('Search')}
+		        underlayColor='#ed4848'>
+		        <Text style={defaultStyles.redButtonText}>SAVE</Text>
+		  	</TouchableOpacity>
+		</View>
+	</View>
     ); //end return
 
  }//end render

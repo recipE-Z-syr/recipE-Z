@@ -5,20 +5,18 @@ import {createStackNavigator} from '@react-navigation/stack';
 import defaultStyles from './stylesheet';
 import NavigationBar from './NavigationBar';
 
-class RecipeBookScreen extends React.Component {
+class FilterScreen extends React.Component {
   render() {
     const {navigation} = this.props;
     return (
-      <View style={[defaultStyles.container, {backgroundColor:'#ffcece'}]}>
-      <NavigationBar navigation={this.props.navigation}/>
-      <Button title="Recipe" onPress={() => navigation.navigate('Recipe')} />
+      <View style={[defaultStyles.container, {backgroundColor:'#FFFFFF'}]}>
       </View>
    ); //end return
 
  }//end render
 }//end class
 
-export default RecipeBookScreen;
+export default FilterScreen;
 
 const styles = StyleSheet.create({
 });
