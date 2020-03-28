@@ -131,5 +131,39 @@ export default defaultStyles = StyleSheet.create({
     paddingRight: 32,
     paddingTop: 20,
     paddingBottom: 65
+  },
+  settingsBanner: {
+    width: 425,
+    height: 80,
+    backgroundColor: '#ed4848',
+    position: 'relative',
+    alignItems: 'center',
+    justifyContent: 'space-around',
+    marginBottom: 530
+  },
+  triangle: {
+    width: 0,
+    height: 0,
+    backgroundColor: 'transparent',
+    borderStyle: 'solid',
+    borderTopWidth: 0,
+    borderRightWidth: 10,
+    borderBottomWidth: 15,
+    borderLeftWidth: 10,
+    borderTopColor: 'transparent',
+    borderRightColor: 'transparent',
+    borderBottomColor: '#ed4848',
+    borderLeftColor: 'transparent',
+    marginLeft: 330
+  },
+  settingsButton: {
+    backgroundColor: '#ed4848',
+    bottom: -40,
+    paddingTop: 20,
+    paddingBottom: 20,
+    width: 250,
+    borderRadius: 5,
+    borderWidth: 1,
+    borderColor: '#ed4848'
   }
 });

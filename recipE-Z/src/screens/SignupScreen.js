@@ -11,10 +11,7 @@ class SignupScreen extends React.Component {
     super(props);
 
 
-    this.state = { fullName: ''}
-    this.state = { email: ''}
-    this.state = { password: ''}
-    this.state = { confirmPassword: ''}
+    this.state = { fullName: '', email: '', password: '', confirmPassword: ''}
 
     this.handleName = this.handleName.bind(this);
     this.handleEmail = this.handleEmail.bind(this);
@@ -23,19 +20,19 @@ class SignupScreen extends React.Component {
   }
 
   handleName(text) {
-    this.setState({ text });
+    this.setState({ fullName: text });
   }
 
   handleEmail(text) {
-    this.setState({ text });
+    this.setState({ email: text });
   }
 
   handlePassword(text) {
-    this.setState({ text });
+    this.setState({ password: text });
   }
 
   handleConfirmPassword(text) {
-    this.setState({ text });
+    this.setState({ confirmPassword: text });
   }
 
 
