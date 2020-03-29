@@ -1,6 +1,6 @@
 import 'react-native-gesture-handler';
 import * as React from 'react';
-import { Platform, SafeAreaView, Button, StyleSheet, Text, View, AppRegistry, Image, TextInput, Alert, ScrollView, Keyboard, TouchableOpacity, Component } from 'react-native';
+import { Text, View, Image, TextInput, Keyboard, TouchableOpacity, Component } from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import defaultStyles from './stylesheet';
@@ -79,6 +79,3 @@ class LoginScreen extends React.Component {
 
 
 export default LoginScreen;
-
-// const styles = StyleSheet.create({
-// })

@@ -11,7 +11,7 @@ class SignupScreen extends React.Component {
     super(props);
 
 
-    this.state = { fullName: '', email: '', password: '', confirmPassword: ''}
+    this.state = { fullName: '', email: '', password: '', confirmPassword: true}
 
     this.handleName = this.handleName.bind(this);
     this.handleEmail = this.handleEmail.bind(this);
@@ -32,7 +32,11 @@ class SignupScreen extends React.Component {
   }
 
   handleConfirmPassword(text) {
-    this.setState({ confirmPassword: text });
+    if(text != this.state.password){
+      this.setState({ confirmPassword: false });
+    } else {
+      this.setState({ confirmPassword: true });
+    }
   }
 
 
@@ -80,9 +84,11 @@ class SignupScreen extends React.Component {
           placeholder = "Confirm Password"
           style={defaultStyles.textInput}
           onBlur = {Keyboard.dismiss}
-          value = {this.state.confirmPassword}
           onChangeText = {this.handleConfirmPassword}
           />
+          <Text style={{color: '#ed4848', fontSize: 12, textAlign: 'center', display: this.state.confirmPassword ? 'none' : 'flex'}}>
+          The passwords you entered do not match.
+          </Text>
         </View>
         <TouchableOpacity style={{alignItems: 'center', marginTop: 5, marginBottom: 20}}>
           <Text style={{color: '#ed4848', fontSize: 10}}>

@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import { Button, StyleSheet, Text, TextInput, View, SafeAreaView, Keyboard, TouchableOpacity, Image, Dimensions, ScrollView } from 'react-native';
-import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
+import { Text, TextInput, View, TouchableOpacity, Image, Dimensions, ScrollView } from 'react-native';
 import defaultStyles from './stylesheet';
 import NavigationBar from './NavigationBar';
 
@@ -42,6 +40,12 @@ class UploadRecipeScreen extends React.Component {
 
 	this.addIngredientInput = this.addIngredientInput.bind(this);
 	this.addStepInput = this.addStepInput.bind(this);
+	this.handleTitle = this.handleTitle.bind(this);
+	this.handleTime = this.handleTime.bind(this);
+	this.handleServings = this.handleServings.bind(this);
+	this.handleDifficulty = this.handleDifficulty.bind(this);
+	this.handleKeywords = this.handleKeywords.bind(this);
+	this.handleAdditionalNotes = this.handleAdditionalNotes.bind(this);
 	}
 
 	addIngredientInput() {
@@ -111,6 +115,30 @@ class UploadRecipeScreen extends React.Component {
 		return inputs;
 	}
 
+	handleTitle(text) {
+		this.setState({recipeTitle: text});
+	}
+
+	handleTime(text) {
+		this.setState({time: text});
+	}
+
+	handleServings(text) {
+		this.setState({servings: text});
+	}
+
+	handleDifficulty(text) {
+		this.setState({difficulty: text});
+	}
+
+	handleKeywords(text) {
+		this.setState({keywords: text.split(',').map(w => w.trim())});
+	}
+
+	handleAdditionalNotes(text) {
+		this.setState({additionalNotes: text});
+	}
+
 	render() {
 	const {navigation} = this.props;
 	return (
@@ -122,7 +150,7 @@ class UploadRecipeScreen extends React.Component {
 		      <Text style={{fontFamily:'nunito-semibold', fontSize:15, color:'#ed4848', marginBottom: 8}}>Recipe Name</Text>
 		      <TextInput
 		      style={{ height: 40, borderColor: '#ccc', borderWidth: 1, paddingLeft: 10, paddingRight: 10, paddingTop: 5, paddingBottom: 5 }}
-		      onChangeText={text => this.setState({recipeTitle: text})}
+		      onChangeText={this.handleTitle}
 		      placeholder='Required'
 		      />
 	      </View>
@@ -164,7 +192,7 @@ class UploadRecipeScreen extends React.Component {
 		      <Text style={{fontFamily:'nunito-semibold', fontSize:15, color:'#ed4848', marginBottom: 8}}>Total Time</Text>
 		      <TextInput
 		      style={{ height: 40, borderColor: '#ccc', borderWidth: 1, paddingLeft: 10, paddingRight: 10, paddingTop: 5, paddingBottom: 5 }}
-		      onChangeText={text => this.setState({time: text})}
+		      onChangeText={this.handleTime}
 		      placeholder='Optional'
 		      />
 	      </View>
@@ -172,7 +200,7 @@ class UploadRecipeScreen extends React.Component {
 		      <Text style={{fontFamily:'nunito-semibold', fontSize:15, color:'#ed4848', marginBottom: 8}}>Servings</Text>
 		      <TextInput
 		      style={{ height: 40, borderColor: '#ccc', borderWidth: 1, paddingLeft: 10, paddingRight: 10, paddingTop: 5, paddingBottom: 5 }}
-		      onChangeText={text => this.setState({servings: text})}
+		      onChangeText={this.handleServings}
 		      placeholder='Optional'
 		      />
 	      </View>
@@ -180,7 +208,7 @@ class UploadRecipeScreen extends React.Component {
 		      <Text style={{fontFamily:'nunito-semibold', fontSize:15, color:'#ed4848', marginBottom: 8}}>Difficulty</Text>
 		      <TextInput
 		      style={{ height: 40, borderColor: '#ccc', borderWidth: 1, paddingLeft: 10, paddingRight: 10, paddingTop: 5, paddingBottom: 5 }}
-		      onChangeText={text => this.setState({difficulty: text})}
+		      onChangeText={this.handleDifficulty}
 		      placeholder='Optional'
 		      />
 	      </View>
@@ -188,7 +216,7 @@ class UploadRecipeScreen extends React.Component {
 		      <Text style={{fontFamily:'nunito-semibold', fontSize:15, color:'#ed4848', marginBottom: 8}}>Keywords (separate by commas)</Text>
 		      <TextInput
 		      style={{ height: 40, borderColor: '#ccc', borderWidth: 1, paddingLeft: 10, paddingRight: 10, paddingTop: 5, paddingBottom: 5 }}
-		      onChangeText={text => this.setState({keywords: text.split(',').forEach(w => w.trim())})}
+		      onChangeText={this.handleKeywords}
 		      placeholder='Optional'
 		      />
 	      </View>
@@ -197,7 +225,7 @@ class UploadRecipeScreen extends React.Component {
 		      <TextInput
 		      multiline
 		      style={{ height: 40, borderColor: '#ccc', borderWidth: 1, paddingLeft: 10, paddingRight: 10, paddingTop: 5, paddingBottom: 5, height: 100 }}
-		      onChangeText={text => this.setState({additionalNotes: text})}
+		      onChangeText={this.handleAdditionalNotes}
 		      placeholder='Optional'
 		      />
 	      </View>

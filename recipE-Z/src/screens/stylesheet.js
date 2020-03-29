@@ -72,8 +72,7 @@ export default defaultStyles = StyleSheet.create({
     width: 350,
     height: 34,
     alignSelf: 'center',
-    marginBottom: 20,
-    fontFamily: 'nunito-regular',
+    marginBottom: 20
   },
   acInputContainer: {
     borderColor: '#ed4848',

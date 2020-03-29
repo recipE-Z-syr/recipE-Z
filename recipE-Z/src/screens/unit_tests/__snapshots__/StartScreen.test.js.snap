@@ -1,0 +1,164 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<StartScreen /> renders correctly 1`] = `
+<RCTSafeAreaView
+  emulateUnlessSupported={true}
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "fontFamily": "nunito-regular",
+        "justifyContent": "center",
+      },
+      Object {
+        "backgroundColor": "#ffcece",
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "justifyContent": "center",
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "white",
+          "height": 561,
+          "justifyContent": "space-around",
+          "paddingBottom": 70,
+          "paddingTop": 70,
+          "position": "absolute",
+          "width": 334,
+        }
+      }
+    >
+      <Image
+        source={1}
+        style={
+          Object {
+            "height": 150,
+            "marginBottom": 10,
+            "width": 155,
+          }
+        }
+      />
+      <Text
+        style={
+          Object {
+            "color": "#ed4848",
+            "fontFamily": "nunito-extrabold",
+            "fontSize": 20,
+          }
+        }
+      >
+        Welcome to recipE-Z
+      </Text>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "justifyContent": "center",
+            "paddingBottom": 10,
+            "paddingTop": 10,
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "fontFamily": "nunito-regular",
+            }
+          }
+        >
+          Don’t know what to cook?
+        </Text>
+        <Text
+          style={
+            Object {
+              "fontFamily": "nunito-regular",
+            }
+          }
+        >
+          Have stuff you don’t want to go to waste?
+        </Text>
+        <Text
+          style={
+            Object {
+              "fontFamily": "nunito-regular",
+            }
+          }
+        >
+          Just enter the ingredients you have
+        </Text>
+        <Text
+          style={
+            Object {
+              "fontFamily": "nunito-regular",
+            }
+          }
+        >
+          and we’ll help you find a recipe.
+        </Text>
+      </View>
+      <Text
+        style={
+          Object {
+            "color": "#ed4848",
+            "fontFamily": "nunito-bold",
+            "fontSize": 16,
+          }
+        }
+      >
+        We put the E-Z in recipE-Z
+      </Text>
+      <View
+        accessible={true}
+        focusable={true}
+        isTVSelectable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "backgroundColor": "#ed4848",
+            "borderColor": "#ed4848",
+            "borderRadius": 5,
+            "borderWidth": 10,
+            "justifyContent": "center",
+            "marginTop": 15,
+            "opacity": 1,
+            "paddingBottom": 10,
+            "paddingTop": 10,
+            "width": 200,
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "white",
+              "fontFamily": "nunito-bold",
+              "paddingLeft": 10,
+              "paddingRight": 10,
+              "textAlign": "center",
+            }
+          }
+        >
+          LET'S GET STARTED
+        </Text>
+      </View>
+    </View>
+  </View>
+</RCTSafeAreaView>
+`;

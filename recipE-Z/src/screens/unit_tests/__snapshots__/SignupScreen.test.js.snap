@@ -1,0 +1,291 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SignupScreen /> renders correctly 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "fontFamily": "nunito-regular",
+        "justifyContent": "center",
+      },
+      Object {
+        "backgroundColor": "#ffcece",
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Array [
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "white",
+          "height": 561,
+          "justifyContent": "space-around",
+          "paddingBottom": 70,
+          "paddingTop": 70,
+          "position": "absolute",
+          "width": 334,
+        },
+        Object {
+          "paddingBottom": 0,
+          "paddingTop": 0,
+        },
+      ]
+    }
+  />
+  <Image
+    source={1}
+    style={
+      Object {
+        "height": 87,
+        "marginBottom": 10,
+        "width": 90,
+      }
+    }
+  />
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "color": "#ed4848",
+          "fontFamily": "nunito-extrabold",
+          "fontSize": 20,
+        }
+      }
+    >
+      Create an Account
+    </Text>
+    <View
+      accessible={true}
+      focusable={true}
+      isTVSelectable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "opacity": 1,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "#ed4848",
+            "fontFamily": "nunito-regular",
+            "fontSize": 11,
+            "textAlign": "center",
+          }
+        }
+      >
+        Already have an account? Click here to login
+      </Text>
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "marginBottom": 10,
+        "marginTop": 15,
+      }
+    }
+  >
+    <TextInput
+      allowFontScaling={true}
+      onBlur={[Function]}
+      onChangeText={[Function]}
+      placeholder="Full Name"
+      rejectResponderTermination={true}
+      style={
+        Object {
+          "backgroundColor": "white",
+          "borderColor": "lightgrey",
+          "borderWidth": 1,
+          "fontFamily": "nunito-regular",
+          "height": 50,
+          "marginBottom": 5,
+          "marginTop": 5,
+          "opacity": 0.7,
+          "paddingLeft": 15,
+          "width": 280,
+        }
+      }
+      underlineColorAndroid="transparent"
+      value=""
+    />
+    <TextInput
+      allowFontScaling={true}
+      onBlur={[Function]}
+      onChangeText={[Function]}
+      placeholder="Email"
+      rejectResponderTermination={true}
+      style={
+        Object {
+          "backgroundColor": "white",
+          "borderColor": "lightgrey",
+          "borderWidth": 1,
+          "fontFamily": "nunito-regular",
+          "height": 50,
+          "marginBottom": 5,
+          "marginTop": 5,
+          "opacity": 0.7,
+          "paddingLeft": 15,
+          "width": 280,
+        }
+      }
+      underlineColorAndroid="transparent"
+      value=""
+    />
+    <TextInput
+      allowFontScaling={true}
+      onBlur={[Function]}
+      onChangeText={[Function]}
+      placeholder="Password"
+      rejectResponderTermination={true}
+      style={
+        Object {
+          "backgroundColor": "white",
+          "borderColor": "lightgrey",
+          "borderWidth": 1,
+          "fontFamily": "nunito-regular",
+          "height": 50,
+          "marginBottom": 5,
+          "marginTop": 5,
+          "opacity": 0.7,
+          "paddingLeft": 15,
+          "width": 280,
+        }
+      }
+      underlineColorAndroid="transparent"
+      value=""
+    />
+    <TextInput
+      allowFontScaling={true}
+      onBlur={[Function]}
+      onChangeText={[Function]}
+      placeholder="Confirm Password"
+      rejectResponderTermination={true}
+      style={
+        Object {
+          "backgroundColor": "white",
+          "borderColor": "lightgrey",
+          "borderWidth": 1,
+          "fontFamily": "nunito-regular",
+          "height": 50,
+          "marginBottom": 5,
+          "marginTop": 5,
+          "opacity": 0.7,
+          "paddingLeft": 15,
+          "width": 280,
+        }
+      }
+      underlineColorAndroid="transparent"
+    />
+    <Text
+      style={
+        Object {
+          "color": "#ed4848",
+          "display": "none",
+          "fontSize": 12,
+          "textAlign": "center",
+        }
+      }
+    >
+      The passwords you entered do not match.
+    </Text>
+  </View>
+  <View
+    accessible={true}
+    focusable={false}
+    isTVSelectable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "alignItems": "center",
+        "marginBottom": 20,
+        "marginTop": 5,
+        "opacity": 1,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "color": "#ed4848",
+          "fontSize": 10,
+        }
+      }
+    >
+      By creating an account you agree to our
+    </Text>
+    <Text
+      style={
+        Object {
+          "color": "#ed4848",
+          "fontSize": 10,
+        }
+      }
+    >
+      Terms of Service and Privacy Policy
+    </Text>
+  </View>
+  <View
+    accessible={true}
+    focusable={true}
+    isTVSelectable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "backgroundColor": "#ed4848",
+        "borderColor": "#ed4848",
+        "borderRadius": 5,
+        "borderWidth": 10,
+        "justifyContent": "center",
+        "opacity": 1,
+        "paddingBottom": 10,
+        "paddingTop": 10,
+        "width": 200,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "color": "white",
+          "fontFamily": "nunito-bold",
+          "paddingLeft": 10,
+          "paddingRight": 10,
+          "textAlign": "center",
+        }
+      }
+    >
+      SIGN UP
+    </Text>
+  </View>
+</View>
+`;

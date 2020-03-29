@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import { Button, StyleSheet, Text, TextInput, View, SafeAreaView, Keyboard, TouchableOpacity, Dimensions, Image } from 'react-native';
-import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
+import { Text, TextInput, View, TouchableOpacity, Dimensions, Image } from 'react-native';
 import defaultStyles from './stylesheet';
 import Autocomplete from 'react-native-autocomplete-input';
 import NavigationBar from './NavigationBar';
@@ -50,7 +48,7 @@ class SearchScreen extends React.Component {
     this.handleAllergies = this.handleAllergies.bind(this);
     this.handleExclusions = this.handleExclusions.bind(this);
     //this.handleMaxCals = this.handleMaxCals.bind(this); //maxCals does not work when no value is input - it breaks the whole thing
-    this.handleExclusions = this.removeItem.bind(this);
+    this.handleExclusions = this.handleExclusions.bind(this);
     this.suggestIngredient = this.suggestIngredient.bind(this);
     this.clear = this.clear.bind(this);
 
@@ -66,11 +64,11 @@ class SearchScreen extends React.Component {
   }
 
   handleAllergies(text) {
-    this.setState({ allergies: text });
+    this.setState({ allergies: [...this.state.allergies, text] });
   }
 
   handleExclusions(text) {
-    this.setState({ exclusions: text });
+    this.setState({ exclusions: [...this.state.exclusions, text] });
   }
 
   handleIngredients(text) {
