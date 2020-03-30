@@ -11,7 +11,9 @@ class RecipeBookScreen extends React.Component {
     return (
       <View style={[defaultStyles.container, {backgroundColor:'#ffcece'}]}>
       <NavigationBar navigation={this.props.navigation}/>
-      <Button title="Recipe" onPress={() => navigation.navigate('Recipe')} />
+      <TouchableOpacity onPress={() => navigation.navigate('Recipe')}>
+      	<Text>Recipe</Text> 
+      </TouchableOpacity>
       </View>
    ); //end return
 

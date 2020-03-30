@@ -40,6 +40,3 @@ class NavigationBar extends React.Component {
 }//end class
 
 export default NavigationBar;
-
-const styles = StyleSheet.create({
-});

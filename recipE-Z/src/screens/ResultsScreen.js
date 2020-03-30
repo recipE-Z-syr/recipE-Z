@@ -13,7 +13,7 @@ class ResultsScreen extends React.Component {
     super(props);
     const { navigation } = this.props;
     const { route } = this.props;
-    var ingArray = route.params; // parameters recieved from the user's search
+    // var ingArray = route.params; // parameters recieved from the user's search
     this.getDataUsingGet(ingArray); // call function on construction
 
     this.state = {
