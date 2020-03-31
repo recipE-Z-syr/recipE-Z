@@ -1,0 +1,213 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<LoginScreen /> renders correctly 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "fontFamily": "nunito-regular",
+        "justifyContent": "center",
+      },
+      Object {
+        "backgroundColor": "#ffcece",
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "white",
+        "height": 561,
+        "justifyContent": "space-around",
+        "paddingBottom": 70,
+        "paddingTop": 70,
+        "position": "absolute",
+        "width": 334,
+      }
+    }
+  >
+    <Image
+      source={1}
+      style={
+        Object {
+          "height": 87,
+          "width": 90,
+        }
+      }
+    />
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "justifyContent": "space-around",
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "#ed4848",
+            "fontFamily": "nunito-extrabold",
+            "fontSize": 20,
+          }
+        }
+      >
+        Welcome Back
+      </Text>
+      <View
+        accessible={true}
+        focusable={true}
+        isTVSelectable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "opacity": 1,
+          }
+        }
+      >
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "#ed4848",
+                "fontFamily": "nunito-regular",
+                "fontSize": 11,
+                "textAlign": "center",
+              },
+            ]
+          }
+        >
+          Don't have an account? Click here to sign up
+        </Text>
+      </View>
+    </View>
+    <View>
+      <TextInput
+        allowFontScaling={true}
+        onBlur={[Function]}
+        onChangeText={[Function]}
+        placeholder="Email"
+        rejectResponderTermination={true}
+        style={
+          Object {
+            "backgroundColor": "white",
+            "borderColor": "lightgrey",
+            "borderWidth": 1,
+            "fontFamily": "nunito-regular",
+            "height": 50,
+            "marginBottom": 5,
+            "marginTop": 5,
+            "opacity": 0.7,
+            "paddingLeft": 15,
+            "width": 280,
+          }
+        }
+        underlineColorAndroid="transparent"
+        value=""
+      />
+      <TextInput
+        allowFontScaling={true}
+        onBlur={[Function]}
+        onChangeText={[Function]}
+        placeholder="Password"
+        rejectResponderTermination={true}
+        style={
+          Object {
+            "backgroundColor": "white",
+            "borderColor": "lightgrey",
+            "borderWidth": 1,
+            "fontFamily": "nunito-regular",
+            "height": 50,
+            "marginBottom": 5,
+            "marginTop": 5,
+            "opacity": 0.7,
+            "paddingLeft": 15,
+            "width": 280,
+          }
+        }
+        underlineColorAndroid="transparent"
+        value=""
+      />
+    </View>
+    <View
+      accessible={true}
+      focusable={true}
+      isTVSelectable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "opacity": 1,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "#ed4848",
+            "fontFamily": "nunito-regular",
+            "fontSize": 11,
+            "textAlign": "center",
+          }
+        }
+      >
+        Forgot Password?
+      </Text>
+    </View>
+    <View
+      accessible={true}
+      focusable={true}
+      isTVSelectable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "backgroundColor": "#ed4848",
+          "borderColor": "#ed4848",
+          "borderRadius": 5,
+          "borderWidth": 10,
+          "justifyContent": "center",
+          "opacity": 1,
+          "paddingBottom": 10,
+          "paddingTop": 10,
+          "width": 200,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "white",
+            "fontFamily": "nunito-bold",
+            "paddingLeft": 10,
+            "paddingRight": 10,
+            "textAlign": "center",
+          }
+        }
+      >
+        LOGIN
+      </Text>
+    </View>
+  </View>
+</View>
+`;
