@@ -1,6 +1,6 @@
 import 'react-native-gesture-handler';
 import React, { Component } from 'react';
-import { Platform, SafeAreaView, Button, StyleSheet, Text, View, AppRegistry, Image, TextInput, Alert, ScrollView, Keyboard, TouchableOpacity } from 'react-native';
+import { Text, View, Image, TextInput, Keyboard, TouchableOpacity } from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import defaultStyles from './stylesheet';
@@ -10,8 +10,7 @@ class LoginScreen extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { email: ''}
-    this.state = { password: ''}
+    this.state = { email: '', password: ''}
 
     this.handleEmail = this.handleEmail.bind(this);
     this.handlePassword = this.handlePassword.bind(this);
@@ -19,11 +18,11 @@ class LoginScreen extends Component {
   }
 
   handleEmail(text) {
-    this.setState({ text });
+    this.setState({ email: text });
   }
 
   handlePassword(text) {
-    this.setState({ text });
+    this.setState({ passowrd: text });
   }
 
   render(){
@@ -66,7 +65,7 @@ class LoginScreen extends Component {
       </TouchableOpacity>
       <TouchableOpacity
         style={[defaultStyles.redButton, {}]}
-        onPress={() => navigation.navigate('Home')}
+        onPress={() => navigation.navigate('Search')}
         underlayColor='#ed4848'>
         <Text style={defaultStyles.redButtonText}>LOGIN</Text>
       </TouchableOpacity>
@@ -81,6 +80,3 @@ class LoginScreen extends Component {
 
 
 export default LoginScreen;
-
-// const styles = StyleSheet.create({
-// })

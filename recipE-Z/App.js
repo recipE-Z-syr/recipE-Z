@@ -1,6 +1,6 @@
 import 'react-native-gesture-handler';
 import React, {useState} from 'react';
-import { Platform, SafeAreaView, Button, StyleSheet, Text, View, AppRegistry, Image, TextInput, Alert, ScrollView, Keyboard, TouchableOpacity, Component } from 'react-native';
+import { Text, View, Component } from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import Constants from 'expo-constants';
@@ -10,7 +10,6 @@ import { AppLoading } from 'expo';
 //imports of screens
 
 import StartScreen from './src/screens/StartScreen';
-import HomeScreen from './src/screens/HomeScreen';
 import ProfileScreen from './src/screens/ProfileScreen';
 import SignupScreen from './src/screens/SignupScreen';
 import LoginScreen from './src/screens/LoginScreen';
@@ -18,6 +17,7 @@ import UploadRecipeScreen from './src/screens/UploadRecipeScreen';
 import RecipeBookScreen from './src/screens/RecipeBookScreen';
 import SearchScreen from './src/screens/SearchScreen';
 import RecipeScreen from './src/screens/RecipeScreen';
+import ResultsScreen from './src/screens/ResultsScreen';
 
 function Separator() {
   return <View style={styles.separator}/>;
@@ -40,7 +40,6 @@ const fetchFonts = () => {
 
 const Stack = createStackNavigator();
 
-
 export default class App extends React.Component {
   state = {
     fontLoaded: false,
@@ -61,21 +60,21 @@ export default class App extends React.Component {
     });
     this.setState({ fontLoaded: true });
   }
-  
+
   render() {
   return (
     this.state.fontLoaded ? (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Start">
         <Stack.Screen name="Start" component={StartScreen} />
-        <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Profile" component={ProfileScreen} />
         <Stack.Screen name="Sign-Up" component={SignupScreen} />
         <Stack.Screen name="Log-In" component={LoginScreen} />
         <Stack.Screen name="Upload" component={UploadRecipeScreen} />
-        <Stack.Screen name="Recipe Book" component={RecipeBookScreen} />
+        <Stack.Screen name="RecipeBook" component={RecipeBookScreen} />
         <Stack.Screen name="Search" component={SearchScreen} />
         <Stack.Screen name="Recipe" component={RecipeScreen} />
+        <Stack.Screen name="Results" component={ResultsScreen} />
       </Stack.Navigator>
     </NavigationContainer>
     ) : null

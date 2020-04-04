@@ -39,11 +39,8 @@ class SignupScreen extends React.Component {
 
 
     this.client = Stitch.defaultAppClient;
-    this.state = { fullName: ''}
-    this.state = { email: ''}
-    this.state = { password: ''}
-    this.state = { confirmPassword: ''}
-    //this.state = { login_status: '' }
+
+    this.state = { fullName: '', email: '', password: '', confirmPassword: true}
 
     this.handleName = this.handleName.bind(this);
     this.handleEmail = this.handleEmail.bind(this);
@@ -65,7 +62,11 @@ class SignupScreen extends React.Component {
   }
 
   handleConfirmPassword(text) {
-    this.setState({ confirmPassword: text });
+    if(text != this.state.password)
+      this.setState({ confirmPassword: false });
+
+    else 
+      this.setState({ confirmPassword: true });
   }
 
   async create_account()
@@ -73,12 +74,12 @@ class SignupScreen extends React.Component {
     var status = "";
     const email = this.state.email;
     const password = this.state.password;
-    const password2 = this.state.confirmPassword;
+    const confirmPassword = this.state.confirmPassword;
 
-    if (password === undefined || password2 === undefined)
+    if (password === undefined)
       alert("Cannot leave password blank!");
 
-    else if (password != password2)
+    else if (!confirmPassword)
       alert("Passwords do not match!");
       // password must be between 6 and 128 characters
       // Name already in use
@@ -181,9 +182,11 @@ class SignupScreen extends React.Component {
           placeholder = "Confirm Password"
           style={defaultStyles.textInput}
           onBlur = {Keyboard.dismiss}
-          value = {this.state.confirmPassword}
           onChangeText = {this.handleConfirmPassword}
           />
+          <Text style={{color: '#ed4848', fontSize: 12, textAlign: 'center', display: this.state.confirmPassword ? 'none' : 'flex'}}>
+          The passwords you entered do not match.
+          </Text>
         </View>
         <TouchableOpacity style={{alignItems: 'center', marginTop: 5, marginBottom: 20}}>
           <Text style={{color: '#ed4848', fontSize: 10}}>
@@ -198,7 +201,7 @@ class SignupScreen extends React.Component {
           onPress={async () =>  {
                             var status = await this.create_account();
                             if(status === "success") 
-                              navigation.navigate('Home');
+                              navigation.navigate('Search');
                           }
                   }
           underlayColor='#ed4848'>

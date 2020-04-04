@@ -1,0 +1,634 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<UploadRecipeScreen /> renders correctly 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "flex-start",
+        "backgroundColor": "#fff",
+        "flex": 5,
+        "justifyContent": "center",
+        "paddingLeft": 32,
+        "paddingRight": 32,
+        "width": "100%",
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Object {
+        "flex": 1,
+        "flexDirection": "row-reverse",
+        "position": "absolute",
+        "right": 30,
+        "top": 30,
+      }
+    }
+  >
+    <View
+      accessible={true}
+      focusable={true}
+      isTVSelectable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "opacity": 1,
+        }
+      }
+    >
+      <Image
+        source={1}
+        style={
+          Object {
+            "height": 25,
+            "marginLeft": 20,
+            "width": 25,
+          }
+        }
+      />
+    </View>
+    <View
+      accessible={true}
+      focusable={true}
+      isTVSelectable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "opacity": 1,
+        }
+      }
+    >
+      <Image
+        source={1}
+        style={
+          Object {
+            "height": 25,
+            "marginLeft": 20,
+            "width": 25,
+          }
+        }
+      />
+    </View>
+    <View
+      accessible={true}
+      focusable={true}
+      isTVSelectable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "opacity": 1,
+        }
+      }
+    >
+      <Image
+        source={1}
+        style={
+          Object {
+            "height": 25,
+            "marginLeft": 20,
+            "width": 25,
+          }
+        }
+      />
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "position": "absolute",
+        "top": 60,
+      }
+    }
+  >
+    <Image
+      source={1}
+      style={
+        Object {
+          "height": 10,
+          "right": -272,
+          "width": 15,
+        }
+      }
+    />
+    <Image
+      source={1}
+      style={
+        Object {
+          "height": 60,
+          "width": 750,
+        }
+      }
+    />
+    <Text
+      style={
+        Object {
+          "color": "#fff",
+          "fontFamily": "nunito-black",
+          "fontSize": 28,
+          "left": 15,
+          "top": -50,
+        }
+      }
+    >
+      Create Recipe
+    </Text>
+  </View>
+  <RCTScrollView
+    showsVerticalScrollIndicator={false}
+    style={
+      Object {
+        "top": 150,
+        "width": "100%",
+      }
+    }
+  >
+    <View>
+      <View
+        style={
+          Object {
+            "marginBottom": 20,
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "#ed4848",
+              "fontFamily": "nunito-semibold",
+              "fontSize": 15,
+              "marginBottom": 8,
+            }
+          }
+        >
+          Recipe Name
+        </Text>
+        <TextInput
+          allowFontScaling={true}
+          onChangeText={[Function]}
+          placeholder="Required"
+          rejectResponderTermination={true}
+          style={
+            Object {
+              "borderColor": "#ccc",
+              "borderWidth": 1,
+              "height": 40,
+              "paddingBottom": 5,
+              "paddingLeft": 10,
+              "paddingRight": 10,
+              "paddingTop": 5,
+            }
+          }
+          underlineColorAndroid="transparent"
+        />
+      </View>
+      <View
+        style={
+          Object {
+            "marginBottom": 20,
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "#ed4848",
+              "fontFamily": "nunito-semibold",
+              "fontSize": 15,
+              "marginBottom": 8,
+            }
+          }
+        >
+          Ingredients with Measurements
+        </Text>
+        <TextInput
+          allowFontScaling={true}
+          placeholder="Required"
+          rejectResponderTermination={true}
+          style={
+            Object {
+              "borderColor": "#ccc",
+              "borderWidth": 1,
+              "height": 40,
+              "paddingBottom": 5,
+              "paddingLeft": 10,
+              "paddingRight": 10,
+              "paddingTop": 5,
+            }
+          }
+          underlineColorAndroid="transparent"
+        />
+        <View
+          accessible={true}
+          focusable={true}
+          isTVSelectable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "flexDirection": "row",
+              "marginTop": 8,
+              "opacity": 1,
+            }
+          }
+        >
+          <Image
+            source={1}
+            style={
+              Object {
+                "height": 15,
+                "marginRight": 8,
+                "width": 15,
+              }
+            }
+          />
+          <Text
+            style={
+              Object {
+                "color": "#ed4848",
+                "fontFamily": "nunito-semibold",
+                "fontSize": 15,
+              }
+            }
+          >
+            Click to add another ingredient
+          </Text>
+        </View>
+      </View>
+      <View
+        style={
+          Object {
+            "marginBottom": 20,
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "#ed4848",
+              "fontFamily": "nunito-semibold",
+              "fontSize": 15,
+              "marginBottom": 8,
+            }
+          }
+        >
+          Step-by-step Instructions
+        </Text>
+        <TextInput
+          allowFontScaling={true}
+          placeholder="Required"
+          rejectResponderTermination={true}
+          style={
+            Object {
+              "borderColor": "#ccc",
+              "borderWidth": 1,
+              "height": 40,
+              "paddingBottom": 5,
+              "paddingLeft": 10,
+              "paddingRight": 10,
+              "paddingTop": 5,
+            }
+          }
+          underlineColorAndroid="transparent"
+        />
+        <View
+          accessible={true}
+          focusable={true}
+          isTVSelectable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "flexDirection": "row",
+              "marginTop": 8,
+              "opacity": 1,
+            }
+          }
+        >
+          <Image
+            source={1}
+            style={
+              Object {
+                "height": 15,
+                "marginRight": 8,
+                "width": 15,
+              }
+            }
+          />
+          <Text
+            style={
+              Object {
+                "color": "#ed4848",
+                "fontFamily": "nunito-semibold",
+                "fontSize": 15,
+              }
+            }
+          >
+            Click to add another step
+          </Text>
+        </View>
+      </View>
+      <View
+        style={
+          Object {
+            "marginBottom": 20,
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "#ed4848",
+              "fontFamily": "nunito-semibold",
+              "fontSize": 15,
+              "marginBottom": 8,
+            }
+          }
+        >
+          Total Time
+        </Text>
+        <TextInput
+          allowFontScaling={true}
+          onChangeText={[Function]}
+          placeholder="Optional"
+          rejectResponderTermination={true}
+          style={
+            Object {
+              "borderColor": "#ccc",
+              "borderWidth": 1,
+              "height": 40,
+              "paddingBottom": 5,
+              "paddingLeft": 10,
+              "paddingRight": 10,
+              "paddingTop": 5,
+            }
+          }
+          underlineColorAndroid="transparent"
+        />
+      </View>
+      <View
+        style={
+          Object {
+            "marginBottom": 20,
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "#ed4848",
+              "fontFamily": "nunito-semibold",
+              "fontSize": 15,
+              "marginBottom": 8,
+            }
+          }
+        >
+          Servings
+        </Text>
+        <TextInput
+          allowFontScaling={true}
+          onChangeText={[Function]}
+          placeholder="Optional"
+          rejectResponderTermination={true}
+          style={
+            Object {
+              "borderColor": "#ccc",
+              "borderWidth": 1,
+              "height": 40,
+              "paddingBottom": 5,
+              "paddingLeft": 10,
+              "paddingRight": 10,
+              "paddingTop": 5,
+            }
+          }
+          underlineColorAndroid="transparent"
+        />
+      </View>
+      <View
+        style={
+          Object {
+            "marginBottom": 20,
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "#ed4848",
+              "fontFamily": "nunito-semibold",
+              "fontSize": 15,
+              "marginBottom": 8,
+            }
+          }
+        >
+          Difficulty
+        </Text>
+        <TextInput
+          allowFontScaling={true}
+          onChangeText={[Function]}
+          placeholder="Optional"
+          rejectResponderTermination={true}
+          style={
+            Object {
+              "borderColor": "#ccc",
+              "borderWidth": 1,
+              "height": 40,
+              "paddingBottom": 5,
+              "paddingLeft": 10,
+              "paddingRight": 10,
+              "paddingTop": 5,
+            }
+          }
+          underlineColorAndroid="transparent"
+        />
+      </View>
+      <View
+        style={
+          Object {
+            "marginBottom": 20,
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "#ed4848",
+              "fontFamily": "nunito-semibold",
+              "fontSize": 15,
+              "marginBottom": 8,
+            }
+          }
+        >
+          Keywords (separate by commas)
+        </Text>
+        <TextInput
+          allowFontScaling={true}
+          onChangeText={[Function]}
+          placeholder="Optional"
+          rejectResponderTermination={true}
+          style={
+            Object {
+              "borderColor": "#ccc",
+              "borderWidth": 1,
+              "height": 40,
+              "paddingBottom": 5,
+              "paddingLeft": 10,
+              "paddingRight": 10,
+              "paddingTop": 5,
+            }
+          }
+          underlineColorAndroid="transparent"
+        />
+      </View>
+      <View>
+        <Text
+          style={
+            Object {
+              "color": "#ed4848",
+              "fontFamily": "nunito-semibold",
+              "fontSize": 15,
+              "marginBottom": 8,
+            }
+          }
+        >
+          Additonal Notes
+        </Text>
+        <TextInput
+          allowFontScaling={true}
+          multiline={true}
+          onChangeText={[Function]}
+          placeholder="Optional"
+          rejectResponderTermination={true}
+          style={
+            Object {
+              "borderColor": "#ccc",
+              "borderWidth": 1,
+              "height": 100,
+              "paddingBottom": 5,
+              "paddingLeft": 10,
+              "paddingRight": 10,
+              "paddingTop": 5,
+            }
+          }
+          underlineColorAndroid="transparent"
+        />
+      </View>
+      <Text
+        style={
+          Object {
+            "color": "#ed4848",
+            "fontFamily": "nunito-semibold",
+            "fontSize": 15,
+            "marginTop": 20,
+          }
+        }
+      >
+        Upload a Picture of Your Dish (Optional)
+      </Text>
+      <View
+        accessible={true}
+        focusable={false}
+        isTVSelectable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "height": 60,
+            "marginTop": 8,
+            "opacity": 1,
+            "width": 60,
+          }
+        }
+      >
+        <Image
+          source={1}
+          style={
+            Object {
+              "height": 60,
+              "width": 60,
+            }
+          }
+        />
+      </View>
+      <View
+        accessible={true}
+        focusable={true}
+        isTVSelectable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "alignSelf": "center",
+            "backgroundColor": "#ed4848",
+            "borderColor": "#ed4848",
+            "borderRadius": 5,
+            "borderWidth": 10,
+            "justifyContent": "center",
+            "marginBottom": 200,
+            "marginTop": 30,
+            "opacity": 1,
+            "paddingBottom": 10,
+            "paddingTop": 10,
+            "width": 200,
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "white",
+              "fontFamily": "nunito-bold",
+              "paddingLeft": 10,
+              "paddingRight": 10,
+              "textAlign": "center",
+            }
+          }
+        >
+          SAVE
+        </Text>
+      </View>
+    </View>
+  </RCTScrollView>
+</View>
+`;
