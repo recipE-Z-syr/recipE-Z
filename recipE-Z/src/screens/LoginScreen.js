@@ -22,7 +22,7 @@ class LoginScreen extends Component {
   }
 
   handlePassword(text) {
-    this.setState({ passowrd: text });
+    this.setState({ password: text });
   }
 
   render(){
