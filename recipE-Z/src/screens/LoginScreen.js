@@ -1,12 +1,12 @@
 import 'react-native-gesture-handler';
-import * as React from 'react';
-import { Platform, SafeAreaView, Button, StyleSheet, Text, View, AppRegistry, Image, TextInput, Alert, ScrollView, Keyboard, TouchableOpacity, Component } from 'react-native';
+import React, { Component } from 'react';
+import { Platform, SafeAreaView, Button, StyleSheet, Text, View, AppRegistry, Image, TextInput, Alert, ScrollView, Keyboard, TouchableOpacity } from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import defaultStyles from './stylesheet';
 
 
-class LoginScreen extends React.Component {
+class LoginScreen extends Component {
   constructor(props) {
     super(props);
 
@@ -15,6 +15,7 @@ class LoginScreen extends React.Component {
 
     this.handleEmail = this.handleEmail.bind(this);
     this.handlePassword = this.handlePassword.bind(this);
+    //this.login = this.login.bind(this);
   }
 
   handleEmail(text) {

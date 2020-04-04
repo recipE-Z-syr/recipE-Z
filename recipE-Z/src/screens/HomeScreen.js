@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Button, StyleSheet, Text, TextInput, View, SafeAreaView, ScrollView, Keyboard, TouchableOpacity, Image } from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
+import defaultStyles from './stylesheet';
 
 class HomeScreen extends React.Component {
   render() {

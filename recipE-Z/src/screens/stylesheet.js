@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-export default defaultStyles = StyleSheet.create({
+const defaultStyles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
@@ -87,3 +87,5 @@ export default defaultStyles = StyleSheet.create({
     textAlign: 'center'
   }
 });
+
+export default defaultStyles;
