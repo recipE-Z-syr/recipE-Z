@@ -4,7 +4,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import defaultStyles from './stylesheet';
 import { AsyncStorage } from 'react-native';
-import { Stitch } from 'mongodb-stitch-browser-sdk'
+import { Stitch } from 'mongodb-stitch-react-native-sdk'
 
 class StartScreen extends React.Component {
   constructor(props) {
@@ -25,7 +25,12 @@ class StartScreen extends React.Component {
 
     if (!initialized)
     {
+      try {
       Stitch.initializeDefaultAppClient('recipe-z-pnqkt');
+      }
+      catch {
+        // Error initializing
+      }
       async () => {
         try {
           await AsyncStorage.setItem('stitch', 'recipe-z-pnqkt');
