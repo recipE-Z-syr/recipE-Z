@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { Text, View, Image, TextInput, Keyboard, TouchableOpacity } from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
+import {Stitch, UserPasswordCredential} from 'mongodb-stitch-react-native-sdk'
 import defaultStyles from './stylesheet';
 
 
@@ -10,11 +11,12 @@ class LoginScreen extends Component {
   constructor(props) {
     super(props);
 
+    this.client = Stitch.defaultAppClient;
+
     this.state = { email: '', password: ''}
 
     this.handleEmail = this.handleEmail.bind(this);
     this.handlePassword = this.handlePassword.bind(this);
-    //this.login = this.login.bind(this);
   }
 
   handleEmail(text) {
@@ -24,6 +26,52 @@ class LoginScreen extends Component {
   handlePassword(text) {
     this.setState({ password: text });
   }
+
+  async login()
+  {
+    var status = "";
+    var re = /^(?:[a-z0-9!#$%&amp;'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&amp;'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])$/;
+
+    const email = this.state.email;
+    const password = this.state.password;
+
+    if (this.state.fullName === '')
+      alert("Cannot leave name blank!");
+
+    else if (email === '')
+      alert("Cannot leave email blank!");
+
+    else if (!re.test(email))
+      alert("Invalid email!")
+
+    else if (password === '')
+      alert("Cannot leave password blank!");
+    else
+    {
+      const client = this.client;
+
+      // const db = client.getServiceClient(RemoteMongoClient.factory, 'mongodb-atlas').db('users');
+
+      const app = client
+
+      const credential = new UserPasswordCredential(email, password)
+      await app.auth.loginWithCredential(credential)
+        // Returns a promise that resolves to the authenticated user
+        .then(authedUser => console.log("Successfully logged in with id: ${authedUser.id}"))
+        .catch(err => {
+                        console.error("Login failed with error:", err);
+                        status = "login_error";
+                        alert(err.message.charAt(0).toUpperCase() + err.message.substring(1) + '.');
+                      })
+
+      if (status === "")
+        status = "success";
+
+    }
+    return status;
+  }
+
+
 
   render(){
     const { navigation } = this.props;
@@ -65,7 +113,12 @@ class LoginScreen extends Component {
       </TouchableOpacity>
       <TouchableOpacity
         style={[defaultStyles.redButton, {}]}
-        onPress={() => navigation.navigate('Search')}
+        onPress={async () =>  {
+                            var status = await this.login();
+                            if(status === "success") 
+                              navigation.navigate('Search');
+                          }
+                }
         underlayColor='#ed4848'>
         <Text style={defaultStyles.redButtonText}>LOGIN</Text>
       </TouchableOpacity>

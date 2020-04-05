@@ -3,44 +3,17 @@ import * as React from 'react';
 import { Platform, SafeAreaView, Button, StyleSheet, Text, View, AppRegistry, Image, TextInput, Alert, ScrollView, Keyboard, TouchableOpacity, Component } from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-import {Stitch, RemoteMongoClient, UserPasswordAuthProviderClient, UserPasswordCredential} from 'mongodb-stitch-react-native-sdk'
+import {Stitch, UserPasswordAuthProviderClient, UserPasswordCredential} from 'mongodb-stitch-react-native-sdk'
 import defaultStyles from './stylesheet';
 
 
 class SignupScreen extends React.Component {
   constructor(props) {
     super(props);
-    /* var initialized = false;
-
-    _retrieveData = async () => {
-      try {
-        const value = await AsyncStorage.getItem('stitch');
-        if (value !== null)
-          initialized = true;
-      }
-      catch (error) {
-        // Error saving data
-      }
-    }
-
-    if (!initialized)
-    {
-      Stitch.initializeDefaultAppClient('recipe-z-pnqkt');
-      _storeData = async () => {
-        try {
-          await AsyncStorage.setItem('stitch', 'recipe-z-pnqkt');
-        }
-        catch (error) {
-          // Error saving data
-        }
-      }
-    }
-    */
-
 
     this.client = Stitch.defaultAppClient;
 
-    this.state = { fullName: '', email: '', password: '', confirmPassword: true}
+    this.state = { fullName: '', email: '', password: '', confirmPassword: false}
 
     this.handleName = this.handleName.bind(this);
     this.handleEmail = this.handleEmail.bind(this);
@@ -72,25 +45,35 @@ class SignupScreen extends React.Component {
   async create_account()
   {
     var status = "";
+
+    var re = /^(?:[a-z0-9!#$%&amp;'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&amp;'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])$/;
+
     const email = this.state.email;
     const password = this.state.password;
     const confirmPassword = this.state.confirmPassword;
 
-    if (password === undefined)
+    if (this.state.fullName === '')
+      alert("Cannot leave name blank!");
+
+    else if (email === '')
+      alert("Cannot leave email blank!");
+
+    else if (!re.test(email))
+      alert("Invalid email!")
+
+    else if (password === '')
       alert("Cannot leave password blank!");
 
     else if (!confirmPassword)
       alert("Passwords do not match!");
-      // password must be between 6 and 128 characters
-      // Name already in use
-      // Invalid username/password
-      // Register error but no login error
-      // set more checks here
+    
+    else if (password.length < 6 || password.length > 128)
+      alert("Password must be between 6 and 128 characters!");
     else
     {
       const client = this.client;
 
-      const db = client.getServiceClient(RemoteMongoClient.factory, 'mongodb-atlas').db('users');
+      // const db = client.getServiceClient(RemoteMongoClient.factory, 'mongodb-atlas').db('users');
 
       const app = client
 
@@ -101,40 +84,31 @@ class SignupScreen extends React.Component {
         .catch(err => {
                         console.error("Error registering new user:");
                         status = "register_error";
-                        alert(err.message.charAt(0).toUpperCase() + err.message.substring(1) + '.');
+                        var message = err.message.charAt(0).toUpperCase() + err.message.substring(1) + '.';
+                        if (message === "Name already in use.")
+                          alert("Account with this email already exists.");
+                        else
+                          alert(message);
                       });
 
-      const credential = new UserPasswordCredential(email, password)
-      await app.auth.loginWithCredential(credential)
-        // Returns a promise that resolves to the authenticated user
-        .then(authedUser => console.log("Successfully logged in with id: ${authedUser.id}"))
-        .catch(err => {
-                        console.error("Login failed with error:", err);
-                        if (status != "")
-                          status = status + ", login_error";
-                        else
+      if (status != "register_error")
+      {
+        const credential = new UserPasswordCredential(email, password)
+        await app.auth.loginWithCredential(credential)
+          // Returns a promise that resolves to the authenticated user
+          .then(authedUser => console.log("Successfully logged in with id: ${authedUser.id}"))
+          .catch(err => {
+                          console.error("Login failed with error:", err);
                           status = "login_error";
-                        alert(err.message.charAt(0).toUpperCase() + err.message.substring(1) + '.');
-                      })
+                          alert(err.message.charAt(0).toUpperCase() + err.message.substring(1) + '.');
+                        })
+      }
+
       if (status === "")
         status = "success";
 
     }
-    //this.state.login_status = status
-
-    /*
-    client.auth.loginWithCredential(new AnonymousCredential()).then(user =>
-      db.collection('user_info').updateOne({owner_id: client.auth.user.id}, {$set:{number:42}}, {upsert:true})
-    ).then(() =>
-      db.collection('user_info').find({owner_id: client.auth.user.id}, { limit: 100}).asArray()
-    ).then(docs => {
-        console.log("Found docs", docs);
-        console.log("[MongoDB Stitch] Connected to Stitch");
-    }).catch(err => {
-        console.error(err);
-    });
-    */
-   return status;
+    return status;
   }
 
 
