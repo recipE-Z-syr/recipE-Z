@@ -3,7 +3,7 @@ import * as React from 'react';
 import { Platform, SafeAreaView, Button, StyleSheet, Text, View, AppRegistry, Image, TextInput, Alert, ScrollView, Keyboard, TouchableOpacity, Component } from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-import {Stitch, RemoteMongoClient, UserPasswordAuthProviderClient, UserPasswordCredential} from 'mongodb-stitch-browser-sdk'
+import {Stitch, RemoteMongoClient, UserPasswordAuthProviderClient, UserPasswordCredential} from 'mongodb-stitch-react-native-sdk'
 import defaultStyles from './stylesheet';
 
 
