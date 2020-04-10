@@ -23,6 +23,22 @@ class RecipeScreen extends React.Component {
         style={{width: 25, height: 25, bottom: 315, right: -150}}
         source={require('../img/favorite-white.png')}
         />
+        //  <Text style={[defaultStyles.h1, {fontSize: 14, top: 80, right: 20}]}>Time: 25 min</Text>
+      //    <Text style={[defaultStyles.h1, {fontSize: 14, top: 80, right: 20}]}>Servings: 7</Text>
+      //    <Text style={[defaultStyles.h1, {fontSize: 14, top: 80, right: 20}]}>Mising Ingredients: Franks Red Hot, Annie's Homegrown Shells and Real Aged Cheddar Macaroni and Cheese</Text>
+      //    <Text style={[defaultStyles.h1, {fontSize: 14, top: 80, right: 20}]}>A cheesy, spicy macaroni and cheese chock filled with chicken and hot sauce, that makes it taste like a chicken wing.</Text>
+      //    <Text style={[defaultStyles.h1, {fontSize: 14, top: 80, right: 20}]}>Ingredients</Text>
+      //    <Text style={[defaultStyles.h1, {fontSize: 14, top: 80, right: 20}]}>- 2 6oz pkgs. of Annie's Homegrown Shells and Real Aged Cheddar Macaroni and Cheese</Text>
+      //    <Text style={[defaultStyles.h1, {fontSize: 14, top: 80, right: 20}]}>- 6 tbsp. milk</Text>
+      //    <Text style={[defaultStyles.h1, {fontSize: 14, top: 80, right: 20}]}>- 6 oz chicken, cooked, diced into small pieces</Text>
+      //    <Text style={[defaultStyles.h1, {fontSize: 14, top: 80, right: 20}]}>- 4 - 6 tbsp. hot sauce</Text>
+      //    <Text style={[defaultStyles.h1, {fontSize: 14, top: 80, right: 20}]}>Instructions</Text>
+      //    <Text style={[defaultStyles.h1, {fontSize: 14, top: 80, right: 20}]}>1. Bring 12 cups of water to a boil, stir in pasta. </Text>
+      //    <Text style={[defaultStyles.h1, {fontSize: 14, top: 80, right: 20}]}> Drain Pasta. </Text>
+      //    <Text style={[defaultStyles.h1, {fontSize: 14, top: 80, right: 20}]}> Add 6 tablespoons of milk into a sauce pan and sprinkle cheese from each packet and hot sauce over milk, stir until combined. </Text>
+      //    <Text style={[defaultStyles.h1, {fontSize: 14, top: 80, right: 20}]}> Add cooked pasta and chicken, stir until pasta and chicken are completely coated.</Text>
+      //    <Text style={[defaultStyles.h1, {fontSize: 14, top: 80, right: 20}]}>Notes</Text>
+      //    <Text style={[defaultStyles.h1, {fontSize: 14, top: 80, right: 20}]}>Calories per cup: 238, Fat: 4, Cholesterol: 22, Sodium: 1200, Potassium: 88, Carbs: 32, Fiber: 1.4, Sugar: 3.6, Protein: 14</Text>
       </View>
    ); //end return
 
