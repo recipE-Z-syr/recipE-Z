@@ -13,7 +13,7 @@ class ResultsScreen extends React.Component {
     super(props);
     const { navigation } = this.props;
     const { route } = this.props;
-    // var ingArray = route.params; // parameters recieved from the user's search
+    var ingArray = route.params; // parameters recieved from the user's search
     this.getDataUsingGet(ingArray); // call function on construction
 
     this.state = {
@@ -65,7 +65,7 @@ class ResultsScreen extends React.Component {
 
     getDataUsingGet(ingArr) {
       var data = [];
-      fetch('https://api.spoonacular.com/recipes/findByIngredients?ingredients='+ ingArr.ingArray +'&ranking=1&ignorePantry=true&number=1&apiKey='+ API_KEY +'', {
+      fetch('https://api.spoonacular.com/recipes/findByIngredients?ingredients='+ ingArr.ingArray +'&ranking=1&ignorePantry=true&number=5&apiKey='+ API_KEY +'', {
         method: 'GET',
         headers: {
           Accept: "application/json",
@@ -110,10 +110,44 @@ class ResultsScreen extends React.Component {
             />
           </TouchableOpacity>
         </View>
+
         <View style={{flexDirection: 'row'}}>
-          <View style={{backgroundColor: '#ED8484', height: 1, flex: 1, bottom: 225, alignSelf: 'center'}} />
+          <View style={{backgroundColor: '#ED8484', height: 1, flex: 1, bottom:-60, alignSelf: 'center'}} />
         </View>
-      </View>
+
+        <View style={{flexDirection: 'row'}}>
+          <Image
+            style={{width: 150, height: 150, bottom: -60, right: 25}}
+            source={{uri:'https:spoonacular.com/recipeImages/510790-312x231.jpg'}}
+          />
+          <TouchableOpacity onPress={() => navigation.navigate('Recipe')}>
+            <Text style={[defaultStyles.h1, {fontSize: 14, top: 80, right: 20}]}>Buffalo Chicken Mac & Cheese</Text>
+          </TouchableOpacity>
+        </View>
+        <View style={{flexDirection: 'row'}}>
+          <Image
+            style={{width: 150, height: 150, bottom: -60, right: 32}}
+            source={{uri:'https://spoonacular.com/recipeImages/164332-312x231.jpg'}}
+          />
+          <Text style={[defaultStyles.h1, {fontSize: 14, top: 80, right: 25}]}>Chicken-Parmesan Potatoes</Text>
+        </View>
+
+        <View style={{flexDirection: 'row'}}>
+          <Image
+            style={{width: 150, height: 150, bottom: -60, right: 55}}
+            source={{uri:'https://spoonacular.com/recipeImages/921334-312x231.jpg'}}
+          />
+          <Text style={[defaultStyles.h1, {fontSize: 14, top: 80, right: 45}]}>Savory Rice Porridge</Text>
+        </View>
+
+        <View style={{flexDirection: 'row'}}>
+          <Image
+            style={{width: 150, height: 150, bottom: -60, right: 35}}
+            source={{uri:'https://www.foodiecrush.com/wp-content/uploads/2017/10/Instant-Pot-Macaroni-and-Cheese-foodiecrush.com-019.jpg'}}
+          />
+          <Text style={[defaultStyles.h1, {fontSize: 14, top: 80, right: 25}]}>One Bowl Mac and Cheese</Text>
+        </View>
+    </View>
    ); //end return
 
  }//end render

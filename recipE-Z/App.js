@@ -65,7 +65,7 @@ export default class App extends React.Component {
   return (
     this.state.fontLoaded ? (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Start">
+      <Stack.Navigator initialRouteName="Search">
         <Stack.Screen name="Start" component={StartScreen} />
         <Stack.Screen name="Profile" component={ProfileScreen} />
         <Stack.Screen name="Sign-Up" component={SignupScreen} />
