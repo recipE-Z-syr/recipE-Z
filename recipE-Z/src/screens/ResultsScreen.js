@@ -122,6 +122,10 @@ class ResultsScreen extends React.Component {
           />
           <TouchableOpacity onPress={() => navigation.navigate('Recipe')}>
             <Text style={[defaultStyles.h1, {fontSize: 14, top: 80, right: 20}]}>Buffalo Chicken Mac & Cheese</Text>
+          //  <Text style={[defaultStyles.h1, {fontSize: 14, top: 80, right: 20}]}>Time: </Text>
+        //    <Text style={[defaultStyles.h1, {fontSize: 14, top: 80, right: 20}]}>Servings: </Text>
+        //    <Text style={[defaultStyles.h1, {fontSize: 14, top: 80, right: 20}]}>Mising Ingredients: </Text>
+        //    <Text style={[defaultStyles.h1, {fontSize: 14, top: 80, right: 20}]}>Buffalo Chicken Mac & Cheese</Text>
           </TouchableOpacity>
         </View>
         <View style={{flexDirection: 'row'}}>
@@ -130,6 +134,10 @@ class ResultsScreen extends React.Component {
             source={{uri:'https://spoonacular.com/recipeImages/164332-312x231.jpg'}}
           />
           <Text style={[defaultStyles.h1, {fontSize: 14, top: 80, right: 25}]}>Chicken-Parmesan Potatoes</Text>
+    //      <Text style={[defaultStyles.h1, {color: '#000000', fontSize: 8, top: 80, right: 25}]}>Time: </Text>
+    //      <Text style={[defaultStyles.h1, {color: '#000000', fontSize: 8, top: 80, right: 25}]}>Servings: </Text>
+    //      <Text style={[defaultStyles.h1, {color: '#000000', fontSize: 8, top: 80, right: 25}]}>Mising Ingredients: </Text>
+    //      <Text style={[defaultStyles.h1, {color: '#000000', fontSize: 8, top: 80, right: 25}]}>Chicken-Parmesan Potatoes</Text>
         </View>
 
         <View style={{flexDirection: 'row'}}>
@@ -138,6 +146,10 @@ class ResultsScreen extends React.Component {
             source={{uri:'https://spoonacular.com/recipeImages/921334-312x231.jpg'}}
           />
           <Text style={[defaultStyles.h1, {fontSize: 14, top: 80, right: 45}]}>Savory Rice Porridge</Text>
+    //      <Text style={[defaultStyles.h1, {color: '#000000', fontSize: 8, top: 80, right: 45}]}>Time: </Text>
+    //      <Text style={[defaultStyles.h1, {color: '#000000', fontSize: 8, top: 80, right: 45}]}>Servings: </Text>
+    //      <Text style={[defaultStyles.h1, {color: '#000000', fontSize: 8, top: 80, right: 45}]}>Mising Ingredients: </Text>
+    //      <Text style={[defaultStyles.h1, {color: '#000000', fontSize: 8, top: 80, right: 45}]}>Savory Rice Porridge</Text>
         </View>
 
         <View style={{flexDirection: 'row'}}>
@@ -146,6 +158,10 @@ class ResultsScreen extends React.Component {
             source={{uri:'https://www.foodiecrush.com/wp-content/uploads/2017/10/Instant-Pot-Macaroni-and-Cheese-foodiecrush.com-019.jpg'}}
           />
           <Text style={[defaultStyles.h1, {fontSize: 14, top: 80, right: 25}]}>One Bowl Mac and Cheese</Text>
+      //    <Text style={[defaultStyles.h1, {color: '#000000', fontSize: 8, top: 80, right: 25}]}>Time: </Text>
+      //    <Text style={[defaultStyles.h1, {color: '#000000', fontSize: 8, top: 80, right: 25}]}>Servings: </Text>
+      //    <Text style={[defaultStyles.h1, {color: '#000000', fontSize: 8, top: 80, right: 25}]}>Mising Ingredients:</Text>
+      //    <Text style={[defaultStyles.h1, {color: '#000000', fontSize: 8, top: 80, right: 25}]}>One Bowl Mac and Cheese</Text>
         </View>
     </View>
    ); //end return
