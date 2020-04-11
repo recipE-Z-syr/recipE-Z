@@ -144,7 +144,7 @@ class UploadRecipeScreen extends React.Component {
 	return (
 	  <View style= {[defaultStyles.searchContainer]}>
 	  <NavigationBar navigation={this.props.navigation}/>
-	  <PageHeader title='Create Recipe' trianglePosition={-272} />
+	  <PageHeader title='Create Recipe' trianglePosition={-230} />
 	    <ScrollView style= {{width: '100%', top: 150}} showsVerticalScrollIndicator={false}>
 	      <View style={{marginBottom: 20}}>
 		      <Text style={{fontFamily:'nunito-semibold', fontSize:15, color:'#ed4848', marginBottom: 8}}>Recipe Name</Text>
@@ -164,7 +164,7 @@ class UploadRecipeScreen extends React.Component {
 		      <TouchableOpacity style={{flexDirection:'row', alignItems:'center', marginTop: 8}}
 		      	onPress = {e => this.setState({addIngKeys: [...this.state.addIngKeys, this.state.addIng], addIng: this.state.addIng +1})}
 		      >
-		      <Image 
+		      <Image
               style={{height: 15, width:15, marginRight: 8}}
               source={require('../img/plus.png')}
               />
@@ -181,7 +181,7 @@ class UploadRecipeScreen extends React.Component {
 		      <TouchableOpacity style={{flexDirection:'row', alignItems:'center', marginTop: 8}}
 		      	onPress = {e => this.setState({addStepKeys: [...this.state.addStepKeys, this.state.addStep], addStep: this.state.addStep +1})}
 		      >
-		      <Image 
+		      <Image
               style={{height: 15, width:15, marginRight: 8}}
               source={require('../img/plus.png')}
               />

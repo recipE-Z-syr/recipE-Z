@@ -24,9 +24,9 @@ class ProfileScreen extends React.Component {
     return (
       <View style={[defaultStyles.container, {backgroundColor:'white'}]}>
       <NavigationBar navigation={this.props.navigation}/>
-      <PageHeader title='Settings' trianglePosition={-364}/>
+      <PageHeader title='Settings' trianglePosition={-325}/>
 		<View style={{alignItems: 'flex-start', justifyContent: 'flex-start'}}>
-			<Image source={require('../img/profilePicture.png')} style={{alignSelf: 'center', marginBottom: 55, marginTop: 35}}/>
+			<Image source={require('../img/profilePicture.png')} style={{alignSelf: 'center', marginBottom: 20, marginTop: 45}}/>
 			<View style={{flexDirection: 'row', alignItems: 'center', marginBottom: 50, marginLeft: -25}}>
 				<Image source={require('../img/Name.png')} style={{height: 20, width: 20, marginRight: 35}}/>
 				<Text style={[defaultStyles.h1, {fontSize: 18}]}>John Doe</Text>
