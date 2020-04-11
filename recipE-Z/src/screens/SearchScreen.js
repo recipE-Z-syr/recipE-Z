@@ -124,7 +124,7 @@ class SearchScreen extends React.Component {
        <Text style={[defaultStyles.textLink, {textAlign: 'left', paddingTop: 5}]}>You can search by entering the ingredients you have</Text>
        <Text style={[defaultStyles.textLink, {textAlign: 'left', paddingBottom: 15}]}>or by typing in a recipe name</Text>
         <Image
-        style={{height: 20, width:20, position: 'absolute', top: 217, right: 50, zIndex: 2}}
+        style={{height: 20, width:20, position: 'absolute', top: 200, right: 50, zIndex: 2}}
         source={require('../img/search.png')}
         />
         <Autocomplete
@@ -156,7 +156,7 @@ class SearchScreen extends React.Component {
           ))}
           </View>
           <TouchableOpacity
-            style = {[defaultStyles.redButton, {backgroundColor: '#fff', width: 350}]}
+            style = {[defaultStyles.redButton, {backgroundColor: '#fff', width: 325}]}
             onPress ={() => this.props.navigation.navigate(
               'Results',
               { ingArray: this.state.ingredients })}

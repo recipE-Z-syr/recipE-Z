@@ -3,10 +3,43 @@ import { Button, StyleSheet, Text, TextInput, View, SafeAreaView, ScrollView, Ke
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import defaultStyles from './stylesheet';
+import { AsyncStorage } from 'react-native';
+import { Stitch } from 'mongodb-stitch-react-native-sdk'
 
 class StartScreen extends React.Component {
   constructor(props) {
     super(props);
+
+    var initialized = false;
+
+    async () => {
+      try {
+        const value = await AsyncStorage.getItem('stitch');
+        if (value !== null)
+          initialized = true;
+      }
+      catch (error) {
+        // Error saving data
+      }
+    }
+
+    if (!initialized)
+    {
+      try {
+      Stitch.initializeDefaultAppClient('recipe-z-pnqkt');
+      }
+      catch {
+        // Error initializing
+      }
+      async () => {
+        try {
+          await AsyncStorage.setItem('stitch', 'recipe-z-pnqkt');
+        }
+        catch (error) {
+          // Error saving data
+        }
+      }
+    }
   }
 
   render() {
@@ -51,6 +84,17 @@ class StartScreen extends React.Component {
    ); //end return
  }//end render
 }//end class
+/*
+<Text style={{paddingTop: 10, color: '#ed4848', fontSize: 16, fontFamily: 'nunito-bold'}}>
+  Already have an account? 
+</Text>
+<TouchableOpacity
+  style={[defaultStyles.redButton, {marginTop:15}]}
+  onPress={() => navigation.navigate('Log-In')}
+  underlayColor='#ed4848'>
+  <Text style={defaultStyles.redButtonText}>LOG IN</Text>
+</TouchableOpacity>
+*/
 
 export default StartScreen;
 

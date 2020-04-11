@@ -3,6 +3,7 @@ import * as React from 'react';
 import { Platform, SafeAreaView, Button, StyleSheet, Text, View, AppRegistry, Image, TextInput, Alert, ScrollView, Keyboard, TouchableOpacity, Component } from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
+import {Stitch, UserPasswordAuthProviderClient, UserPasswordCredential} from 'mongodb-stitch-react-native-sdk'
 import defaultStyles from './stylesheet';
 
 
@@ -10,13 +11,15 @@ class SignupScreen extends React.Component {
   constructor(props) {
     super(props);
 
+    this.client = Stitch.defaultAppClient;
 
-    this.state = { fullName: '', email: '', password: '', confirmPassword: true}
+    this.state = { fullName: '', email: '', password: '', confirmPassword: false}
 
     this.handleName = this.handleName.bind(this);
     this.handleEmail = this.handleEmail.bind(this);
     this.handlePassword = this.handlePassword.bind(this);
     this.handleConfirmPassword = this.handleConfirmPassword.bind(this);
+    this.create_account = this.create_account.bind(this);
   }
 
   handleName(text) {
@@ -32,11 +35,80 @@ class SignupScreen extends React.Component {
   }
 
   handleConfirmPassword(text) {
-    if(text != this.state.password){
+    if(text != this.state.password)
       this.setState({ confirmPassword: false });
-    } else {
+
+    else 
       this.setState({ confirmPassword: true });
+  }
+
+  async create_account()
+  {
+    var status = "";
+
+    var re = /^(?:[a-z0-9!#$%&amp;'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&amp;'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])$/;
+
+    const email = this.state.email;
+    const password = this.state.password;
+    const confirmPassword = this.state.confirmPassword;
+
+    if (this.state.fullName === '')
+      alert("Cannot leave name blank!");
+
+    else if (email === '')
+      alert("Cannot leave email blank!");
+
+    else if (!re.test(email))
+      alert("Invalid email!")
+
+    else if (password === '')
+      alert("Cannot leave password blank!");
+
+    else if (!confirmPassword)
+      alert("Passwords do not match!");
+    
+    else if (password.length < 6 || password.length > 128)
+      alert("Password must be between 6 and 128 characters!");
+    else
+    {
+      const client = this.client;
+
+      // const db = client.getServiceClient(RemoteMongoClient.factory, 'mongodb-atlas').db('users');
+
+      const app = client
+
+      const emailPasswordClient = app.auth.getProviderClient(UserPasswordAuthProviderClient.factory);
+
+      await emailPasswordClient.registerWithEmail(email, password)
+        .then(() => console.log("Successfully sent account confirmation email!"))
+        .catch(err => {
+                        console.error("Error registering new user:");
+                        status = "register_error";
+                        var message = err.message.charAt(0).toUpperCase() + err.message.substring(1) + '.';
+                        if (message === "Name already in use.")
+                          alert("Account with this email already exists.");
+                        else
+                          alert(message);
+                      });
+
+      if (status != "register_error")
+      {
+        const credential = new UserPasswordCredential(email, password)
+        await app.auth.loginWithCredential(credential)
+          // Returns a promise that resolves to the authenticated user
+          .then(authedUser => console.log("Successfully logged in with id: ${authedUser.id}"))
+          .catch(err => {
+                          console.error("Login failed with error:", err);
+                          status = "login_error";
+                          alert(err.message.charAt(0).toUpperCase() + err.message.substring(1) + '.');
+                        })
+      }
+
+      if (status === "")
+        status = "success";
+
     }
+    return status;
   }
 
 
@@ -100,7 +172,12 @@ class SignupScreen extends React.Component {
         </TouchableOpacity>
         <TouchableOpacity
           style={[defaultStyles.redButton]}
-          onPress={() => navigation.navigate('Search')}
+          onPress={async () =>  {
+                            var status = await this.create_account();
+                            if(status === "success") 
+                              navigation.navigate('Search');
+                          }
+                  }
           underlayColor='#ed4848'>
           <Text style={defaultStyles.redButtonText}>SIGN UP</Text>
         </TouchableOpacity>
@@ -108,7 +185,7 @@ class SignupScreen extends React.Component {
       </View>
     );
 
-}
+  }
 }
 
 
