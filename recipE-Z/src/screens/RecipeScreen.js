@@ -34,13 +34,13 @@ class RecipeScreen extends React.Component {
           <Text style={[defaultStyles.h1, {color: '#000000', fontSize: 8, bottom: 144, right: 143}]}>- 6 tbsp. milk</Text>
           <Text style={[defaultStyles.h1, {color: '#000000', fontSize: 8, bottom: 143, right: 81}]}>- 6 oz chicken, cooked, diced into small pieces</Text>
           <Text style={[defaultStyles.h1, {color: '#000000', fontSize: 8, bottom: 142, right: 126}]}>- 4 - 6 tbsp. hot sauce</Text>
-          <Text style={[defaultStyles.h1, {fontSize: 14, bottom: 140, right: 140}]}>Instructions</Text>
-          <Text style={[defaultStyles.h1, {color: '#000000', fontSize: 8, bottom: 138, right: 75}]}>1. Bring 12 cups of water to a boil, stir in pasta. </Text>
-          <Text style={[defaultStyles.h1, {color: '#000000', fontSize: 8, bottom: 137, right: 137}]}>2. Drain Pasta. </Text>
-          <Text style={[defaultStyles.h1, {color: '#000000', fontSize: 8, bottom: 136, right: 21}]}>3. Add 6 tablespoons of milk into a sauce pan and sprinkle cheese from each {"\n"}packet and hot sauce over milk, stir until combined. </Text>
-          <Text style={[defaultStyles.h1, {color: '#000000', fontSize: 8, bottom: 135, right: 7}]}>4. Add cooked pasta and chicken, stir until pasta and chicken are completely coated.</Text>
-          <Text style={[defaultStyles.h1, {fontSize: 14, bottom: 130, right: 156}]}>Notes</Text>
-          <Text style={[defaultStyles.h1, {color: '#000000', fontSize: 8, bottom: 131, right: 78}]}>Calories per cup: 238, Fat: 4, Cholesterol: 22, {"\n"}Sodium: 1200, Potassium: 88, Carbs: 32,{"\n"}Fiber: 1.4, Sugar: 3.6, Protein: 14</Text>
+          <Text style={[defaultStyles.h1, {fontSize: 14, bottom: 130, right: 140}]}>Instructions</Text>
+          <Text style={[defaultStyles.h1, {color: '#000000', fontSize: 8, bottom: 128, right: 75}]}>1. Bring 12 cups of water to a boil, stir in pasta. </Text>
+          <Text style={[defaultStyles.h1, {color: '#000000', fontSize: 8, bottom: 127, right: 137}]}>2. Drain Pasta. </Text>
+          <Text style={[defaultStyles.h1, {color: '#000000', fontSize: 8, bottom: 126, right: 21}]}>3. Add 6 tablespoons of milk into a sauce pan and sprinkle cheese from each {"\n"}packet and hot sauce over milk, stir until combined. </Text>
+          <Text style={[defaultStyles.h1, {color: '#000000', fontSize: 8, bottom: 125, right: 7}]}>4. Add cooked pasta and chicken, stir until pasta and chicken are completely coated.</Text>
+          <Text style={[defaultStyles.h1, {fontSize: 14, bottom: 110, right: 156}]}>Notes</Text>
+          <Text style={[defaultStyles.h1, {color: '#000000', fontSize: 8, bottom: 108, right: 50}]}>Calories per cup: 238, Fat: 4, Cholesterol: 22, Sodium: 1200, {"\n"}Potassium: 88, Carbs: 32,Fiber: 1.4, Sugar: 3.6, Protein: 14</Text>
       </View>
    ); //end return
 
