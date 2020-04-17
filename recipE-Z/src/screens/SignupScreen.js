@@ -3,7 +3,8 @@ import * as React from 'react';
 import { Platform, SafeAreaView, Button, StyleSheet, Text, View, AppRegistry, Image, TextInput, Alert, ScrollView, Keyboard, TouchableOpacity, Component } from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-import {Stitch, UserPasswordAuthProviderClient, UserPasswordCredential} from 'mongodb-stitch-react-native-sdk'
+import { AsyncStorage } from 'react-native';
+import {Stitch, UserPasswordAuthProviderClient, UserPasswordCredential} from 'mongodb-stitch-react-native-sdk';
 import defaultStyles from './stylesheet';
 
 
@@ -158,8 +159,10 @@ class SignupScreen extends React.Component {
           onBlur = {Keyboard.dismiss}
           onChangeText = {this.handleConfirmPassword}
           />
-          <Text style={{color: '#ed4848', fontSize: 12, textAlign: 'center', display: this.state.confirmPassword ? 'none' : 'flex'}}>
-          The passwords you entered do not match.
+          <Text style={{color: '#25da4c', fontSize: 12, textAlign: 'center', marginLeft: 45, display: (
+            this.state.password == '' ? 'none' : (this.state.confirmPassword ? 'flex' : 'none')
+          )}}>
+          The passwords you entered match.
           </Text>
         </View>
         <TouchableOpacity style={{alignItems: 'center', marginTop: 5, marginBottom: 20}}>

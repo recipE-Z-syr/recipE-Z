@@ -2,45 +2,72 @@ import React, { Component } from 'react';
 import { Button, StyleSheet, Text, TextInput, View, SafeAreaView, ScrollView, Keyboard, TouchableOpacity, Image } from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-import defaultStyles from './stylesheet';
 import { AsyncStorage } from 'react-native';
-import { Stitch } from 'mongodb-stitch-react-native-sdk'
+import { Stitch } from 'mongodb-stitch-react-native-sdk';
+import defaultStyles from './stylesheet';
+
 
 class StartScreen extends React.Component {
   constructor(props) {
     super(props);
+    Stitch.initializeDefaultAppClient('recipe-z-pnqkt');
+    // this.initialize();
+    // this.checkLogin();
+  }
 
+  /*
+  async checkLogin()
+  {
+    try {
+      const value = await AsyncStorage.getItem('login');
+      if (value !== null)
+      {
+        const { navigation } = this.props;
+        navigation.navigate('Search');
+      }
+    }
+    catch (error) {
+      // Error saving data
+    }
+  }
+  */
+
+  /*
+  async initialize()
+  {
     var initialized = false;
 
-    async () => {
+    try {
+      const value = await AsyncStorage.getItem('stitch');
+      if (value !== null)
+        alert(value);
+        initialized = true;
+    }
+    catch (error) {
+      // Error saving data
+    }
+
+    if (!initialized)
+    {
+      alert("not initialized");
       try {
-        const value = await AsyncStorage.getItem('stitch');
-        if (value !== null)
-          initialized = true;
+        Stitch.initializeDefaultAppClient('recipe-z-pnqkt');
+      }
+      catch {
+        // Error initializing
+      }
+      
+      try {
+        await AsyncStorage.setItem('stitch', 'recipe-z-pnqkt');
       }
       catch (error) {
         // Error saving data
       }
     }
 
-    if (!initialized)
-    {
-      try {
-      Stitch.initializeDefaultAppClient('recipe-z-pnqkt');
-      }
-      catch {
-        // Error initializing
-      }
-      async () => {
-        try {
-          await AsyncStorage.setItem('stitch', 'recipe-z-pnqkt');
-        }
-        catch (error) {
-          // Error saving data
-        }
-      }
-    }
+    return 1;
   }
+  */
 
   render() {
     const {navigation} = this.props;

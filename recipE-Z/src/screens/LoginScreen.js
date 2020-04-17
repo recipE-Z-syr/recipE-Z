@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { Text, View, Image, TextInput, Keyboard, TouchableOpacity } from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
+import { AsyncStorage } from 'react-native';
 import {Stitch, UserPasswordCredential} from 'mongodb-stitch-react-native-sdk'
 import defaultStyles from './stylesheet';
 
@@ -10,6 +11,8 @@ import defaultStyles from './stylesheet';
 class LoginScreen extends Component {
   constructor(props) {
     super(props);
+
+    //this.checkLogin();
 
     this.client = Stitch.defaultAppClient;
 
@@ -26,6 +29,24 @@ class LoginScreen extends Component {
   handlePassword(text) {
     this.setState({ password: text });
   }
+
+  /*
+  async checkLogin()
+  {
+    try {
+      const value = await AsyncStorage.getItem('login');
+      if (value !== null)
+      {
+        alert("You are already logged in.")
+        const { navigation } = this.props;
+        navigation.navigate('Search');
+      }
+    }
+    catch (error) {
+      // Error saving data
+    }
+  }
+  */
 
   async login()
   {
@@ -50,22 +71,33 @@ class LoginScreen extends Component {
     {
       const client = this.client;
 
-      // const db = client.getServiceClient(RemoteMongoClient.factory, 'mongodb-atlas').db('users');
-
       const app = client
+
+      var user;
 
       const credential = new UserPasswordCredential(email, password)
       await app.auth.loginWithCredential(credential)
         // Returns a promise that resolves to the authenticated user
-        .then(authedUser => console.log("Successfully logged in with id: ${authedUser.id}"))
+        .then(authedUser => {
+          console.log("Successfully logged in with id: ${authedUser.id}");
+          user = authedUser.id;
+        })
         .catch(err => {
-                        console.error("Login failed with error:", err);
-                        status = "login_error";
-                        alert(err.message.charAt(0).toUpperCase() + err.message.substring(1) + '.');
-                      })
+          console.error("Login failed with error:", err);
+          status = "login_error";
+          alert(err.message.charAt(0).toUpperCase() + err.message.substring(1) + '.');
+        })
 
       if (status === "")
+      {
         status = "success";
+        try {
+          await AsyncStorage.setItem('login', user);
+        }
+        catch (error) {
+          // Error saving data
+        }
+      }
 
     }
     return status;
