@@ -23,3 +23,6 @@ This app was developed for iPhones. While React Native is cross-platform, we mai
 If you have XCode, you may be able to run the app on an iPhone emulator by pressing `o` in the terminal after expo-start finishes loading. 
 
 Expo comes with an SDK that provides tools for apps at https://docs.expo.io/versions/latest/sdk/overview/
+
+## Notes:
+If you have trouble signing up, try using a gmail account such as your g.syr.edu account. 
