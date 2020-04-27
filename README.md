@@ -9,7 +9,7 @@ First install Node.js and expo-cli.
 
 Then clone this repository to your local machine.
 
-To install dependencies, navigate to the repository and run `npm install` to install from package.json.
+To install dependencies, navigate to the recipeE-Z folder. Run `ls` and make sure you see App.js. Run `npm install` to install from package.json. Then run `expo start`. A website should open up with a QR code, it might take a second to load. 
 
 ## To preview the app:
 
